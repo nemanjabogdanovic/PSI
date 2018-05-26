@@ -15,13 +15,20 @@
 		<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="login">Elektronski Dnevnik</a>
+				<a class="navbar-brand" href="#">Elektronski Dnevnik</a>
 			</div>
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="login">Login</a></li>
-			</ul>
+			<div id="navbar">
+				<ul class="nav navbar-nav"></ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="<?php echo base_url(); ?>login">Login</a></li>
+				</ul>
+			</div>
 		</div>
 		</nav>
   
 		<div class="container">
-		</div>
+		
+		
+<?php if($this->session->flashdata('user_registered')): ?>
+	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_registered').'</p>'; ?>
+<?php endif; ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2018 at 05:12 PM
+-- Generation Time: May 26, 2018 at 10:34 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -21,48 +21,76 @@ SET time_zone = "+00:00";
 --
 -- Database: `dnevnik`
 --
+CREATE DATABASE IF NOT EXISTS `dnevnik` DEFAULT CHARACTER SET latin2 COLLATE latin2_croatian_ci;
+USE `dnevnik`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `korisnik`
+-- Table structure for table `administrator`
 --
 
-CREATE TABLE `korisnik` (
-  `idKorisnika` int(11) NOT NULL,
-  `ime` varchar(255) COLLATE latin2_croatian_ci NOT NULL,
-  `prezime` varchar(255) COLLATE latin2_croatian_ci NOT NULL,
-  `korisnickoIme` varchar(255) COLLATE latin2_croatian_ci NOT NULL,
-  `sifra` varchar(255) COLLATE latin2_croatian_ci NOT NULL,
-  `email` varchar(255) COLLATE latin2_croatian_ci NOT NULL
+CREATE TABLE `administrator` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE latin2_croatian_ci NOT NULL,
+  `surname` varchar(255) COLLATE latin2_croatian_ci NOT NULL,
+  `email` varchar(255) COLLATE latin2_croatian_ci NOT NULL,
+  `username` varchar(255) COLLATE latin2_croatian_ci NOT NULL,
+  `password` varchar(255) COLLATE latin2_croatian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
 
 --
--- Dumping data for table `korisnik`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `korisnik` (`idKorisnika`, `ime`, `prezime`, `korisnickoIme`, `sifra`, `email`) VALUES
-(1, 'nemanja', 'bogdanovic', 'nembogd', 'sifra123', 'nemanja@dnevnik.rs');
+INSERT INTO `users` (`id`, `name`, `surname`, `email`, `username`, `password`) VALUES
+(1, 'Aleksa', 'Aleksic', 'aleksa@gmail.com', 'aleksa_aleksic_1', 'f3071ec919ba79ea9d6fbe49c2c53a3d');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `korisnik`
+-- Indexes for table `administrator`
 --
-ALTER TABLE `korisnik`
-  ADD PRIMARY KEY (`idKorisnika`);
+ALTER TABLE `administrator`
+  ADD KEY `administrator_foreignKey` (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `korisnik`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `korisnik`
-  MODIFY `idKorisnika` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `administrator`
+--
+ALTER TABLE `administrator`
+  ADD CONSTRAINT `administrator_foreignKey` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
