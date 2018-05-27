@@ -21,8 +21,11 @@
 			<div id="navbar">
 				<!-- leva strana -->
 				<ul class="nav navbar-nav">
+					<?php if($this->session->userdata('logged_in')) : ?>
+						<li><a><?php echo $this->session->userdata('username'); ?></a></li>
+					<?php endif; ?>
 					<?php if($this->session->userdata('user_level') === 'administrator') : ?>
-						<li>Administrator</li>
+						<li><a>Administrator</a></li>
 					<?php endif; ?>
 				</ul>
 				<!-- desna strana -->

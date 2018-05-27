@@ -46,7 +46,6 @@
 			else{
 				return false;
 			}
-			
 		}
 		//provera da li je korisnicko ime u upotrebi pri registraciji korisnika
 		public function check_username_exists($username){
