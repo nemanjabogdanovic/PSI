@@ -2,7 +2,7 @@
 	autor: Nemanja Bogdanovic, 2012/0533
 	@version: 1.0
 -->
-<?php //echo form_open('login/login'): ?>
+<?php echo form_open('users/login'); ?>
 	
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
@@ -13,8 +13,8 @@
 			<div class="form-group">
 				<input type="password" name="password" class="form-control" placeholder="Sifra" required autofocus>
 			</div>
-			<button type="submit" class="btn btn-primary">Login</button>
+			<button type="submit" class="btn btn-primary btn-block">Login</button>
 		</div>
 	</div>
 	
-<?php //echo form_close(); ?>
+<?php echo form_close(); ?>
