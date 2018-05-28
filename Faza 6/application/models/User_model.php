@@ -37,15 +37,30 @@
 		//provera nivoa korisnika
 		public function userLevel($id){
 			$this->db->where('id', $id);
-			
 			$result = $this->db->get('administrator');
-			
 			if($result->num_rows() == 1){
 				return 'administrator';
 			}
-			else{
-				return false;
+			
+			$this->db->where('id', $id);
+			$result = $this->db->get('koordinator');
+			if($result->num_rows() == 1){
+				return 'koordinator';
 			}
+			
+			$this->db->where('id', $id);
+			$result = $this->db->get('nastavnik');
+			if($result->num_rows() == 1){
+				return 'nastavnik';
+			}
+			
+			$this->db->where('id', $id);
+			$result = $this->db->get('ucenik');
+			if($result->num_rows() == 1){
+				return 'ucenik';
+			}
+			
+			return false;
 		}
 		//provera da li je korisnicko ime u upotrebi pri registraciji korisnika
 		public function check_username_exists($username){

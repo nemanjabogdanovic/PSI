@@ -27,6 +27,15 @@
 					<?php if($this->session->userdata('user_level') === 'administrator') : ?>
 						<li><a>Administrator</a></li>
 					<?php endif; ?>
+					<?php if($this->session->userdata('user_level') === 'koordinator') : ?>
+						<li><a>Koordinator</a></li>
+					<?php endif; ?>
+					<?php if($this->session->userdata('user_level') === 'nastavnik') : ?>
+						<li><a>Nastavnik</a></li>
+					<?php endif; ?>
+					<?php if($this->session->userdata('user_level') === 'ucenik') : ?>
+						<li><a>Učenik</a></li>
+					<?php endif; ?>
 				</ul>
 				<!-- desna strana -->
 				<ul class="nav navbar-nav navbar-right">

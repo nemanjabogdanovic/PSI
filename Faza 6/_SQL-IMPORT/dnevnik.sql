@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2018 at 05:10 PM
+-- Generation Time: May 28, 2018 at 04:56 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -42,6 +42,57 @@ INSERT INTO `administrator` (`id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `koordinator`
+--
+
+CREATE TABLE `koordinator` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
+
+--
+-- Dumping data for table `koordinator`
+--
+
+INSERT INTO `koordinator` (`id`) VALUES
+(2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nastavnik`
+--
+
+CREATE TABLE `nastavnik` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
+
+--
+-- Dumping data for table `nastavnik`
+--
+
+INSERT INTO `nastavnik` (`id`) VALUES
+(3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ucenik`
+--
+
+CREATE TABLE `ucenik` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
+
+--
+-- Dumping data for table `ucenik`
+--
+
+INSERT INTO `ucenik` (`id`) VALUES
+(4);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -60,7 +111,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `surname`, `email`, `username`, `password`) VALUES
 (1, 'Aleksa', 'Aleksic', 'aleksa@gmail.com', 'aleksa_aleksic_1', 'f3071ec919ba79ea9d6fbe49c2c53a3d'),
-(2, 'Branko', 'Brankovic', 'branko@live.com', 'branko_brankovic_1', 'fbee3d5b1def587f835e85a8a4c78195');
+(2, 'Branko', 'Brankovic', 'branko@live.com', 'branko_brankovic_1', 'fbee3d5b1def587f835e85a8a4c78195'),
+(3, 'Vuk', 'Vukovic', 'vuk@yahoo.com', 'vuk_vukovic_1', '5a1001075d3205d010ef24413e6a1afd'),
+(4, 'Goran', 'Goranovic', 'goran@gmail.com', 'goran_goranovic_1', '52ddd9ff1e957a1e6b15d329d8cefee7'),
+(5, 'Djura', 'Djurisic', 'djura@hotmail.com', 'djura_djurisic_1', '9362293c8751865cdfce81d241259a1c');
 
 --
 -- Indexes for dumped tables
@@ -71,6 +125,24 @@ INSERT INTO `users` (`id`, `name`, `surname`, `email`, `username`, `password`) V
 --
 ALTER TABLE `administrator`
   ADD KEY `administrator_foreignKey` (`id`);
+
+--
+-- Indexes for table `koordinator`
+--
+ALTER TABLE `koordinator`
+  ADD KEY `koordinator_foreignKey` (`id`);
+
+--
+-- Indexes for table `nastavnik`
+--
+ALTER TABLE `nastavnik`
+  ADD KEY `nastavnik_foreignKey` (`id`);
+
+--
+-- Indexes for table `ucenik`
+--
+ALTER TABLE `ucenik`
+  ADD KEY `ucenik_foreignKey` (`id`);
 
 --
 -- Indexes for table `users`
@@ -86,7 +158,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -97,6 +169,24 @@ ALTER TABLE `users`
 --
 ALTER TABLE `administrator`
   ADD CONSTRAINT `administrator_foreignKey` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `koordinator`
+--
+ALTER TABLE `koordinator`
+  ADD CONSTRAINT `koordinator_foreignKey` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `nastavnik`
+--
+ALTER TABLE `nastavnik`
+  ADD CONSTRAINT `nastavnik_foreignKey` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `ucenik`
+--
+ALTER TABLE `ucenik`
+  ADD CONSTRAINT `ucenik_foreignKey` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

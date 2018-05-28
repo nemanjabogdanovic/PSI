@@ -6,7 +6,7 @@
 
 <?php echo form_open('users/register'); ?>
 	<div class="row">
-		<div class="col-md-4 col-md-offset 4">
+		<div class="col-md-4">
 			<h1 class="text-center"><?= $title.' obican korisnik privremeno'; ?></h2>
 			<div class="form-group">
 				<label>Ime</label>

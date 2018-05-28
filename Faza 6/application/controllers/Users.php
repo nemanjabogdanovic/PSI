@@ -44,9 +44,10 @@
 				$username = $this->input->post('username');
 				$password = md5($this->input->post('password'));
 				$user_id = $this->user_model->login($username, $password);
-				$user_level = $this->user_model->userLevel($user_id);
 				
 				if($user_id){
+					$user_level = $this->user_model->userLevel($user_id);
+					
 					$user_data = array(
 						'user_id' => $user_id,
 						'username' => $username,
@@ -57,7 +58,12 @@
 					$this->session->set_userdata($user_data);
 					
 					$this->session->set_flashdata('user_loggedin', 'Uspesan login');
-					redirect('users/login');					
+					
+					redirect($user_level.'/home');
+					
+					
+					
+					//redirect('users/login');
 				}
 				else{
 					$this->session->set_flashdata('login_failed', 'Pogresan login');
