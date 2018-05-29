@@ -58,7 +58,6 @@
 					$this->session->set_userdata($user_data);
 					
 					$this->session->set_flashdata('user_loggedin', 'Uspesan login');
-					
 					redirect($user_level.'/home');
 				}
 				else{
@@ -92,6 +91,22 @@
 					$this->session->set_flashdata('reset_success', 'Uspešno promenjena lozinka!');
 					redirect($this->session->userdata('user_level').'/home');
 				}
+			}
+		}
+		//zaboravljena sifra
+		public function forgotten(){
+			$data['title'] = 'Zaboravljena lozinka';
+			
+			$this->form_validation->set_rules('email', 'Email', 'required');
+			
+			if($this->form_validation->run() === FALSE){
+				$this->load->view('templates/header');
+				$this->load->view('users/forgotten', $data);
+				$this->load->view('templates/footer');
+			}
+			else{
+				$this->session->set_flashdata('forgotten_success', 'Nova lozinka poslata na e-mail!');
+				redirect('users/login');
 			}
 		}
 		//logout korisnika

@@ -25,13 +25,13 @@
 						<li><a href="<?php echo base_url(); ?>administrator/home">Administrator - Početna</a></li>
 					<?php endif; ?>
 					<?php if($this->session->userdata('user_level') === 'koordinator') : ?>
-						<li><a href="<?php echo base_url(); ?>koordinator/home">Koordinator</a></li>
+						<li><a href="<?php echo base_url(); ?>koordinator/home">Koordinator - Početna</a></li>
 					<?php endif; ?>
 					<?php if($this->session->userdata('user_level') === 'nastavnik') : ?>
-						<li><a href="<?php echo base_url(); ?>nastavnik/home">Nastavnik</a></li>
+						<li><a href="<?php echo base_url(); ?>nastavnik/home">Nastavnik - Početna</a></li>
 					<?php endif; ?>
 					<?php if($this->session->userdata('user_level') === 'ucenik') : ?>
-						<li><a href="<?php echo base_url(); ?>ucenik/home">Učenik</a></li>
+						<li><a href="<?php echo base_url(); ?>ucenik/home">Učenik - Početna</a></li>
 					<?php endif; ?>
 				</ul>
 				<!-- desna strana -->
@@ -79,4 +79,8 @@
 
 <?php if($this->session->flashdata('reset_success')): ?>
 	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('reset_success').'</p>'; ?>
+<?php endif; ?>
+
+<?php if($this->session->flashdata('forgotten_success')): ?>
+	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('forgotten_success').'</p>'; ?>
 <?php endif; ?>

@@ -15,7 +15,7 @@
 		</div>
 		<button type="submit" class="btn btn-primary btn-block">Login</button>
 		<br>
-		<a href="<?php echo base_url(); ?>users/reset">Zaboravljena lozinka?</a>
+		<a href="<?php echo base_url(); ?>users/forgotten">Zaboravljena lozinka?</a>
 	</div>
 </div>
 	
