@@ -25,8 +25,8 @@
 				<input type="text" class="form-control" name="username" placeholder="Korisnicko Ime">
 			</div>
 			<div class="form-group">
-				<label>Sifra</label>
-				<input type="text" class="form-control" name="password" placeholder="Sifra">
+				<label>Lozinka</label>
+				<input type="text" class="form-control" name="password" placeholder="Lozinka">
 			</div>
 			<button type="submit" class="btn btn-primary btn-block">Submit</button>
 		</div>

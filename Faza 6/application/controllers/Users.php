@@ -12,7 +12,7 @@
 			$this->form_validation->set_rules('surname', 'Prezime', 'required');
 			$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
 			$this->form_validation->set_rules('username', 'KorisnickoIme', 'required|callback_check_username_exists');
-			$this->form_validation->set_rules('password', 'Sifra', 'required');
+			$this->form_validation->set_rules('password', 'Lozinka', 'required');
 			
 			if($this->form_validation->run() === FALSE){
 				$this->load->view('templates/header');
@@ -33,7 +33,7 @@
 			$data['title'] = 'Login';
 			
 			$this->form_validation->set_rules('username', 'KorisnickoIme', 'required');
-			$this->form_validation->set_rules('password', 'Sifra', 'required');
+			$this->form_validation->set_rules('password', 'Lozinka', 'required');
 			
 			if($this->form_validation->run() === FALSE){
 				$this->load->view('templates/header');
@@ -60,16 +60,38 @@
 					$this->session->set_flashdata('user_loggedin', 'Uspesan login');
 					
 					redirect($user_level.'/home');
-					
-					
-					
-					//redirect('users/login');
 				}
 				else{
 					$this->session->set_flashdata('login_failed', 'Pogresan login');
 					redirect('users/login');
 				}
 				
+			}
+		}
+		//resetovanje sifre
+		public function reset(){
+			$data['title'] = 'Promena lozinke';
+			
+			$this->form_validation->set_rules('old_password', 'Stara Lozinka', 'required');
+			$this->form_validation->set_rules('new_password', 'Nova Lozinka', 'required');
+			
+			if($this->form_validation->run() === FALSE){
+				$this->load->view('templates/header');
+				$this->load->view('users/reset', $data);
+				$this->load->view('templates/footer');
+			}
+			else{
+				$enc_password_old = md5($this->input->post('old_password'));
+				$enc_password_new = md5($this->input->post('new_password'));
+				
+				if(!$this->user_model->reset($enc_password_old, $enc_password_new)){
+					$this->session->set_flashdata('reset_failed', 'Stara lozinka nije ispravna!');
+					redirect('users/reset');
+				}
+				else{
+					$this->session->set_flashdata('reset_success', 'Uspešno promenjena lozinka!');
+					redirect($this->session->userdata('user_level').'/home');
+				}
 			}
 		}
 		//logout korisnika

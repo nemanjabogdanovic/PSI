@@ -44,7 +44,11 @@
 					<?php endif; ?>
 						
 					<li><a href="<?php echo base_url(); ?>users/register">Registracija_temp</a></li>
-						
+					
+					<?php if($this->session->userdata('logged_in')) : ?>
+						<li><a href="<?php echo base_url(); ?>users/reset">Promena lozinke</a></li>
+					<?php endif; ?>
+					
 					<?php if($this->session->userdata('logged_in')) : ?>
 						<li><a href="<?php echo base_url(); ?>users/logout">Logout</a></li>
 					<?php endif; ?>
@@ -70,4 +74,12 @@
 
 <?php if($this->session->flashdata('user_loggedout')): ?>
 	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
+<?php endif; ?>
+
+<?php if($this->session->flashdata('reset_failed')): ?>
+	<?php echo '<p class="alert alert-danger">'.$this->session->flashdata('reset_failed').'</p>'; ?>
+<?php endif; ?>
+
+<?php if($this->session->flashdata('reset_success')): ?>
+	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('reset_success').'</p>'; ?>
 <?php endif; ?>

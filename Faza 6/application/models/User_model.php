@@ -62,6 +62,27 @@
 			
 			return false;
 		}
+		//resetovanje sifre
+		public function reset($enc_password_old, $enc_password_new){
+			$username = $this->session->userdata('username');
+			
+			$this->db->where('username', $username);
+			$this->db->where('password', $enc_password_old);
+			
+			$result = $this->db->get('users');
+			
+			$new = array('password' => $enc_password_new);
+			
+			if($result->num_rows() == 1){
+				$this->db->where('username', $username);
+				$this->db->update('users', $new);
+				return true;
+			}
+			else{
+				return false;
+			}
+			
+		}
 		//provera da li je korisnicko ime u upotrebi pri registraciji korisnika
 		public function check_username_exists($username){
 			$query = $this->db->get_where('users', array('username' => $username));
