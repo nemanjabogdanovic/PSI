@@ -21,20 +21,17 @@
 			<div id="navbar">
 				<!-- leva strana -->
 				<ul class="nav navbar-nav">
-					<?php if($this->session->userdata('logged_in')) : ?>
-						<li><a><?php echo $this->session->userdata('username'); ?></a></li>
-					<?php endif; ?>
 					<?php if($this->session->userdata('user_level') === 'administrator') : ?>
-						<li><a>Administrator</a></li>
+						<li><a href="<?php echo base_url(); ?>administrator/home">Administrator - Početna</a></li>
 					<?php endif; ?>
 					<?php if($this->session->userdata('user_level') === 'koordinator') : ?>
-						<li><a>Koordinator</a></li>
+						<li><a href="<?php echo base_url(); ?>koordinator/home">Koordinator</a></li>
 					<?php endif; ?>
 					<?php if($this->session->userdata('user_level') === 'nastavnik') : ?>
-						<li><a>Nastavnik</a></li>
+						<li><a href="<?php echo base_url(); ?>nastavnik/home">Nastavnik</a></li>
 					<?php endif; ?>
 					<?php if($this->session->userdata('user_level') === 'ucenik') : ?>
-						<li><a>Učenik</a></li>
+						<li><a href="<?php echo base_url(); ?>ucenik/home">Učenik</a></li>
 					<?php endif; ?>
 				</ul>
 				<!-- desna strana -->
