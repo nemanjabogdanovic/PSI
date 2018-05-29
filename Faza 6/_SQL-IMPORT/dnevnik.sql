@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2018 at 04:56 PM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
+-- Generation Time: May 29, 2018 at 06:12 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -76,6 +76,20 @@ INSERT INTO `nastavnik` (`id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `predmet`
+--
+
+CREATE TABLE `predmet` (
+  `id` int(11) NOT NULL,
+  `ime` varchar(255) COLLATE latin2_croatian_ci NOT NULL,
+  `nastavnik` varchar(500) COLLATE latin2_croatian_ci NOT NULL,
+  `skolskaGodina` varchar(30) COLLATE latin2_croatian_ci NOT NULL,
+  `kabineti` varchar(50) COLLATE latin2_croatian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ucenik`
 --
 
@@ -139,6 +153,12 @@ ALTER TABLE `nastavnik`
   ADD KEY `nastavnik_foreignKey` (`id`);
 
 --
+-- Indexes for table `predmet`
+--
+ALTER TABLE `predmet`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `ucenik`
 --
 ALTER TABLE `ucenik`
@@ -153,6 +173,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `predmet`
+--
+ALTER TABLE `predmet`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
