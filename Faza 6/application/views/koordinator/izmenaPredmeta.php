@@ -37,18 +37,61 @@
 			</select>
 		<button type="submit" class="btn btn-primary btn-block">Dodaj</button> <!-- poruka da je profa dodat -->	
 
+		<h3 class="text">Izbaci profesora </h3>
+			<select class="selectpicker" multiple data-width="auto">
+				<option>Profa 11 asdasdasdasdasd</option>
+				<option>Profa 2</option>
+				<option>Profa 3</option>
+			</select>
+		<button type="submit" class="btn btn-primary btn-block">Izbaci</button> <!-- poruka da je profa izbacen -->	
 		
 		<br>
 		
-	
+		<h3 class="text">Dodaj školsku godinu</h3>
+			<select class="selectpicker" multiple data-width="auto">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option><!-- OPCIONO da ne izbacuje kao ponudu godinu koja je vec postoji -->
+			</select>
+		<button type="submit" class="btn btn-primary btn-block">Dodaj</button> <!-- poruka da je godina dodata -->	
 		
-		<button type="submit" class="btn btn-primary btn-block">Izmeni</button>
+		<h3 class="text">Izbaci školsku godinu</h3>
+			<select class="selectpicker" multiple data-width="auto">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option><!-- OPCIONO da ne izbacuje kao ponudu godinu koja nije izabrana prethodno -->
+			</select>
+		<button type="submit" class="btn btn-primary btn-block">Izbaci</button> <!-- poruka da je godina izbacena -->	
+		
+		<h3 class="text">Dodaj kabinet</h3>
+			<select class="selectpicker" multiple data-width="auto">
+				<option>11</option>
+				<option>23</option>
+				<option>34</option>
+				<option>42</option><!-- OPCIONO da ne izbacuje kao ponudu kabinet koji je vec postoji -->
+			</select>
+		<button type="submit" class="btn btn-primary btn-block">Dodaj</button> <!-- poruka da je godina dodata -->	
+		
+		<h3 class="text">Izbaci školsku godinu</h3>
+			<select class="selectpicker" multiple data-width="auto">
+				<option>11</option>
+				<option>23</option>
+				<option>34</option>
+				<option>42</option><!-- OPCIONO da ne izbacuje kao ponudu kabinet koji nije izabran prethodno -->
+			</select>
+		<button type="submit" class="btn btn-primary btn-block">Izbaci</button> <!-- poruka da je godina izbacena -->	
+		
+		<button type="submit" class="btn btn-primary btn-block">Povratak</button>
 		
 			
 	</div>		
+	
+	
 		
 		
 	</div>	
 </div>
-
+</div>
 <?php echo form_close(); ?>

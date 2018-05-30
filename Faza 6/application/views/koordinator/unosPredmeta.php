@@ -28,7 +28,7 @@
 		<br>
 		
 		
-		<h1 class="text-center">Izbor školske godine </h1>
+		<h3 class="text">Izbor školske godine: </h3>
 		<div class="checkbox">
 			<label><input type="checkbox" value="">Prva godina</label>
 		</div>
@@ -43,7 +43,7 @@
 		</div>
 		
 		
-		<h1 class="text-center">Izbor nastavnika </h1>
+		<h3 class="text">Izbor nastavnika:</h3>
 		
 		
 			<select class="selectpicker" multiple data-width="auto">

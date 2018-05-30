@@ -16,6 +16,16 @@
 <div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">		
 	<div class="tm-right-inner-container">
 		<h1 class="css-header">Uređivanje naloga</h1>		
-		<p>Koordinator</p>
+		<h1 class="css-header">Pretraga naloga:</h1>
+		<div class="topnav">
+			  <input type="text" placeholder="Search..">
+		</div>
+		<br>
+		<button type="submit" >Izmeni nalog?? izbrisi nalog</button> 
+		<br>
+		<br>
+		<button type="submit"><a href="<?php echo base_url(); ?>koordinator/noviNalog">Novi nalog</a></button>
+		
+		
 	</div>	
 </div>

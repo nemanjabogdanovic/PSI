@@ -13,16 +13,14 @@
 		</ul>
 	</div>
 </div>
-<div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">		
+<div class="col col-lg-10 col-md-7 col-sm-7 col-xs-12 right-container">		
 	<div class="tm-right-inner-container">
 		
 			
-		<div class="col-md-4">
+		<div class="col-lg-8 col-md-5 col-sm-4 col-xs-12">
 			<h1 class="text-center"><?php echo $title; ?></h1>
 			
 			
-			<div class="container">
-			        
 			  <table class="table table-hover">
 				<thead>
 				  <tr>
@@ -41,7 +39,7 @@
 				  </tr>
 				  <tr>
 					<td>Francuski</td>
-					<td>Profa 2,Profa 1</td>
+					<td>Profa 2,Profa 1 Profa 1 Profa 1</td>
 					<td>1</td>
 					<td>12,14</td>
 				  </tr>
@@ -53,7 +51,6 @@
 				  </tr>
 				</tbody>
 			  </table>
-			</div>
 			
 			
 			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/unosPredmeta">Unesi Predmet</a></button>

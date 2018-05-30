@@ -84,7 +84,3 @@
 <?php if($this->session->flashdata('forgotten_success')): ?>
 	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('forgotten_success').'</p>'; ?>
 <?php endif; ?>
-
-<?php if($this->session->flashdata('forgotten_fail')): ?>
-	<?php echo '<p class="alert alert-danger">'.$this->session->flashdata('forgotten_fail').'</p>'; ?>
-<?php endif; ?>
