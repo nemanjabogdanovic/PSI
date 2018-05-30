@@ -105,8 +105,15 @@
 				$this->load->view('templates/footer');
 			}
 			else{
-				$this->session->set_flashdata('forgotten_success', 'Nova lozinka poslata na e-mail!');
-				redirect('users/login');
+				$email = $this->input->post('email');
+				if($this->user_model->checkEmail($email)){
+					$this->session->set_flashdata('forgotten_success', 'Nova lozinka poslata na e-mail!');
+					redirect('users/login');
+				}
+				else{
+					$this->session->set_flashdata('forgotten_fail', 'Pogrešno unet e-mail!');
+					redirect('users/forgotten');
+				}
 			}
 		}
 		//logout korisnika

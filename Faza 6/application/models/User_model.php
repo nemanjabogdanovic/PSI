@@ -82,6 +82,16 @@
 				return false;
 			}
 		}
+		//provera da li je email vezan za neki nalog pri zaboravljenoj lozinci
+		public function checkEmail($email){
+			$query = $this->db->get_where('users', array('email' => $email));
+			if(empty($query->row_array())){
+				return false;
+			}
+			else{
+				return true;
+			} 
+		}
 		//provera da li je korisnicko ime u upotrebi pri registraciji korisnika
 		public function check_username_exists($username){
 			$query = $this->db->get_where('users', array('username' => $username));
