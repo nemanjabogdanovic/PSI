@@ -8,6 +8,41 @@
 	<div class="row">
 		<div class="col-md-4">
 			<h1 class="text-center"><?= $title.' '; ?></h2>
+			
+			<table class="table table-hover">
+				<thead>
+				  <tr>
+					<th></th>
+					<th>Ponedeljak</th>
+					<th>Utorak</th>
+					<th>Sreda</th>
+					<th>Četvrtak</th>
+					<th>Petak</th>
+					
+				  </tr>
+				</thead>
+				<tbody>
+				  <tr>
+					<td>8h</td>
+					<td>mata</td>
+					<td>eng</td>
+					<td>12</td>
+				  </tr>
+				  <tr>
+					<td>9h</td>
+					<td>eng</td>
+					<td>fra</td>
+					<td>12,14</td>
+				  </tr>
+				  <tr>
+					<td>10h</td>
+					<td>fra</td>
+					<td>oet</td>
+					<td>12,13,15</td>
+				  </tr>
+				</tbody>
+			  </table>
+			
 			<div class="form-group">
 				<select class="selectpicker">
 					  <option>Predmet 1</option>
@@ -16,16 +51,32 @@
 				</select>
 
 			</div>
-			<h3 class="text">Datum </h3>
-			<input type="text" id="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" value="09-01-2013">
-				<script>
-					$(function(){
-						$('#date').combodate();    
-					});
-				</script>
-			<h3 class="text">termin </h3>
 			
-			dropdown
+			<h3 class="text">Dan:</h3>
+			
+			<div class="form-group">
+				<select class="selectpicker">
+					  <option>Ponedeljak</option>
+					  <option>Utorak</option>
+					  <option>Sreda</option>
+					  <option>Četvrtak</option>
+					  <option>Petak</option>
+				</select>
+
+			</div>
+			
+			<h3 class="text">Termin: </h3>
+			
+			<div class="form-group">
+				<select class="selectpicker">
+					  <option>8</option>
+					  <option>9</option>
+					  <option>10</option>
+					  <option>11</option>
+					  <option>12</option>
+				</select>
+
+			</div>
 			
 			
 			<button type="submit" class="btn btn-primary btn-block">Dodaj</button>

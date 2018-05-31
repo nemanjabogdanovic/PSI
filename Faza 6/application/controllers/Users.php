@@ -32,6 +32,7 @@
 		public function login(){
 			$data['title'] = 'Login';
 			
+			
 			$this->form_validation->set_rules('username', 'KorisnickoIme', 'required');
 			$this->form_validation->set_rules('password', 'Lozinka', 'required');
 			

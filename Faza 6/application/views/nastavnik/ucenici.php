@@ -18,5 +18,8 @@
 	<div class="tm-right-inner-container">
 		<h1 class="css-header">Učenici</h1>		
 		<p>Nastavnik</p>
+		
+		<h2>url <?PHP echo $url; ?><br /></h2>
+   <h2>getfield <?PHP echo $getfield; ?><br /></h2>
 	</div>	
 </div>

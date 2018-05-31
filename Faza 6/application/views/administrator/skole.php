@@ -14,6 +14,8 @@
 <div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">
 	<div class="tm-right-inner-container">
 		<h1 class="css-header">Škole i programi</h1>	
-		<p>Administrator</p>				
+		<p>Administrator</p>	
+		
+		
 	</div>	
 </div>

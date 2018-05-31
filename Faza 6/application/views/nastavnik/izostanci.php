@@ -18,5 +18,7 @@
 	<div class="tm-right-inner-container">
 		<h1 class="css-header">Izostanci</h1>		
 		<p>Nastavnik</p>
+		<p>Nastavnik</p>
+		<p>Nastavnik</p>
 	</div>	
 </div>
