@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2018 at 04:30 PM
+-- Generation Time: Jun 01, 2018 at 05:08 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -164,12 +164,12 @@ INSERT INTO `predmet` (`id`, `ime`, `nastavnik`, `skolskaGodina`, `kabineti`, `s
 
 CREATE TABLE `raspored` (
   `id` int(11) NOT NULL,
-  `odeljenje` varchar(255) COLLATE latin2_croatian_ci NOT NULL,
+  `odeljenjeId` int(25) NOT NULL,
   `dan` varchar(255) COLLATE latin2_croatian_ci NOT NULL,
   `brojCasa` int(11) NOT NULL,
-  `nastavnik` int(11) NOT NULL,
+  `nastavnikId` int(11) NOT NULL,
   `kabinet` varchar(255) COLLATE latin2_croatian_ci NOT NULL,
-  `predmet` int(11) NOT NULL
+  `predmetId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
 
 -- --------------------------------------------------------
@@ -324,8 +324,9 @@ ALTER TABLE `predmet`
 --
 ALTER TABLE `raspored`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `raspored_nastavnikFK` (`nastavnik`),
-  ADD KEY `raspored_predmetFK` (`predmet`);
+  ADD KEY `raspored_nastavnikFK` (`nastavnikId`),
+  ADD KEY `raspored_predmetFK` (`predmetId`),
+  ADD KEY `raspored_odeljenjeFK` (`odeljenjeId`);
 
 --
 -- Indexes for table `skola`
@@ -466,8 +467,9 @@ ALTER TABLE `predmet`
 -- Constraints for table `raspored`
 --
 ALTER TABLE `raspored`
-  ADD CONSTRAINT `raspored_nastavnikFK` FOREIGN KEY (`nastavnik`) REFERENCES `nastavnik` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `raspored_predmetFK` FOREIGN KEY (`predmet`) REFERENCES `predmet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `raspored_nastavnikFK` FOREIGN KEY (`nastavnikId`) REFERENCES `nastavnik` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `raspored_odeljenjeFK` FOREIGN KEY (`odeljenjeId`) REFERENCES `odeljenje` (`id`),
+  ADD CONSTRAINT `raspored_predmetFK` FOREIGN KEY (`predmetId`) REFERENCES `predmet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `ucenik`
