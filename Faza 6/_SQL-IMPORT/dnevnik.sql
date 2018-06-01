@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2018 at 04:08 PM
+-- Generation Time: Jun 01, 2018 at 04:30 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -114,13 +114,6 @@ CREATE TABLE `ocena` (
   `ocena` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
 
---
--- Dumping data for table `ocena`
---
-
-INSERT INTO `ocena` (`id`, `predmetId`, `ucenikId`, `ocena`) VALUES
-(1, 4, 10, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -216,7 +209,7 @@ CREATE TABLE `ucenik` (
 --
 
 INSERT INTO `ucenik` (`id`, `skolaId`, `odeljenjeId`) VALUES
-(10, 2, 1);
+(12, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -240,8 +233,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `surname`, `email`, `username`, `password`) VALUES
 (1, 'Aleksa', 'Aleksic', 'aleksa@gmail.com', 'aleksa_aleksic_1', 'f3071ec919ba79ea9d6fbe49c2c53a3d'),
 (8, 'Vuk', 'Vukovic', 'vuk@yahoo.com', 'vuk_vukovic_1', '5a1001075d3205d010ef24413e6a1afd'),
-(10, 'Goran', 'Goranovic', 'goran@gmail.com', 'goran_goranovic_1', '52ddd9ff1e957a1e6b15d329d8cefee7'),
-(11, 'Branko', 'Brankovic', 'branko@live.com', 'branko_brankovic_1', 'fbee3d5b1def587f835e85a8a4c78195');
+(11, 'Branko', 'Brankovic', 'branko@live.com', 'branko_brankovic_1', 'fbee3d5b1def587f835e85a8a4c78195'),
+(12, 'Goran', 'Goranovic', 'goran@gmail.com', 'goran_goranovic_1', '52ddd9ff1e957a1e6b15d329d8cefee7');
 
 -- --------------------------------------------------------
 
@@ -404,13 +397,13 @@ ALTER TABLE `skola`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `vesti`
 --
 ALTER TABLE `vesti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
@@ -452,8 +445,8 @@ ALTER TABLE `nastavnik`
 -- Constraints for table `ocena`
 --
 ALTER TABLE `ocena`
-  ADD CONSTRAINT `ocena_predmetFK` FOREIGN KEY (`predmetId`) REFERENCES `predmet` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `ocena_ucenikFK` FOREIGN KEY (`ucenikId`) REFERENCES `ucenik` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `ocena_predmetFK` FOREIGN KEY (`predmetId`) REFERENCES `predmet` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ocena_ucenikFK` FOREIGN KEY (`ucenikId`) REFERENCES `ucenik` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `odeljenje`
@@ -481,8 +474,8 @@ ALTER TABLE `raspored`
 --
 ALTER TABLE `ucenik`
   ADD CONSTRAINT `ucenik_foreignKey` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ucenik_odeljenjeFK` FOREIGN KEY (`odeljenjeId`) REFERENCES `odeljenje` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `ucenik_skolaFK` FOREIGN KEY (`skolaId`) REFERENCES `skola` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `ucenik_odeljenjeFK` FOREIGN KEY (`odeljenjeId`) REFERENCES `odeljenje` (`id`),
+  ADD CONSTRAINT `ucenik_skolaFK` FOREIGN KEY (`skolaId`) REFERENCES `skola` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
