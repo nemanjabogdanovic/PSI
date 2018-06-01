@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2018 at 06:12 PM
+-- Generation Time: Jun 01, 2018 at 11:36 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -87,6 +87,15 @@ CREATE TABLE `predmet` (
   `kabineti` varchar(50) COLLATE latin2_croatian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
 
+--
+-- Dumping data for table `predmet`
+--
+
+INSERT INTO `predmet` (`id`, `ime`, `nastavnik`, `skolskaGodina`, `kabineti`) VALUES
+(1, 'mata', 'misa', '92', '12'),
+(2, 'engleski', 'aca', '4', '123'),
+(3, 'engleski2', 'aca2', '42', '123');
+
 -- --------------------------------------------------------
 
 --
@@ -125,7 +134,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `surname`, `email`, `username`, `password`) VALUES
 (1, 'Aleksa', 'Aleksic', 'aleksa@gmail.com', 'aleksa_aleksic_1', 'f3071ec919ba79ea9d6fbe49c2c53a3d'),
-(2, 'Branko', 'Brankovic', 'branko@live.com', 'branko_brankovic_1', 'fbee3d5b1def587f835e85a8a4c78195'),
+(2, 'Branko', 'Brankovic', 'branko@live.com', 'branko_brankovic_1', 'ff2cd722ad15b013cb7a5ecbf8d1e12f'),
 (3, 'Vuk', 'Vukovic', 'vuk@yahoo.com', 'vuk_vukovic_1', '5a1001075d3205d010ef24413e6a1afd'),
 (4, 'Goran', 'Goranovic', 'goran@gmail.com', 'goran_goranovic_1', '52ddd9ff1e957a1e6b15d329d8cefee7'),
 (5, 'Djura', 'Djurisic', 'djura@hotmail.com', 'djura_djurisic_1', '9362293c8751865cdfce81d241259a1c');
@@ -178,7 +187,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `predmet`
 --
 ALTER TABLE `predmet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
