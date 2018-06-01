@@ -45,14 +45,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | class or method name character, so it requires translation.
 | When you set this option to TRUE, it will replace ALL dashes in the
 | controller and method URI segments.
-|	
+|
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['administrator/(:any)'] = 'administrator/view/$1';
-//$route['koordinator/'] = 'koordinator/view/$1';
-$route['koordinator'] = 'koordinator/index';
-$route['nastavnik/(:any)'] = 'nastavnik/view/$1';
+$route['koordinator/(:any)'] = 'koordinator/view/$1';
+$route['nastavnik'] = 'nastavnik/index';
+
 $route['ucenik/(:any)'] = 'ucenik/view/$1';
 $route['default_controller'] = 'users/login';
 $route['(:any)'] = 'users/login/view/$1';
