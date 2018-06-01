@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2018 at 05:08 PM
+-- Generation Time: Jun 01, 2018 at 06:39 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -81,7 +81,8 @@ CREATE TABLE `koordinator` (
 --
 
 INSERT INTO `koordinator` (`id`, `skolaId`) VALUES
-(11, 2);
+(11, 2),
+(14, 3);
 
 -- --------------------------------------------------------
 
@@ -190,7 +191,8 @@ CREATE TABLE `skola` (
 --
 
 INSERT INTO `skola` (`id`, `ime`, `adresa`, `grad`) VALUES
-(2, 'Prva beogradska gimnazija', 'Cara Dušana 61', 'Beograd');
+(2, 'Prva beogradska gimnazija', 'Cara Dušana 61', 'Beograd'),
+(3, 'Treća beogradska gimnazija', 'Njegoševa 61', 'Beograd');
 
 -- --------------------------------------------------------
 
@@ -234,7 +236,8 @@ INSERT INTO `users` (`id`, `name`, `surname`, `email`, `username`, `password`) V
 (1, 'Aleksa', 'Aleksic', 'aleksa@gmail.com', 'aleksa_aleksic_1', 'f3071ec919ba79ea9d6fbe49c2c53a3d'),
 (8, 'Vuk', 'Vukovic', 'vuk@yahoo.com', 'vuk_vukovic_1', '5a1001075d3205d010ef24413e6a1afd'),
 (11, 'Branko', 'Brankovic', 'branko@live.com', 'branko_brankovic_1', 'fbee3d5b1def587f835e85a8a4c78195'),
-(12, 'Goran', 'Goranovic', 'goran@gmail.com', 'goran_goranovic_1', '52ddd9ff1e957a1e6b15d329d8cefee7');
+(12, 'Goran', 'Goranovic', 'goran@gmail.com', 'goran_goranovic_1', '52ddd9ff1e957a1e6b15d329d8cefee7'),
+(14, 'Elena', 'Elenic', 'elena@gmail.com', 'elena_elenic_1', 'f5c90d326bc375e17efee4325dc04b59');
 
 -- --------------------------------------------------------
 
@@ -392,13 +395,13 @@ ALTER TABLE `raspored`
 -- AUTO_INCREMENT for table `skola`
 --
 ALTER TABLE `skola`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `vesti`

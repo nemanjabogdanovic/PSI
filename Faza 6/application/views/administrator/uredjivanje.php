@@ -13,7 +13,10 @@
 </div>
 <div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">		
 	<div class="tm-right-inner-container">
-		<h1 class="css-header">Uređivanje naloga</h1>		
-		<p>Administrator</p>
+		<h1><?php echo $title; ?></h1>		
+		<br>
+		<form action="<?php echo base_url(); ?>administrator/noviKoordinator">
+			<button type="submit" class="btn btn-primary" />Novi koordinator</button>
+		</form>
 	</div>	
 </div>

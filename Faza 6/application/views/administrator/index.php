@@ -14,11 +14,11 @@
 </div>
 <div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">	
 	<div class="tm-right-inner-container">
-		<h1 class="css-header">Početna - Vesti</h1>		
+		<h1><?php echo $title; ?></h1>
 		
 		<br>
 		<form action="<?php echo base_url(); ?>administrator/novaVest">
-			<input type="submit" value="Dodaj vest" />
+			<button type="submit" class="btn btn-primary" />Dodaj vest</button>
 		</form>
 
 		<?php foreach($vesti as $vest): ?>
@@ -30,7 +30,7 @@
 		
 		<br>
 		<form action="<?php echo base_url(); ?>administrator/izbrisiVesti">
-			<input type="submit" value="Izbriši vesti" />
+			<button type="submit" class="btn btn-primary" />Izbriši vesti</button>
 		</form>
 		
 		

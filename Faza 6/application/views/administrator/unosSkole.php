@@ -2,6 +2,8 @@
 	autor: Nemanja Bogdanovic, 2012/0533
 	@version: 1.0
 -->
+<?php echo form_open('administrator/unosSkole'); ?>
+
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
 	<div class="tm-left-inner-container">
 		<ul class="nav nav-stacked css-nav">
@@ -15,8 +17,14 @@
 	<div class="tm-right-inner-container">		
 		<h1><?php echo $title; ?></h1>
 		<br><br>
-		<form action="<?php echo base_url(); ?>administrator/unosSkole">
-			<button type="submit" class="btn btn-primary" />Unos škole</button>
-		</form>
+		<div class="form-group">
+			<input type="text" name="ime" class="form-control" placeholder="Ime" required autofocus>
+			<br><input type="text" name="adresa" class="form-control" placeholder="Adresa" required autofocus>
+			<br><input type="text" name="grad" class="form-control" placeholder="Grad" required autofocus>
+			
+		</div>
+		<button type="submit" class="btn btn-primary">Dodaj školu</button>
+		<br>
 	</div>	
 </div>
+<?php echo form_close(); ?>
