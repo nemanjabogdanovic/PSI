@@ -5,7 +5,7 @@
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
 	<div class="tm-left-inner-container">
 		<ul class="nav nav-stacked css-nav">
-			<li><a href="<?php echo base_url(); ?>koordinator/home">Početna</a></li>
+			<li><a href="<?php echo base_url(); ?>koordinator/index">Početna</a></li>
 			<li><a href="<?php echo base_url(); ?>koordinator/predmeti">Predmeti</a></li>
 			<li><a href="<?php echo base_url(); ?>koordinator/raspored">Raspored časova</a></li>
 			<li><a href="<?php echo base_url(); ?>koordinator/uredjivanje">Uređivanje naloga</a></li>
@@ -18,39 +18,41 @@
 		
 			
 		<div class="col-lg-8 col-md-5 col-sm-4 col-xs-12">
-			<h1 class="text-center"><?php echo $title; ?></h1>
+			<!--<h1 class="text-center"><?php echo $title; ?></h1>-->
+						
+<table class = "table table-bordered">
+   <tr colspan = "5">
+      Spisak ucenika
+     </tr>
+    <?php
+    if ($fetch_data->num_rows() > 0)
+    {
+     foreach($fetch_data->result() as $row)
+     {
+    ?>
+
+       <tr>
+        <td> <?php echo $row->id; ?> </td>
+       <td> <?php echo $row->ime; ?> </td>
+       <td> <?php echo $row->nastavnik; ?> </td>
+       <td> <?php echo $row->skolskaGodina; ?> </td>
+       <td> <?php echo $row->kabineti; ?> </td>
+      </tr>
+     <?php
+     }
+    }
+    else {
+     ?>
+     <tr colspan = "5">
+      Nema ucenika!
+     </tr>
+    <?php
+
+    }
+    ?>
+   </table>
 			
-			
-			  <table class="table table-hover">
-				<thead>
-				  <tr>
-					<th>Ime</th>
-					<th>Nastavnici</th>
-					<th>Školska godina</th>
-					<th>Kabineti</th>
-				  </tr>
-				</thead>
-				<tbody>
-				  <tr>
-					<td>Mata</td>
-					<td>Profa 1</td>
-					<td>1</td>
-					<td>12</td>
-				  </tr>
-				  <tr>
-					<td>Francuski</td>
-					<td>Profa 2,Profa 1 Profa 1 Profa 1</td>
-					<td>1</td>
-					<td>12,14</td>
-				  </tr>
-				  <tr>
-					<td>Fizika</td>
-					<td>Profa 3</td>
-					<td>1</td>
-					<td>12,13,15</td>
-				  </tr>
-				</tbody>
-			  </table>
+		
 			
 			
 			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/unosPredmeta">Unesi Predmet</a></button>

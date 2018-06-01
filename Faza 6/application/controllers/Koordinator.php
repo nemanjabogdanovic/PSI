@@ -5,9 +5,52 @@
 <?php
 	class Koordinator extends CI_Controller{
 		
+		
+
+public function predmeti() {
+$this->load->model('Koordinator_model');
+   $data["fetch_data"] = $this->Koordinator_model->listOfStudents();
+
+   $this->load->view('templates/header');
+   $this->load->view('koordinator/predmeti', $data);
+   $this->load->view('templates/footer');
+  }
+		
+		public function index(){
+			$data['title'] = 'Pocetna';
+			$this->load->view('templates/header');
+			$this->load->view('koordinator/index', $data);
+			$this->load->view('templates/footer');
+		}
+		
+		
+		
+		public function raspored(){
+			$data['title'] = 'raspored';
+			$this->load->view('templates/header');
+			$this->load->view('koordinator/raspored', $data);
+			$this->load->view('templates/footer');
+		}
+		
+		public function uredjivanje(){
+			$data['title'] = 'uredjivanje';
+			$this->load->view('templates/header');
+			$this->load->view('koordinator/uredjivanje', $data);
+			$this->load->view('templates/footer');
+		}
+		
+		public function izmenaPredmeta(){
+			$data['title'] = 'Izmena Predmeta';
+			$this->load->view('templates/header');
+			$this->load->view('koordinator/izmenaPredmeta', $data);
+			$this->load->view('templates/footer');
+		}
+		
+		
+		
 		public function unosPredmeta(){
 			$data['title'] = 'Unos';
-			die('asdasd');
+			//e('asdasdasasasas');
 			$this->form_validation->set_rules('ime', 'Ime predmeta', 'required');
 			$this->form_validation->set_rules('nastavnik', 'Nastavnik', 'required');
 			$this->form_validation->set_rules('skolskaGodina', 'Skolska godina', 'required');
@@ -20,11 +63,11 @@
 				$this->load->view('templates/footer');
 			}
 			else{
+				$this->load->model('Koordinator_model');
+				$this->Koordinator_model->unosPredmeta();
 				
-				$this->koordinator_model->unosPredmeta();
 				
-				
-				redirect('koordinator/home');
+				redirect('koordinator/index');
 			}
 		}
 		

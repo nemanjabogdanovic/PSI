@@ -3,7 +3,7 @@
 	@version: 1.0
 -->
 <?php
-	class koordinator_model extends CI_Model{
+	class Koordinator_model extends CI_Model{
 		//konstruktor
 		public function __construct(){
 			$this->load->database();
@@ -19,5 +19,12 @@
 			
 			return $this->db->insert('predmet', $data);
 		}
+		
+    
+ public function listOfStudents() {
+      $query = $this->db->get("predmet");
+   return $query;
+    }
+		
 
 	}
