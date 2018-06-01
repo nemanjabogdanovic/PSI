@@ -23,7 +23,7 @@
 				$enc_password = md5($this->input->post('password'));
 				$this->user_model->register($enc_password);
 				
-				$this->session->set_flashdata('user_registered', 'Uspesno unet nalog');
+				$this->session->set_flashdata('user_registered', 'Uspešno unet nalog');
 				
 				redirect('users/login');
 			}
@@ -58,11 +58,11 @@
 					
 					$this->session->set_userdata($user_data);
 					
-					$this->session->set_flashdata('user_loggedin', 'Uspesan login');
+					$this->session->set_flashdata('user_loggedin', 'Uspešan login');
 					redirect($user_level);
 				}
 				else{
-					$this->session->set_flashdata('login_failed', 'Pogresan login');
+					$this->session->set_flashdata('login_failed', 'Pogrešan login');
 					redirect('users/login');
 				}
 				
@@ -130,7 +130,7 @@
 		}
 		//provera da li je korisnicko ime u upotrebi pri registraciji korisnika
 		public function check_username_exists($username){
-			$this->form_validation->set_message('check_username_exists', 'Korisnicko ime je zauzeto');
+			$this->form_validation->set_message('check_username_exists', 'Korisničko ime je zauzeto');
 			if($this->user_model->check_username_exists($username)){
 				return true;
 			}

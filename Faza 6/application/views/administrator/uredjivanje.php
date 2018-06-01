@@ -5,7 +5,7 @@
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
 	<div class="tm-left-inner-container">
 		<ul class="nav nav-stacked css-nav">
-			<li><a href="<?php echo base_url(); ?>administrator/home">Početna</a></li>
+			<li><a href="<?php echo base_url(); ?>administrator">Početna</a></li>
 			<li><a href="<?php echo base_url(); ?>administrator/skole">Škole i programi</a></li>
 			<li><a href="<?php echo base_url(); ?>administrator/uredjivanje">Uređivanje naloga</a></li>
 		</ul>

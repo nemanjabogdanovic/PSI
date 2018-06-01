@@ -22,16 +22,16 @@
 				<!-- leva strana -->
 				<ul class="nav navbar-nav">
 					<?php if($this->session->userdata('user_level') === 'administrator') : ?>
-						<li><a href="<?php echo base_url(); ?>administrator/home">Administrator - Početna</a></li>
+						<li><a href="<?php echo base_url(); ?>administrator">Administrator</a></li>
 					<?php endif; ?>
 					<?php if($this->session->userdata('user_level') === 'koordinator') : ?>
-						<li><a href="<?php echo base_url(); ?>koordinator/home">Koordinator - Početna</a></li>
+						<li><a href="<?php echo base_url(); ?>koordinator">Koordinator</a></li>
 					<?php endif; ?>
 					<?php if($this->session->userdata('user_level') === 'nastavnik') : ?>
-						<li><a href="<?php echo base_url(); ?>nastavnik/home">Nastavnik - Početna</a></li>
+						<li><a href="<?php echo base_url(); ?>nastavnik">Nastavnik</a></li>
 					<?php endif; ?>
 					<?php if($this->session->userdata('user_level') === 'ucenik') : ?>
-						<li><a href="<?php echo base_url(); ?>ucenik/home">Učenik - Početna</a></li>
+						<li><a href="<?php echo base_url(); ?>ucenik">Učenik</a></li>
 					<?php endif; ?>
 				</ul>
 				<!-- desna strana -->
@@ -87,4 +87,12 @@
 
 <?php if($this->session->flashdata('forgotten_fail')): ?>
 	<?php echo '<p class="alert alert-danger">'.$this->session->flashdata('forgotten_fail').'</p>'; ?>
+<?php endif; ?>
+
+<?php if($this->session->flashdata('vest_uspesno_dodata')): ?>
+	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('vest_uspesno_dodata').'</p>'; ?>
+<?php endif; ?>
+
+<?php if($this->session->flashdata('vesti_izbrisane')): ?>
+	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('vesti_izbrisane').'</p>'; ?>
 <?php endif; ?>
