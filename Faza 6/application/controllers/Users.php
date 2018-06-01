@@ -59,7 +59,7 @@
 					$this->session->set_userdata($user_data);
 					
 					$this->session->set_flashdata('user_loggedin', 'Uspesan login');
-					redirect($user_level.'/home');
+					redirect($user_level);
 				}
 				else{
 					$this->session->set_flashdata('login_failed', 'Pogresan login');
@@ -90,7 +90,7 @@
 				}
 				else{
 					$this->session->set_flashdata('reset_success', 'Uspešno promenjena lozinka!');
-					redirect($this->session->userdata('user_level').'/home');
+					redirect($this->session->userdata('user_level'));
 				}
 			}
 		}
