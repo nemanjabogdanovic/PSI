@@ -50,7 +50,6 @@ $this->load->model('Koordinator_model');
 		
 		public function unosPredmeta(){
 			$data['title'] = 'Unos';
-			//e('asdasdasasasas');
 			$this->form_validation->set_rules('ime', 'Ime predmeta', 'required');
 			$this->form_validation->set_rules('nastavnik', 'Nastavnik', 'required');
 			$this->form_validation->set_rules('skolskaGodina', 'Skolska godina', 'required');
