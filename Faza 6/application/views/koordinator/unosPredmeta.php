@@ -1,6 +1,6 @@
 <!--
 	autor: Markovic Milos, 0096/2012
-	@version: 1.0
+	@version: 1.1
 -->
 <?php echo form_open('koordinator/unosPredmeta'); ?>
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
@@ -22,68 +22,47 @@
 	<div class="col-md-6">
 		<h1 class="text-center"><?php echo $title; ?></h1>
 		
-		<div class="form-group">
+			<div class="form-group">
 				<label>Ime predmeta</label>
 				<input type="text" class="form-control" name="ime" placeholder="Ime">
 			</div>
+			
 			<div class="form-group">
-				<label>Nastavnik</label>
-				<input type="text" class="form-control" name="nastavnik" placeholder="Nastavnik">
-			</div>
+					<label>Nastavnik:</label>
+					<?php
+					echo "<select name='nastavnik'>";
+					foreach($nastavnici->result() as $row) {
+					?>
+						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>"; 
+					<?php
+					}
+					echo "</select>";
+					?>
+				</div>
+				
+				
 			<div class="form-group">
-				<label>Skolska godina</label>
+				<label>Školska godina</label>
 				<input type="text" class="form-control" name="skolskaGodina" placeholder="Skolska godina">
 			</div>
 			<div class="form-group">
-				<label>Kabinet</label>
+				<label>Kabineti</label>
 				<input type="text" class="form-control" name="kabineti" placeholder="Kabinet">
 			</div>
+			<div class="form-group">
+					<label>Škola</label>
+					<?php
+					echo "<select name='skola'>";
+					foreach($skole->result() as $row) {
+					?>
+						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->ime; ?></option>"; 
+					<?php
+					}
+					echo "</select>";
+					?>
+				</div>
 			
-			<button type="submit" class="btn btn-primary btn-block">Submit</button>
-		
-		
-		
-		
-		
-		
-		<!--<div class="form-group">
-			<input type="text" class="form-control" name="name" placeholder="Ime">
-		</div>
-		
-		<br>
-		
-		
-		 <h3 class="text">Izbor školske godine: </h3>
-		<div class="checkbox">
-			<label><input type="checkbox" value="">Prva godina</label>
-		</div>
-		<div class="checkbox">
-			 <label><input type="checkbox" value="">Druga godina</label>
-		</div>
-		<div class="checkbox">
-			 <label><input type="checkbox" value="">Treća godina</label>
-		</div>
-		<div class="checkbox">
-			 <label><input type="checkbox" value="">Četvrta godina</label>
-		</div>
-		
-		
-		<h3 class="text">Izbor nastavnika:</h3>
-		
-		
-			<select class="selectpicker" multiple data-width="auto">
-				<option>Profa 11 asdasdasdasdasd</option>
-				<option>Profa 2</option>
-				<option>Profa 3</option>
-			</select>
-		
-		<br>
-		<br>
-		<br>
-		
-		
-		<button type="submit" class="btn btn-primary btn-block">unesi</button>
-		-->
+			<button type="submit" class="btn btn-primary btn-block">Unesi</button>
 			
 </div>		
 		

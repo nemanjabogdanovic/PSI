@@ -25,17 +25,9 @@
 				<option>I/3</option>
 			</select>
 			
+			
 			<br>
-			<h3 class="text">Za datum </h3>
-			<br>
-			<input type="text" id="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" value="09-01-2013">
-				<script>
-					$(function(){
-						$('#date').combodate();    
-					});
-				</script>
-			<br>
-			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/kalendar">Prikaži</a></button>
+			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/unosCasova">Unesi čas</a></button>
 			
 		
 			

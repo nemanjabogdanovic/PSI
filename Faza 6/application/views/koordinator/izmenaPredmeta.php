@@ -2,7 +2,7 @@
 	autor: Markovic Milos, 0096/2012
 	@version: 1.0
 -->
-<?php echo form_open('koordinator/unosPredmeta'); ?>
+<?php echo form_open('koordinator/izmenaPredmeta'); ?>
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
 	<div class="tm-left-inner-container">
 		<ul class="nav nav-stacked css-nav">
@@ -21,69 +21,53 @@
 <div class="row">
 	<div class="col-md-6">
 		<h1 class="text-center"><?php echo $title; ?></h1>
-		<div class="form-group">
-			<select class="selectpicker">
-			  <option>Predmet 1</option>
-			  <option>Predmet 2</option>
-			  <option>Predmet 3</option>
-			</select>
 
-		</div>
-		<h3 class="text">Dodaj profesora </h3>
-			<select class="selectpicker" multiple data-width="auto">
-				<option>Profa 11 asdasdasdasdasd</option>
-				<option>Profa 2</option>
-				<option>Profa 3</option>
-			</select>
-		<button type="submit" class="btn btn-primary btn-block">Dodaj</button> <!-- poruka da je profa dodat -->	
-
-		<h3 class="text">Izbaci profesora </h3>
-			<select class="selectpicker" multiple data-width="auto">
-				<option>Profa 11 asdasdasdasdasd</option>
-				<option>Profa 2</option>
-				<option>Profa 3</option>
-			</select>
-		<button type="submit" class="btn btn-primary btn-block">Izbaci</button> <!-- poruka da je profa izbacen -->	
-		
 		<br>
+			<div class="form-group">
+					<label>Predmeti:</label>
+					<?php
+					echo "<select name='predmet'>";
+					foreach($predmeti->result() as $row) {
+					?>
+						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->ime; ?></option>"; 
+					<?php
+					}
+					echo "</select>";
+					?>
+			</div>
+			
+			<div class="form-group">
+					<label>Nastavnik:</label>
+					<?php
+					echo "<select name='nastavnik'>";
+					foreach($nastavnici->result() as $row) {
+					?>
+						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>"; 
+					<?php
+					}
+					echo "</select>";
+					?>
+			</div>
+				
+			<div class="form-group">
+				<label>Ime</label>
+				<input type="text" class="form-control" name="ime" placeholder="Ime">
+			</div>
+			
+			<div class="form-group">
+				<label>Školska godina</label>
+				<input type="text" class="form-control" name="skolskaGodina" placeholder="Skolska godina">
+			</div>
+			<div class="form-group">
+				<label>Kabineti</label>
+				<input type="text" class="form-control" name="kabineti" placeholder="Kabinet">
+			</div>				
+			
+			
+			
+		<button type="submit" class="btn btn-primary btn-block">Izmeni predmet</button>
 		
-		<h3 class="text">Dodaj školsku godinu</h3>
-			<select class="selectpicker" multiple data-width="auto">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option><!-- OPCIONO da ne izbacuje kao ponudu godinu koja je vec postoji -->
-			</select>
-		<button type="submit" class="btn btn-primary btn-block">Dodaj</button> <!-- poruka da je godina dodata -->	
-		
-		<h3 class="text">Izbaci školsku godinu</h3>
-			<select class="selectpicker" multiple data-width="auto">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option><!-- OPCIONO da ne izbacuje kao ponudu godinu koja nije izabrana prethodno -->
-			</select>
-		<button type="submit" class="btn btn-primary btn-block">Izbaci</button> <!-- poruka da je godina izbacena -->	
-		
-		<h3 class="text">Dodaj kabinet</h3>
-			<select class="selectpicker" multiple data-width="auto">
-				<option>11</option>
-				<option>23</option>
-				<option>34</option>
-				<option>42</option><!-- OPCIONO da ne izbacuje kao ponudu kabinet koji je vec postoji -->
-			</select>
-		<button type="submit" class="btn btn-primary btn-block">Dodaj</button> <!-- poruka da je godina dodata -->	
-		
-		<h3 class="text">Izbaci školsku godinu</h3>
-			<select class="selectpicker" multiple data-width="auto">
-				<option>11</option>
-				<option>23</option>
-				<option>34</option>
-				<option>42</option><!-- OPCIONO da ne izbacuje kao ponudu kabinet koji nije izabran prethodno -->
-			</select>
-		<button type="submit" class="btn btn-primary btn-block">Izbaci</button> <!-- poruka da je godina izbacena -->	
-		
-		<button type="submit" class="btn btn-primary btn-block">Povratak</button>
+	
 		
 			
 	</div>		
