@@ -100,3 +100,11 @@
 <?php if($this->session->flashdata('skola_uspesno_dodata')): ?>
 	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('skola_uspesno_dodata').'</p>'; ?>
 <?php endif; ?>
+
+<?php if($this->session->flashdata('skola_uspesno_izmenjena')): ?>
+	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('skola_uspesno_izmenjena').'</p>'; ?>
+<?php endif; ?>
+
+<?php if($this->session->flashdata('koordinator_uspesno_izmenjen')): ?>
+	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('koordinator_uspesno_izmenjen').'</p>'; ?>
+<?php endif; ?>

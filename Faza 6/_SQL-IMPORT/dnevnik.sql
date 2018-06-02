@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2018 at 06:39 PM
+-- Generation Time: Jun 02, 2018 at 03:44 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -52,6 +52,23 @@ CREATE TABLE `cas` (
   `redniBroj` int(11) NOT NULL,
   `komentari` varchar(255) COLLATE latin2_croatian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `help`
+--
+
+CREATE TABLE `help` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
+
+--
+-- Dumping data for table `help`
+--
+
+INSERT INTO `help` (`id`) VALUES
+(11);
 
 -- --------------------------------------------------------
 
@@ -192,7 +209,8 @@ CREATE TABLE `skola` (
 
 INSERT INTO `skola` (`id`, `ime`, `adresa`, `grad`) VALUES
 (2, 'Prva beogradska gimnazija', 'Cara Dušana 61', 'Beograd'),
-(3, 'Treća beogradska gimnazija', 'Njegoševa 61', 'Beograd');
+(3, 'Treća beogradska gimnazija', 'Njegoševa 61', 'Beograd'),
+(4, 'Peta beogradska gimnazija', 'Ilije Garašanina 24', 'Belgrade');
 
 -- --------------------------------------------------------
 
@@ -395,19 +413,19 @@ ALTER TABLE `raspored`
 -- AUTO_INCREMENT for table `skola`
 --
 ALTER TABLE `skola`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `vesti`
 --
 ALTER TABLE `vesti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

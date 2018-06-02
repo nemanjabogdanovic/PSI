@@ -2,6 +2,7 @@
 	autor: Nemanja Bogdanovic, 2012/0533
 	@version: 1.0
 -->
+<?php echo form_open('administrator/izmenaKoordinatora'); ?>
 
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
 	<div class="tm-left-inner-container">
@@ -14,47 +15,30 @@
 </div>
 <div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">	
 	<div class="tm-right-inner-container">		
-	<h1><?php echo $title; ?></h1>	
-	<br>
-	<?php echo validation_errors(); ?>
-	<?php echo form_open('administrator/noviKoordinator'); ?>
+		<h1><?php echo $title; ?></h1>
+		<br><br>
+		<?php echo form_open('administrator/noviKoordinator'); ?>
 		<div class="row">
 				<div class="form-group">
 					<label>Ime</label>
-					<input type="text" class="form-control" name="name" placeholder="Ime">
+					<input type="text" class="form-control" name="name" value="<?php echo $koordinator['name']; ?>" placeholder="Ime">
 				</div>
 				<div class="form-group">
 					<label>Prezime</label>
-					<input type="text" class="form-control" name="surname" placeholder="Prezime">
+					<input type="text" class="form-control" name="surname" value="<?php echo $koordinator['surname']; ?>" placeholder="Prezime">
 				</div>
 				<div class="form-group">
 					<label>Email</label>
-					<input type="email" class="form-control" name="email" placeholder="Email">
+					<input type="email" class="form-control" name="email" value="<?php echo $koordinator['email']; ?>" placeholder="Email">
 				</div>
 				<div class="form-group">
 					<label>Korisnicko Ime</label>
-					<input type="text" class="form-control" name="username" placeholder="Korisnicko Ime">
-				</div>
-				<div class="form-group">
-					<label>Lozinka</label>
-					<input type="text" class="form-control" name="password" placeholder="Lozinka">
-				</div>
-				<div class="form-group">
-					<label>Škola</label>
-					<?php
-					echo "<select name='skola'>";
-					foreach($skole->result() as $row) {
-					?>
-						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->ime; ?></option>"; 
-					<?php
-					}
-					echo "</select>";
-					?>
+					<input type="text" class="form-control" name="username" value="<?php echo $koordinator['username']; ?>" placeholder="Korisnicko Ime">
 				</div>
 				
 				<button type="submit" class="btn btn-primary btn-block">Unesi</button>
 		</div>
 	<?php echo form_close(); ?>
-
 	</div>	
 </div>
+<?php echo form_close(); ?>

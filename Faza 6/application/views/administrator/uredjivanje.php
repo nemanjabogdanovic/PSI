@@ -11,12 +11,60 @@
 		</ul>
 	</div>
 </div>
-<div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">		
-	<div class="tm-right-inner-container">
-		<h1><?php echo $title; ?></h1>		
-		<br>
+<div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">	
+	<div class="tm-right-inner-container">		
+		<h1><?php echo $title; ?></h1>
+		<br><br>
+		<table class = "table table-bordered">
+			<tr colspan = "5">
+				<td><strong>Ime</strong></td>
+				<td><strong>Prezime</strong></td>
+				<td><strong>Ime škole</strong></td>
+				<td><strong>Grad</strong></td>
+			</tr>
+			<?php
+			foreach($koordinatori->result() as $row)
+			{
+				foreach($users->result() as $rowU)
+				{
+					foreach($skole->result() as $rowS)
+					{	
+						if($row->id === $rowU->id && $row->skolaId === $rowS->id){
+							?>
+							<tr>
+								<td> <?php echo $rowU->name; ?> </td>
+								<td> <?php echo $rowU->surname; ?> </td>
+								<td> <?php echo $rowS->ime; ?> </td>
+								<td> <?php echo $rowS->grad; ?> </td>
+							</tr>
+							<?php
+						}
+					}
+				}
+			}
+			?>
+		</table>
 		<form action="<?php echo base_url(); ?>administrator/noviKoordinator">
 			<button type="submit" class="btn btn-primary" />Novi koordinator</button>
 		</form>
+		<?php echo form_open('administrator/uredjivanje'); ?>
+			<form action="<?php echo base_url(); ?>administrator/izmenaKoordinatora">
+				<?php
+					echo "<select name='koord_lista'>";
+					foreach($koordinatori->result() as $row) {
+						foreach($users->result() as $rowU)
+						{
+							if($row->id === $rowU->id){
+							?>
+							echo "<option value="<?php echo $rowU->id; ?>"><?php echo $rowU->username; ?> </option>"; 
+							<?php
+							}
+						}
+					}
+					echo "</select>";
+				?>
+				<button type="submit" class="btn btn-primary" />Izmeni</button>
+			</form>
+		<?php echo form_close(); ?>
 	</div>	
 </div>

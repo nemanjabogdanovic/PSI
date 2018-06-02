@@ -44,10 +44,19 @@
 		//pregled skoli
 		public function skole(){
 			$data['title'] = 'Škole';
+			$data['skole'] = $this->Administrator_model->getSkole();
 			
-			$this->load->view('templates/header');
-			$this->load->view('administrator/skole', $data);
-			$this->load->view('templates/footer');
+			$this->form_validation->set_rules('skola', 'Skola', 'required');
+			
+			if($this->form_validation->run() === FALSE){
+				$this->load->view('templates/header');
+				$this->load->view('administrator/skole', $data);
+				$this->load->view('templates/footer');
+			}
+			else{
+				$this->izmenaSkole($this->input->post('skola'));
+			}
+			
 		}
 		//unos nove skole
 		public function unosSkole(){
@@ -67,16 +76,51 @@
 				
 				$this->session->set_flashdata('skola_uspesno_dodata', 'Uspešno dodata škola!');
 				
-				redirect('administrator');
+				redirect('administrator/skole');
 			}
 		}
+		//izmena skole
+		public function izmenaSkole($skola = null){
+			$data['title'] = 'Izmena škole';
+			if($skola !== null){
+				$data['skola'] = $this->Administrator_model->getSkolaPrekoId($skola);
+			}
+			$this->form_validation->set_rules('ime', 'Ime', 'required');
+			$this->form_validation->set_rules('adresa', 'Adresa', 'required');
+			$this->form_validation->set_rules('grad', 'Grad', 'required');
+			
+			if($this->form_validation->run() === FALSE){
+				$this->load->view('templates/header');
+				$this->load->view('administrator/izmenaSkole', $data);
+				$this->load->view('templates/footer');
+				
+			}
+			else{
+				$this->Administrator_model->updateSkolu();
+				$this->session->set_flashdata('skola_uspesno_izmenjena', 'Škola uspešno izmenjena!');
+				redirect('administrator/skole');
+			}
+		}
+		//uredjivanje naloga
 		public function uredjivanje(){
 			$data['title'] = 'Uređivanje naloga';
+			$data['koordinatori'] = $this->Administrator_model->getKoordinatorIds();
+			$data['skole'] = $this->Administrator_model->getSkole();
+			$data['users'] = $this->Administrator_model->getUsers();
 			
-			$this->load->view('templates/header');
-			$this->load->view('administrator/uredjivanje', $data);
-			$this->load->view('templates/footer');
+			$this->form_validation->set_rules('koord_lista', 'Koord_lista', 'required');
+			
+			if($this->form_validation->run() === FALSE){
+				$this->load->view('templates/header');
+				$this->load->view('administrator/uredjivanje', $data);
+				$this->load->view('templates/footer');
+			}
+			else{
+				$this->izmenaKoordinatora($this->input->post('koord_lista'));
+			}
+			
 		}
+		//dodavanje novog koordinatora
 		public function noviKoordinator(){
 			$data['title'] = 'Dodaj novog koordinatora';
 			
@@ -100,6 +144,29 @@
 				
 				$this->session->set_flashdata('user_registered', 'Uspešno unet nalog');
 				
+				redirect('administrator/uredjivanje');
+			}
+		}
+		//izmena Koordinatora
+		public function izmenaKoordinatora($koordinator = null){
+			$data['title'] = 'Izmena koordinatora';
+			if($koordinator !== null){
+				$data['koordinator'] = $this->Administrator_model->getKoordinatoraPrekoId($koordinator);
+			}
+			$this->form_validation->set_rules('name', 'Ime', 'required');
+			$this->form_validation->set_rules('surname', 'Prezime', 'required');
+			$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
+			$this->form_validation->set_rules('username', 'KorisnickoIme', 'required|callback_check_username_exists');
+			
+			if($this->form_validation->run() === FALSE){
+				$this->load->view('templates/header');
+				$this->load->view('administrator/izmenaKoordinatora', $data);
+				$this->load->view('templates/footer');
+				
+			}
+			else{
+				$this->Administrator_model->updateKoordinatora();
+				$this->session->set_flashdata('koordinator_uspesno_izmenjen', 'Koordinator uspešno izmenjen!');
 				redirect('administrator/uredjivanje');
 			}
 		}
