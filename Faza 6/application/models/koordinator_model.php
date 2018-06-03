@@ -23,6 +23,12 @@
 			return $this->db->insert('predmet', $data);
 		}
 		
+		//uzmi skole iz baze
+		public function getNastavnikIds(){
+			$nastavnik = $this->db->get("nastavnik");
+			return $koordinator;
+		}
+		
 		public function izmenaPredmeta($predmet){
 			$data = array(
 				

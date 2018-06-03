@@ -23,7 +23,7 @@
 				<td><strong>Ime</strong></td>
 				<td><strong>Prezime</strong></td>
 				<td><strong>Škola</strong></td>
-				<td><strong>Email</strong></td>
+				<td><strong>Grad</strong></td>
 			</tr>
 			<?php
 			foreach($nastavnici->result() as $row)
