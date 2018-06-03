@@ -5,7 +5,7 @@
 
 <?php  echo validation_errors(); ?>
 
-<?php echo form_open('koordinator/noviNalog'); ?>
+<?php echo form_open('koordinator/noviNalogU'); ?>
 		<div class="row">
 				<div class="form-group">
 					<label>Ime</label>
@@ -39,6 +39,18 @@
 					echo "</select>";
 					?>
 				</div>
+			<div class="form-group">
+					<label>Odeljenje:</label>
+					<?php
+					echo "<select name='odeljenje'>";
+					foreach($odeljenja->result() as $row) {
+					?>
+						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->oznaka; ?></option>"; 
+					<?php
+					}
+					echo "</select>";
+					?>
+			</div>
 				
 				<button type="submit" class="btn btn-primary btn-block">Unesi</button>
 		</div>

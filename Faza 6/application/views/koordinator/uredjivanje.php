@@ -23,7 +23,7 @@
 				<td><strong>Ime</strong></td>
 				<td><strong>Prezime</strong></td>
 				<td><strong>Škola</strong></td>
-				<td><strong>Grad</strong></td>
+				<td><strong>Email</strong></td>
 			</tr>
 			<?php
 			foreach($nastavnici->result() as $row)
@@ -38,7 +38,7 @@
 								<td> <?php echo $rowU->name; ?> </td>
 								<td> <?php echo $rowU->surname; ?> </td>
 								<td> <?php echo $rowS->ime; ?> </td>
-								<td> <?php echo $rowS->grad; ?> </td>
+								<td> <?php echo $rowU->email; ?> </td>
 							</tr>
 							<?php
 						}
@@ -48,7 +48,9 @@
 			?>
 		</table>
 		<button type="submit"><a href="<?php echo base_url(); ?>koordinator/noviNalog">Novi nalog</a></button>
-		
+		<br>
+		<h2 class="css-header">Učenici novi nalog:</h2>	
+		<button type="submit"><a href="<?php echo base_url(); ?>koordinator/noviNalogU">Novi nalog</a></button>
 		
 	</div>	
 </div>

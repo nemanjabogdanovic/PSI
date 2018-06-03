@@ -32,5 +32,8 @@
 		<form action="<?php echo base_url(); ?>administrator/izbrisiVesti">
 			<button type="submit" class="btn btn-primary" />Izbriši vesti</button>
 		</form>
+		
+		
+		
 	</div>	
 </div>

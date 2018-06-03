@@ -1,6 +1,6 @@
 <!--
-	autori: Markovic Milos, 0096/2012
-			Nemanja Bogdanovic, 2012/0533
+	autor: Markovic Milos, 0097/2012
+		   Nemanja Bogdanovic, 2012/0533
 	@version: 1.0
 -->
 <?php
@@ -113,6 +113,68 @@
 			} 
 		}
 		
+		//dodaj novog nastavnika
+		public function dodajNastavnika($enc_password){
+			$data = array(
+				'name' => $this->input->post('name'),
+				'surname' => $this->input->post('surname'),
+				'email' => $this->input->post('email'),
+				'username' => $this->input->post('username'),
+				'password' => $enc_password
+			);
+			$this->db->insert('users', $data);
+			
+			$this->db->where('username', $this->input->post('username'));
+			$this->db->where('password', $enc_password);
+			$result = $this->db->get('users');
+			$id = $result->row(0)->id;
+			$this->dodajNastavnikaId($id);
+			
+			return $id;
+		}
+		
+		//dodaj novog nastavnika
+		public function dodajUcenika($enc_password){
+			$data = array(
+				'name' => $this->input->post('name'),
+				'surname' => $this->input->post('surname'),
+				'email' => $this->input->post('email'),
+				'username' => $this->input->post('username'),
+				'password' => $enc_password,
+//				'odeljenjeId' => $this->input->post('odeljenje')
+			);
+			$this->db->insert('users', $data);
+			
+			$this->db->where('username', $this->input->post('username'));
+			$this->db->where('password', $enc_password);
+			$result = $this->db->get('users');
+			$id = $result->row(0)->id;
+			$this->dodajUcenikaId($id);
+			
+			return $id;
+		}
+
+		//dodaj nastavnika i identifikator skole
+		public function dodajNastavnikaId($userid){
+			$dataNastavnik = array(
+				'id' => $userid,
+				'skolaId' => $this->input->post('skola')
+				
+			);
+			
+			$this->db->insert('nastavnik', $dataNastavnik);
+		}	
+		//dodaj nastavnika i identifikator skole
+		public function dodajUcenikaId($userid){
+			$dataUcenik = array(
+				'id' => $userid,
+				'skolaId' => $this->input->post('skola'),
+				'odeljenjeId' => $this->input->post('odeljenje')
+			);
+			
+			$this->db->insert('ucenik', $dataUcenik);
+		}			
+		
 		//dohvati sve vesti od administratora
 		public function getVestiAdmin(){
 			$this->db->where('skolaId', 0);
@@ -147,4 +209,5 @@
 			$result = $this->db->get('koordinator');
 			return $result->row(0)->skolaId;
 		}
+
 	}
