@@ -4,21 +4,21 @@
 -->
 <?php
 	class Nastavnik extends CI_Controller{
-
-
-
 		public function __construct() {
 	    parent::__construct();
 	    $this->load->model('Nastavnik_model');
-	  }
+		}
 
-		public function index() {
-			$data['title'] = 'Nastavnik';
-
+		//pocetna strana
+		public function index(){
+			$data['title'] = 'Početna - Vesti';
+			$data['vesti'] = $this->Nastavnik_model->getVestiAdmin();
+			$data['vestiSkola'] = $this->Nastavnik_model->getVesti($this->Nastavnik_model->getSkolaId($this->session->userdata('user_id')));
+			
+			
 			$this->load->view('templates/header');
 			$this->load->view('nastavnik/index', $data);
 			$this->load->view('templates/footer');
-
 		}
 
 		public function view($page = 'home'){

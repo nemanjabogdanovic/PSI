@@ -2,16 +2,13 @@
 	autor: Nemanja Bogdanovic, 2012/0533
 	@version: 1.0
 -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
 	<div class="tm-left-inner-container">
 		<ul class="nav nav-stacked css-nav">
-			<li><a href="<?php echo base_url(); ?>nastavnik/index">Početna</a></li>
-			<li><a href="<?php echo base_url(); ?>nastavnik/kalendar">Kalendar</a></li>
-			<li><a href="<?php echo base_url(); ?>nastavnik/ucenici">Učenici</a></li>
-			<li><a href="<?php echo base_url(); ?>nastavnik/upis">Upis časa</a></li>
-			<li><a href="<?php echo base_url(); ?>nastavnik/izostanci">Izostanci</a></li>
-			<li><a href="<?php echo base_url(); ?>nastavnik/ocene">Ocene</a></li>
+			<li><a href="<?php echo base_url(); ?>ucenik">Početna</a></li>
+			<li><a href="<?php echo base_url(); ?>ucenik/ocene">Ocene</a></li>
+			<li><a href="<?php echo base_url(); ?>ucenik/raspored">Raspored časova</a></li>
+			<li><a href="<?php echo base_url(); ?>ucenik/kontakt">Kontaktiraj nastavnika</a></li>
 		</ul>
 	</div>
 </div>

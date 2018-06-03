@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['administrator'] = 'administrator/index';
 $route['koordinator'] = 'koordinator/index';
 $route['nastavnik'] = 'nastavnik/index';
-$route['ucenik/(:any)'] = 'ucenik/view/$1';
+$route['ucenik'] = 'ucenik/index';
 $route['default_controller'] = 'users/login';
 $route['(:any)'] = 'users/login/view/$1';
 $route['404_override'] = '';
