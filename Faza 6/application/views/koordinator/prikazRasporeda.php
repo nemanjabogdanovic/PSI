@@ -17,25 +17,9 @@
 	<div class="tm-right-inner-container">
 		<div class="col-lg-8 col-md-5 col-sm-4 col-xs-12">
 			<h1 class="text-center"><?php echo $title; ?></h1>
-			
-			<div class="form-group">
-					<label>Odeljenja:</label>
-					<?php
-					echo "<select name='odeljenje'>";
-					foreach($odeljenja->result() as $row) {
-					?>
-						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->oznaka; ?></option>"; 
-					<?php
-					}
-					echo "</select>";
-					?>
-			</div>
-			
-			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/prikazRasporeda">Prikaži raspored</a></button>
+
 			<br>
-			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/unosCasova">Unesi čas</a></button>
-			<br>
-			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/brisanjeCasova">Brisanje časova</a></button>
+			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/unosCasova">Izmeni čas</a></button>
 			
 		
 			

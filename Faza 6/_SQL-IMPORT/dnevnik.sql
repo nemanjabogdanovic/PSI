@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2018 at 06:32 PM
+-- Generation Time: Jun 03, 2018 at 01:02 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -68,7 +68,7 @@ CREATE TABLE `help` (
 --
 
 INSERT INTO `help` (`id`) VALUES
-(11);
+(2);
 
 -- --------------------------------------------------------
 
@@ -117,7 +117,8 @@ CREATE TABLE `nastavnik` (
 --
 
 INSERT INTO `nastavnik` (`id`, `skolaId`) VALUES
-(8, 2);
+(8, 2),
+(15, 4);
 
 -- --------------------------------------------------------
 
@@ -150,7 +151,8 @@ CREATE TABLE `odeljenje` (
 --
 
 INSERT INTO `odeljenje` (`id`, `oznaka`, `skolaId`, `nastavnikId`) VALUES
-(2, 'I/1', 2, 8);
+(2, 'I/1', 2, 8),
+(3, 'I/2', 3, 15);
 
 -- --------------------------------------------------------
 
@@ -190,6 +192,15 @@ CREATE TABLE `raspored` (
   `kabinet` varchar(255) COLLATE latin2_croatian_ci NOT NULL,
   `predmetId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
+
+--
+-- Dumping data for table `raspored`
+--
+
+INSERT INTO `raspored` (`id`, `odeljenjeId`, `dan`, `brojCasa`, `nastavnikId`, `kabinet`, `predmetId`) VALUES
+(1, 2, 'ponedeljak', 1, 8, '1', 4),
+(2, 3, 'utorak', 1, 8, '1', 4),
+(3, 2, 'utorak', 2, 8, '2', 6);
 
 -- --------------------------------------------------------
 
@@ -256,7 +267,8 @@ INSERT INTO `users` (`id`, `name`, `surname`, `email`, `username`, `password`) V
 (8, 'Vuk', 'Vukovic', 'vuk@yahoo.com', 'vuk_vukovic_1', '5a1001075d3205d010ef24413e6a1afd'),
 (11, 'Branko', 'Brankovic', 'branko@live.com', 'branko_brankovic_1', 'fbee3d5b1def587f835e85a8a4c78195'),
 (12, 'Goran', 'Goranovic', 'goran@gmail.com', 'goran_goranovic_1', '52ddd9ff1e957a1e6b15d329d8cefee7'),
-(14, 'Elena', 'Elenic', 'elena@gmail.com', 'elena_elenic_1', 'f5c90d326bc375e17efee4325dc04b59');
+(14, 'Elena', 'Elenic', 'elena@gmail.com', 'elena_elenic_1', 'f5c90d326bc375e17efee4325dc04b59'),
+(15, 'Mica', 'Micovic', 'mica.micovic@mail.com', 'mica_micovic_1', 'mica123');
 
 -- --------------------------------------------------------
 
@@ -390,13 +402,13 @@ ALTER TABLE `cas`
 -- AUTO_INCREMENT for table `ocena`
 --
 ALTER TABLE `ocena`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `odeljenje`
 --
 ALTER TABLE `odeljenje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `predmet`
@@ -408,25 +420,25 @@ ALTER TABLE `predmet`
 -- AUTO_INCREMENT for table `raspored`
 --
 ALTER TABLE `raspored`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `skola`
 --
 ALTER TABLE `skola`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `vesti`
 --
 ALTER TABLE `vesti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

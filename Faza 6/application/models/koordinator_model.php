@@ -43,12 +43,12 @@
 		//unosPredmeta
 		public function unosCasova(){
 			$data = array(
-				'odeljenje' => $this->input->post('odeljenje'),
+				'odeljenjeId' => $this->input->post('odeljenje'),
 				'dan' => $this->input->post('dan'),
 				'brojCasa' => $this->input->post('brojCasa'),
-				'nastavnik' => $this->input->post('nastavnik'),
+				'nastavnikId' => $this->input->post('nastavnik'),
 				'kabinet' => $this->input->post('kabinet'),
-				'predmet' => $this->input->post('predmet'),
+				'predmetId' => $this->input->post('predmet')
 			);
 			
 			return $this->db->insert('raspored', $data);
@@ -75,6 +75,11 @@
 	
 		public function getSkole(){
 			$query = $this->db->get('skola');
+			return $query;
+		}
+		
+		public function getOdeljenja(){
+			$query = $this->db->get('odeljenje');
 			return $query;
 		}
 		

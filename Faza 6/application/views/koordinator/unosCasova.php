@@ -10,9 +10,18 @@
 			<h1 class="text-center"><?= $title.' '; ?></h2>
 			
 			<div class="form-group">
-					<label>Odeljenje</label>
-					<input type="text" class="form-control" name="odeljenje" placeholder="Odeljenje">
-				</div>
+					<label>Odeljenja:</label>
+					<?php
+					echo "<select name='odeljenje'>";
+					foreach($odeljenja->result() as $row) {
+					?>
+						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->oznaka; ?></option>"; 
+					<?php
+					}
+					echo "</select>";
+					?>
+			</div>
+			
 				<div class="form-group">
 					<label>Dan</label>
 					<input type="text" class="form-control" name="dan" placeholder="Dan">
@@ -22,21 +31,38 @@
 					<br>
 					<input type="number" name="brojCasa" min="1" max="20" placeholder="Čas" >
 				</div>
-				<div class="form-group">
-					<label>Nastavnik</label>
-					<br>
-					<input type="number" name="nastavnik" min="1" max="20" placeholder="ID" >
-				</div>
+				
+				
+			<div class="form-group">
+					<label>Nastavnici:</label>
+					<?php
+					echo "<select name='nastavnik'>";
+					foreach($nastavnici->result() as $row) {
+					?>
+						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>"; 
+					<?php
+					}
+					echo "</select>";
+					?>
+			</div>
 				
 				<div class="form-group">
 					<label>Kabinet</label>
 					<input type="text" class="form-control" name="kabinet" placeholder="Kabinet">
 				</div>
 				
-				<div class="form-group">
-					<label>Predmet</label>
-					<input type="number" name="predmet" min="1" max="20" placeholder="Čas" placeholder="predmet" >
-				</div>
+			<div class="form-group">
+					<label>Predmeti:</label>
+					<?php
+					echo "<select name='predmet'>";
+					foreach($predmeti->result() as $row) {
+					?>
+						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->ime; ?></option>"; 
+					<?php
+					}
+					echo "</select>";
+					?>
+			</div>
 				
 				<button type="submit" class="btn btn-primary btn-block">Submit</button>
 			<!--

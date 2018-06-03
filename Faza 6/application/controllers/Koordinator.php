@@ -22,12 +22,16 @@
 		public function unosCasova() {
 			
 			$data['title'] = 'Unos';
-			$this->form_validation->set_rules('odeljenje', 'Odeljenje', 'required');
+			
+			$this->load->model('Koordinator_model');
+			
 			$this->form_validation->set_rules('dan', 'Dan', 'required');
 			$this->form_validation->set_rules('brojCasa', 'Broj Casa', 'required');
-			$this->form_validation->set_rules('nastavnik', 'Nastavnik', 'required');
 			$this->form_validation->set_rules('kabinet', 'Kabinet', 'required');
-			$this->form_validation->set_rules('predmet', 'Predmet', 'required');
+			
+			$data['odeljenja'] = $this->Koordinator_model->getOdeljenja();				
+			$data['nastavnici'] = $this->Koordinator_model->getNastavnike();		
+			$data['predmeti'] = $this->Koordinator_model->getPredmete();
 			
 			if($this->form_validation->run() === FALSE){
 				$this->load->view('templates/header');
@@ -35,7 +39,8 @@
 				$this->load->view('templates/footer');
 			}
 			else{
-				$this->load->model('Koordinator_model');
+				
+				
 				$this->Koordinator_model->unosCasova();
 				
 				
@@ -61,24 +66,55 @@
 		
 		
 		public function raspored(){
-			$data['title'] = 'raspored';
+			
+			$data['title'] = 'Raspored';
+			
+			$this->load->model('Koordinator_model');
+			
+			$data['odeljenja'] = $this->Koordinator_model->getOdeljenja();
+			
+			
+			
+			if($this->form_validation->run() === FALSE){
+				$this->load->view('templates/header');
+				$this->load->view('koordinator/Raspored', $data);
+				$this->load->view('templates/footer');
+			}
+			else{
+				
+				
+				$this->Koordinator_model->raspored();
+				
+				
+				redirect('koordinator/index');
+			}
+		}
+		
+		public function prikazRasporeda(){
+			$data['title'] = 'Prikaz rasporeda';
 			$this->load->view('templates/header');
-			$this->load->view('koordinator/raspored', $data);
+			$this->load->view('koordinator/prikazRasporeda', $data);
 			$this->load->view('templates/footer');
 		}
 		
-	//	public function unosCasova(){
-	//		$data['title'] = 'Unos časova';
-	//		$this->load->view('templates/header');
-	//		$this->load->view('koordinator/unosCasova', $data);
-	//		$this->load->view('templates/footer');
-	//	}
-		
+		//uredjivanje naloga
 		public function uredjivanje(){
-			$data['title'] = 'uredjivanje';
-			$this->load->view('templates/header');
-			$this->load->view('koordinator/uredjivanje', $data);
-			$this->load->view('templates/footer');
+			$data['title'] = 'Uređivanje naloga';
+			$data['nastavnici'] = $this->Koordinator_model->getNastavnikIds();
+			$data['skole'] = $this->Koordinator_model->getSkole();
+			$data['users'] = $this->Koordinator_model->getUsers();
+			
+			$this->form_validation->set_rules('koord_lista', 'Koord_lista', 'required');
+			
+			if($this->form_validation->run() === FALSE){
+				$this->load->view('templates/header');
+				$this->load->view('administrator/uredjivanje', $data);
+				$this->load->view('templates/footer');
+			}
+			else{
+				$this->izmenaKoordinatora($this->input->post('koord_lista'));
+			}
+			
 		}
 		
 		public function izmenaPredmeta(){
@@ -106,6 +142,34 @@
 		
 				//brisanje predmeta
 		public function brisanjePredmeta(){
+			$this->load->model('Koordinator_model');
+			$data['title'] = 'Brisanje predmeta';
+			
+			$this->form_validation->set_rules('ime', 'ime', 'required');
+			
+			$data['skole'] = $this->Koordinator_model->getSkole();
+			
+			if($this->form_validation->run() === FALSE){
+				$this->load->view('templates/header');
+				$this->load->view('koordinator/brisanjePredmeta', $data);
+				$this->load->view('templates/footer');
+			}
+			else{
+				$ime = $this->input->post('ime');
+				$skolaid = $this->input->post('skolaid');
+				if($this->Koordinator_model->brisanjePredmeta($ime,$skolaid)){
+					
+					redirect('koordinator/index');
+				}
+				else{
+					
+					redirect('koordinator/index');
+				}
+			}
+		}
+		
+		
+		public function brisanjeCasova(){
 			$this->load->model('Koordinator_model');
 			$data['title'] = 'Brisanje predmeta';
 			
