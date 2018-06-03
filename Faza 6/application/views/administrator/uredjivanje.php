@@ -21,6 +21,7 @@
 				<td><strong>Prezime</strong></td>
 				<td><strong>Ime škole</strong></td>
 				<td><strong>Grad</strong></td>
+				<td><strong>Korisničko ime</strong></td>
 			</tr>
 			<?php
 			foreach($koordinatori->result() as $row)
@@ -36,6 +37,7 @@
 								<td> <?php echo $rowU->surname; ?> </td>
 								<td> <?php echo $rowS->ime; ?> </td>
 								<td> <?php echo $rowS->grad; ?> </td>
+								<td> <?php echo $rowU->username; ?> </td>
 							</tr>
 							<?php
 						}

@@ -1,5 +1,6 @@
 <!--
-	autor: Markovic Milos, 0097/2012
+	autori: Markovic Milos, 0096/2012
+			Nemanja Bogdanovic, 2012/0533
 	@version: 1.0
 -->
 <?php
@@ -112,5 +113,38 @@
 			} 
 		}
 		
-
+		//dohvati sve vesti od administratora
+		public function getVestiAdmin(){
+			$this->db->where('skolaId', 0);
+			$query = $this->db->get('vesti');
+			return $query->result_array();
+		}
+		//dohvati sve vesti za trenutnu skolu
+		public function getVesti($id){
+			$this->db->where('skolaId', $id);
+			$query = $this->db->get('vesti');
+			return $query->result_array();
+		}
+		//dodaj novu vest
+		public function novaVest($skola_id){
+			$data = array(
+				'naslov' => $this->input->post('naslov'),
+				'text' => $this->input->post('text'),
+				'userLevel' => $this->session->userdata('user_level'),
+				'skolaId' => $skola_id
+			);
+			
+			return $this->db->insert('vesti', $data);
+		}
+		//izbrisi sve vesti od trenutnog koordinatora
+		public function deleteVesti($id){
+			$this->db->where('skolaId', $id);
+			$this->db->delete('vesti');
+		}
+		//dohvati id skole trenutnog koordinatora
+		public function getSkolaId($id){
+			$this->db->where('id', $id);
+			$result = $this->db->get('koordinator');
+			return $result->row(0)->skolaId;
+		}
 	}

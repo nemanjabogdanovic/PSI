@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2018 at 01:02 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- Generation Time: Jun 03, 2018 at 02:01 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -68,7 +68,7 @@ CREATE TABLE `help` (
 --
 
 INSERT INTO `help` (`id`) VALUES
-(2);
+(11);
 
 -- --------------------------------------------------------
 
@@ -281,6 +281,7 @@ CREATE TABLE `vesti` (
   `naslov` varchar(255) COLLATE latin2_croatian_ci NOT NULL,
   `text` text COLLATE latin2_croatian_ci NOT NULL,
   `userLevel` varchar(30) COLLATE latin2_croatian_ci NOT NULL,
+  `skolaId` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
 
@@ -288,8 +289,10 @@ CREATE TABLE `vesti` (
 -- Dumping data for table `vesti`
 --
 
-INSERT INTO `vesti` (`id`, `naslov`, `text`, `userLevel`, `timestamp`) VALUES
-(8, 'Obaveštenje za sve korisnike', 'Elektronskom Dnevniku će biti onemogućen pristup u petak između 01:00 i 05:00 zbog rutinskog održavanja sistema.', 'administrator_GLOBAL', '2018-06-01 12:52:31');
+INSERT INTO `vesti` (`id`, `naslov`, `text`, `userLevel`, `skolaId`, `timestamp`) VALUES
+(8, 'Obaveštenje za sve korisnike', 'Elektronskom Dnevniku će biti onemogućen pristup u petak između 01:00 i 05:00 zbog rutinskog održavanja sistema.', 'administrator_GLOBAL', 0, '2018-06-01 12:52:31'),
+(19, 'Nova računarska oprema za našu školu', 'Projekat \"Stvaramo znanje\" deo je krovnog programa Telekoma Srbija \"Pokrećemo pokretače\" koji osnažuje institucije i pojedince da u svom okruženju pokreću pozitivne promene i motivišu druge da krenu tim putem. Pored opremanja informatičkih kabineta, čiji je cilj podizanje digitalne pismenosti kod dece i obezbeđivanje modernih uslova za rast i razvoj, kompanija ulaže u  sve pokretače novih i boljih društvenih promena i kroz projekte \"mts app konkurs\" i \"mts startap ubrzanje\" jer snažno veruje da stabilna podrška na samom početku može da im olakša put do novih saznanja i bude presudna za njihov dalji razvoj.', 'koordinator', 2, '2018-06-03 11:55:15'),
+(20, 'Četvrtak, 07.07.', 'U četvrtak, 07.07.2018. škola neće raditi zbog velikih snežnih padavina.', 'koordinator', 3, '2018-06-03 11:57:38');
 
 --
 -- Indexes for dumped tables
@@ -438,7 +441,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vesti`
 --
 ALTER TABLE `vesti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables

@@ -1,9 +1,48 @@
 <!--
-	autor: Nemanja Bogdanovic, 2012/0533
+	autori: Markovic Milos, 0096/2012
+			Nemanja Bogdanovic, 2012/0533
 	@version: 1.0
 -->
 <?php
 	class Koordinator extends CI_Controller{
+		//pocetna strana
+		public function index(){
+			$data['title'] = 'Početna - Vesti';
+			$data['vesti'] = $this->Koordinator_model->getVestiAdmin();
+			$data['vestiSkola'] = $this->Koordinator_model->getVesti($this->Koordinator_model->getSkolaId($this->session->userdata('user_id')));
+			
+			
+			$this->load->view('templates/header');
+			$this->load->view('koordinator/index', $data);
+			$this->load->view('templates/footer');
+		}
+		//dodaj novu vest
+		public function novaVest(){
+			$data['title'] = 'Nova Vest';
+			
+			
+			$this->form_validation->set_rules('naslov', 'Naslov', 'required');
+			$this->form_validation->set_rules('text', 'Tekst', 'required');
+			
+			if($this->form_validation->run() === FALSE){
+				$this->load->view('templates/header');
+				$this->load->view('koordinator/novaVest', $data);
+				$this->load->view('templates/footer');
+			}
+			else{
+				$this->Koordinator_model->novaVest($this->Koordinator_model->getSkolaId($this->session->userdata('user_id')));
+				
+				$this->session->set_flashdata('vest_uspesno_dodata', 'Uspešno dodata vest!');
+				
+				redirect('koordinator');
+			}
+		}
+		//izbrisi sve vesti napravljene od strane koordinatora
+		public function izbrisiVesti(){
+			$this->Koordinator_model->deleteVesti($this->Koordinator_model->getSkolaId($this->session->userdata('user_id')));
+			$this->session->set_flashdata('vesti_izbrisane', 'Uspešno izbrisane vesti od: '.ucfirst($this->session->userdata('user_level')));
+			redirect('koordinator');
+		}
 		
 		
 
@@ -47,13 +86,6 @@
 				redirect('koordinator/index');
 			}
 			
-		}
-		
-		public function index(){
-			$data['title'] = 'Pocetna';
-			$this->load->view('templates/header');
-			$this->load->view('koordinator/index', $data);
-			$this->load->view('templates/footer');
 		}
 		
 		public function noviNalog(){

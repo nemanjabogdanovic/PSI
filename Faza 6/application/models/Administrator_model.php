@@ -10,6 +10,7 @@
 		}
 		//dohvati sve vesti
 		public function getVesti(){
+			$this->db->where('skolaId', 0);
 			$query = $this->db->get('vesti');
 			return $query->result_array();
 		}
@@ -18,7 +19,8 @@
 			$data = array(
 				'naslov' => $this->input->post('naslov'),
 				'text' => $this->input->post('text'),
-				'userLevel' => $this->session->userdata('user_level')
+				'userLevel' => $this->session->userdata('user_level'),
+				'skolaId' => 0
 			);
 			
 			return $this->db->insert('vesti', $data);
