@@ -26,7 +26,7 @@
 		//uzmi skole iz baze
 		public function getNastavnikIds(){
 			$nastavnik = $this->db->get("nastavnik");
-			return $koordinator;
+			return $nastavnik;
 		}
 		
 		public function izmenaPredmeta($predmet){
@@ -44,7 +44,11 @@
 			$this->db->update('predmet', $data);
 		}
 		
-
+		//uzmi korisnike iz baze 
+		public function getUsers(){
+			$users = $this->db->get("users");
+			return $users;
+		}
 		
 		//unosPredmeta
 		public function unosCasova(){

@@ -100,20 +100,20 @@
 		//uredjivanje naloga
 		public function uredjivanje(){
 			$data['title'] = 'Uređivanje naloga';
+			$this->load->model('Koordinator_model');
 			$data['nastavnici'] = $this->Koordinator_model->getNastavnikIds();
 			$data['skole'] = $this->Koordinator_model->getSkole();
 			$data['users'] = $this->Koordinator_model->getUsers();
 			
-			$this->form_validation->set_rules('koord_lista', 'Koord_lista', 'required');
 			
-			if($this->form_validation->run() === FALSE){
+		//	if($this->form_validation->run() === FALSE){
 				$this->load->view('templates/header');
-				$this->load->view('administrator/uredjivanje', $data);
+				$this->load->view('koordinator/uredjivanje', $data);
 				$this->load->view('templates/footer');
-			}
-			else{
-				$this->izmenaKoordinatora($this->input->post('koord_lista'));
-			}
+		//	}
+		//	else{
+		//		$this->izmenaKoordinatora($this->input->post('koord_lista'));
+		//	}
 			
 		}
 		
