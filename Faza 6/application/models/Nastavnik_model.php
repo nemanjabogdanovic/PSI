@@ -5,7 +5,7 @@
 			$this->load->database();
 		}
 
-    //ovde moramo izbaciti spisak svih ucenika iz baze
+		//ovde moramo izbaciti spisak svih ucenika iz baze
 
 
 
@@ -187,4 +187,25 @@ else 	if (!empty($_POST['odeljenje'])) {
 
 		return $query;
 	}
-}
+
+		
+		
+		//dohvati sve vesti od administratora
+		public function getVestiAdmin(){
+			$this->db->where('skolaId', 0);
+			$query = $this->db->get('vesti');
+			return $query->result_array();
+		}
+		//dohvati sve vesti za trenutnu skolu
+		public function getVesti($id){
+			$this->db->where('skolaId', $id);
+			$query = $this->db->get('vesti');
+			return $query->result_array();
+		}
+		//dohvati id skole trenutnog nastavnika
+		public function getSkolaId($id){
+			$this->db->where('id', $id);
+			$result = $this->db->get('nastavnik');
+			return $result->row(0)->skolaId;
+		}
+	}
