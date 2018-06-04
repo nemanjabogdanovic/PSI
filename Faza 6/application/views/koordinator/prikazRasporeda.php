@@ -35,6 +35,64 @@
 					echo "</select>";
 					?>
 			</div>
+			
+<table class = "table table-bordered">
+	<tr colspan = "5">
+		<td><strong>Ponedeljak</strong></td>
+		<td><strong>Utorak</strong></td>
+		<td><strong>Sreda</strong></td>
+		<td><strong>Četvrtak</strong></td>
+		<td><strong>Petak</strong></td>
+     </tr>
+		<?php
+			if ($fetch_data->num_rows() > 0){
+		
+				foreach($fetch_data->result() as $row){
+			?>
+			
+			<tr>
+			<td> <?php echo $row->ime; ?> </td>   
+		   
+			<?php
+			foreach($nastavnici->result() as $rowN){
+				if($row->nastavnik === $rowN->id){
+					?>
+					 <td>  <?php echo $rowN->name; ?> <?php echo $rowN->surname; ?>  </td>
+					<?php
+				}
+				
+			}
+			?>
+		   
+		   <td> <?php echo $row->skolskaGodina; ?> </td>
+		   
+		   <td> <?php echo $row->kabineti; ?> </td>
+		   
+			<?php
+			foreach($skole->result() as $rowS){
+				if($row->skolaId === $rowS->id){
+					?>
+					 <td> <?php echo $rowS->ime; ?>  </td>
+					<?php
+				}
+				
+			}
+			?>
+			
+			</tr>
+			<?php
+			}
+		}
+		else {
+			?>
+			<tr colspan = "5">
+			Nema predmeta!
+			</tr>
+			<?php
+
+		}
+		?>
+  </table>
 		
 			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/prikazRasporedaO">Raspored</a></button>
 

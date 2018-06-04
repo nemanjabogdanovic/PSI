@@ -125,14 +125,7 @@
 		}
 		
 		public function getNastavnikeForPredmet(){
-			
-			
-			$result = $this->db->get('nastavnik');
-			$id = $result->row(0)->id;
-			
-			
-			
-			$query = $this->db->get_where('users', array('id'=>$id));  ////////////////////// SVEeeeeeeeeee
+			$query = $this->db->get('users');
 			return $query;
 		}
 		

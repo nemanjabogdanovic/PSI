@@ -23,7 +23,7 @@
 <table class = "table table-bordered">
 	<tr colspan = "5">
 		<td><strong>Ime predmeta</strong></td>
-		<td><strong>Nastavnik NE RADI TRENUTNO</strong></td>
+		<td><strong>ID nastavnika</strong></td>
 		<td><strong>Školska godina</strong></td>
 		<td><strong>Kabineti</strong></td>
 		<td><strong>Škola</strong></td>
@@ -41,12 +41,13 @@
 			foreach($nastavnici->result() as $rowN){
 				if($row->nastavnik === $rowN->id){
 					?>
-					 <td>  <?php echo $rowN->name; ?> <?php echo $rowN->surname; ?>  </td>
+					 <td>  <?php echo $rowN->name; ?>   </td>
 					<?php
 				}
 				
 			}
 			?>
+		
 		   
 		   <td> <?php echo $row->skolskaGodina; ?> </td>
 		   
@@ -70,15 +71,15 @@
 		else {
 			?>
 			<tr colspan = "5">
-			Nema predmeta!
+			Nema !
 			</tr>
 			<?php
 
 		}
 		?>
   </table>
-			
-		
+  
+
 			
 			
 			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/unosPredmeta">Unesi Predmet</a></button>

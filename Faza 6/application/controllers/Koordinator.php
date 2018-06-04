@@ -10,8 +10,12 @@
 
 		public function predmeti() {
 			$this->load->model('Koordinator_model');
+			
 			$data["fetch_data"] = $this->Koordinator_model->listOfStudents();
+			
 			$data['nastavnici'] = $this->Koordinator_model->getNastavnikeForPredmet();
+			
+			$data['users'] = $this->Koordinator_model->getUsers();
 			$data['skole'] = $this->Koordinator_model->getSkole();
 			$this->load->view('templates/header');
 			$this->load->view('koordinator/predmeti', $data);
