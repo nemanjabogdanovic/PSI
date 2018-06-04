@@ -23,7 +23,7 @@
 <table class = "table table-bordered">
 	<tr colspan = "5">
 		<td><strong>Ime predmeta</strong></td>
-		<td><strong>ID nastavnika</strong></td>
+		<td><strong>Nastavnik</strong></td>
 		<td><strong>Školska godina</strong></td>
 		<td><strong>Kabineti</strong></td>
 		<td><strong>Škola</strong></td>
@@ -41,7 +41,7 @@
 			foreach($nastavnici->result() as $rowN){
 				if($row->nastavnik === $rowN->id){
 					?>
-					 <td>  <?php echo $rowN->name; ?>   </td>
+					 <td>  <?php echo $rowN->name; ?> <?php echo $rowN->surname; ?>  </td>
 					<?php
 				}
 				

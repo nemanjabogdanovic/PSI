@@ -100,29 +100,30 @@
 			$odeljenje = $this->input->post('odeljenje');
 
 			
-			if($this->form_validation->run() === FALSE){
-				$this->load->view('templates/header');
-				$this->load->view('koordinator/prikazRasporeda', $data);
-				$this->load->view('templates/footer');
+	//		if($this->form_validation->run() === FALSE){
+	//			$this->load->view('templates/header');
+	//			$this->load->view('koordinator/prikazRasporeda', $data);
+	//			$this->load->view('templates/footer');
 				
-			}
-			else{
+	//		}
+	//		else{
+				
+	//			die('test');
+				$this->prikazRasporedaO();
 				
 				
-		//		$this->Koordinator->prikazRasporedaO($odeljenje);
-				
-				
-		//		redirect('koordinator/index');
-			}
+	//			redirect('koordinator/index');
+	//		}
 		}
 		
 		public function prikazRasporedaO(){
 			$data['title'] = 'Prikaz rasporeda';
 			
 			$this->load->model('Koordinator_model');
+			$data["fetch_data_o"] = $this->Koordinator_model->getOdeljenje();
 			
-			$data['odeljenja'] = $this->Koordinator_model->getOdeljenja();
-			
+			$data['rasporedi'] = $this->Koordinator_model->getRasporede();
+		
 			$odeljenje = $this->input->post('odeljenje');
 			
 			if($this->form_validation->run() === FALSE){
@@ -223,7 +224,7 @@
 		//Izmena nastavnika
 		public function izmenaNalogaU(){
 			
-			$data['title'] = 'Izmena naloga ucenika nastavnika';
+			$data['title'] = 'Izmena naloga ucenika ';
 			$this->load->model('Koordinator_model');
 			
 			$this->form_validation->set_rules('name', 'Ime');

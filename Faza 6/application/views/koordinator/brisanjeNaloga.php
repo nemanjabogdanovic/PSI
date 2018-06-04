@@ -28,7 +28,7 @@
 							{
 								if($row->id === $rowU->id){
 								?>
-								echo "<option value="<?php echo $rowU->id; ?>"><?php echo $rowU->username; ?> </option>"; 
+								echo "<option value="<?php echo $rowU->id; ?>"><?php echo $rowU->name; ?> <?php echo $rowU->surname; ?> </option>"; 
 								<?php
 								}
 							}

@@ -141,6 +141,20 @@
 			return $query;
 		}
 		
+		public function getRasporede(){
+			$query = $this->db->get_where('raspored',array('brojCasa' => 1 ));
+			return $query;
+		}
+		
+
+		
+		public function getOdeljenje(){
+			$this->db->where('odeljenjeId', '2');
+			$this->db->where('dan', 'ponedeljak');
+			$query = $this->db->get_where('raspored');
+			return $query;
+		}
+		
 		public function getPredmete(){
 			$query = $this->db->get('predmet');
 			return $query;

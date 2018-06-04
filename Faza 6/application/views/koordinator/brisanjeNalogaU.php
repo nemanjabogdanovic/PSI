@@ -18,7 +18,10 @@
 </div>
 <div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">	
 	<div class="tm-right-inner-container">
-		<h2>Brisanje naloga</h2>
+					<div class="col-md-6">
+
+		<h1 class="text-center"><?php echo $title; ?></h1>
+
 				<div class="form-group">
 					<label>Učenik:</label>
 					<?php
@@ -39,7 +42,7 @@
 				</div>
 		<button type="submit" class="btn btn-primary btn-block">Izbriši</button> <!-- poruka da je godina izbacena -->	
 
-		
+		</div>
 	</div>	
 </div>
 <?php echo form_close(); ?>
