@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2018 at 07:16 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- Generation Time: Jun 04, 2018 at 04:08 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -128,6 +128,19 @@ CREATE TABLE `ocena` (
   `ocena` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
 
+--
+-- Dumping data for table `ocena`
+--
+
+INSERT INTO `ocena` (`id`, `predmetId`, `ucenikId`, `ocena`) VALUES
+(8, 4, 12, 5),
+(9, 10, 12, 2),
+(10, 6, 18, 2),
+(11, 4, 12, 5),
+(12, 4, 12, 4),
+(13, 6, 18, 3),
+(14, 10, 12, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -169,11 +182,12 @@ CREATE TABLE `predmet` (
 --
 
 INSERT INTO `predmet` (`id`, `ime`, `nastavnik`, `skolskaGodina`, `kabineti`, `skolaId`) VALUES
-(4, 'mata', 8, '4', '123', 2),
+(4, 'Matematika', 8, '4', '123', 2),
 (6, 'Francuski', 8, '4', '12', 3),
 (7, 'nemacki', 8, '1', '8', 4),
 (8, 'mata', 8, '1', '888', 3),
-(9, 'bugarski', 15, '3', '321', 3);
+(9, 'bugarski', 15, '3', '321', 3),
+(10, 'Srpski', 8, '4', '123', 2);
 
 -- --------------------------------------------------------
 
@@ -407,7 +421,7 @@ ALTER TABLE `cas`
 -- AUTO_INCREMENT for table `ocena`
 --
 ALTER TABLE `ocena`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `odeljenje`
@@ -419,7 +433,7 @@ ALTER TABLE `odeljenje`
 -- AUTO_INCREMENT for table `predmet`
 --
 ALTER TABLE `predmet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `raspored`

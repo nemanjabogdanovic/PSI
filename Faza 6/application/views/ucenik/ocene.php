@@ -12,9 +12,27 @@
 		</ul>
 	</div>
 </div>
-<div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">		
-	<div class="tm-right-inner-container">
-		<h1 class="css-header">Ocene</h1>		
-		<p>Učenik</p>
+<div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">	
+	<div class="tm-right-inner-container">		
+		<h1><?php echo $title; ?></h1>
+		<br><br>
+		<table class = "table table-bordered">
+			<tr colspan = "5">
+				<td><strong>Predmet</strong></td>
+				<td><strong>Ocene</strong></td>
+			</tr>
+			<?php
+			foreach($ocene as $row){
+				if($row->predmetId != '0'){
+					?>
+					<tr>
+						<td> <?php echo $row->predmetId; ?> </td>
+						<td> <?php echo $row->ocena; ?> </td>
+					</tr>
+					<?php
+				}
+			}
+			?>
+		</table>
 	</div>	
 </div>

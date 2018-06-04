@@ -26,4 +26,16 @@
 			$result = $this->db->get('ucenik');
 			return $result->row(0)->skolaId;
 		}
+		//dohvati ocene trenutnog ucenika
+		public function getOcene($id){
+			$this->db->where('ucenikId', $id);
+			$result = $this->db->get('ocena');
+			return $result;
+		}
+		//dohvati predmete skole trenutnog ucenika
+		public function getPredmete($id){
+			$this->db->where('skolaId', $id);
+			$result = $this->db->get('predmet');
+			return $result;
+		}
 	}
