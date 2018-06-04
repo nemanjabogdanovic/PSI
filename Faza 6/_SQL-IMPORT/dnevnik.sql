@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2018 at 02:01 PM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.2.5
+-- Generation Time: Jun 03, 2018 at 07:16 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -63,13 +63,6 @@ CREATE TABLE `help` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2 COLLATE=latin2_croatian_ci;
 
---
--- Dumping data for table `help`
---
-
-INSERT INTO `help` (`id`) VALUES
-(11);
-
 -- --------------------------------------------------------
 
 --
@@ -118,7 +111,9 @@ CREATE TABLE `nastavnik` (
 
 INSERT INTO `nastavnik` (`id`, `skolaId`) VALUES
 (8, 2),
-(15, 4);
+(15, 4),
+(16, 4),
+(17, 3);
 
 -- --------------------------------------------------------
 
@@ -175,7 +170,10 @@ CREATE TABLE `predmet` (
 
 INSERT INTO `predmet` (`id`, `ime`, `nastavnik`, `skolskaGodina`, `kabineti`, `skolaId`) VALUES
 (4, 'mata', 8, '4', '123', 2),
-(6, 'Francuski', 8, '4', '12', 3);
+(6, 'Francuski', 8, '4', '12', 3),
+(7, 'nemacki', 8, '1', '8', 4),
+(8, 'mata', 8, '1', '888', 3),
+(9, 'bugarski', 15, '3', '321', 3);
 
 -- --------------------------------------------------------
 
@@ -241,7 +239,8 @@ CREATE TABLE `ucenik` (
 --
 
 INSERT INTO `ucenik` (`id`, `skolaId`, `odeljenjeId`) VALUES
-(12, 2, 2);
+(12, 2, 2),
+(18, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -268,7 +267,10 @@ INSERT INTO `users` (`id`, `name`, `surname`, `email`, `username`, `password`) V
 (11, 'Branko', 'Brankovic', 'branko@live.com', 'branko_brankovic_1', 'fbee3d5b1def587f835e85a8a4c78195'),
 (12, 'Goran', 'Goranovic', 'goran@gmail.com', 'goran_goranovic_1', '52ddd9ff1e957a1e6b15d329d8cefee7'),
 (14, 'Elena', 'Elenic', 'elena@gmail.com', 'elena_elenic_1', 'f5c90d326bc375e17efee4325dc04b59'),
-(15, 'Mica', 'Micovic', 'mica.micovic@mail.com', 'mica_micovic_1', 'mica123');
+(15, 'Mica', 'Micovic', 'mica.micovic@mail.com', 'mica_micovic_1', '2ac8fad6f031fbd733007ff97b9ffcc7'),
+(16, 'Mira', 'Miric', 'mira@mail.com', 'mira_miric_1', '83469ed2521f07cb27804061cf244132'),
+(17, 'Žika', 'Žikić', 'zika@emai.com', 'zika_zikic_1', '234c992ccb4b1f60c4643ac2be57740f'),
+(18, 'Zoran', 'Zorić', 'zoran@mail.com', 'zoran_zoric_1', '47e4b6fb92b60755791bd7a655d09191');
 
 -- --------------------------------------------------------
 
@@ -417,7 +419,7 @@ ALTER TABLE `odeljenje`
 -- AUTO_INCREMENT for table `predmet`
 --
 ALTER TABLE `predmet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `raspored`
@@ -435,7 +437,7 @@ ALTER TABLE `skola`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `vesti`
