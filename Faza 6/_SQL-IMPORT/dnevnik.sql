@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2018 at 12:48 AM
+-- Generation Time: Jun 04, 2018 at 04:31 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -73,17 +73,6 @@ INSERT INTO `help` (`id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `help2`
---
-
-CREATE TABLE `help2` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `izostanci`
 --
 
@@ -131,8 +120,7 @@ INSERT INTO `nastavnik` (`id`, `skolaId`) VALUES
 (8, 2),
 (15, 4),
 (16, 4),
-(17, 3),
-(24, 2);
+(17, 3);
 
 -- --------------------------------------------------------
 
@@ -203,10 +191,8 @@ CREATE TABLE `predmet` (
 INSERT INTO `predmet` (`id`, `ime`, `nastavnik`, `skolskaGodina`, `kabineti`, `skolaId`) VALUES
 (4, 'Matematika', 8, '1', '1', 2),
 (6, 'Francuski', 8, '4', '12', 3),
-(7, 'Nemački', 24, '3', '12', 4),
-(10, 'Srpski', 17, '3', '3', 2),
-(11, 'Bugarski', 15, '2', '21', 3),
-(12, 'Hemija', 24, '2', '4', 3);
+(7, 'nemacki', 8, '1', '8', 4),
+(10, 'Srpski', 8, '1', '1', 2);
 
 -- --------------------------------------------------------
 
@@ -230,25 +216,8 @@ CREATE TABLE `raspored` (
 
 INSERT INTO `raspored` (`id`, `odeljenjeId`, `dan`, `brojCasa`, `nastavnikId`, `kabinet`, `predmetId`) VALUES
 (2, 3, 'utorak', 1, 8, '1', 4),
-(3, 2, 'utorak', 1, 8, '2', 6),
-(4, 2, 'sreda', 1, 17, '1', 7),
-(5, 2, 'ponedeljak', 1, 8, '2', 10),
-(6, 2, 'cetvrtak', 1, 15, '11', 6),
-(8, 2, 'petak', 1, 8, '2', 4),
-(9, 3, 'ponedeljak', 1, 16, '123', 11),
-(10, 3, 'sreda', 1, 24, '12', 11),
-(11, 3, 'cetvrtak', 1, 16, '2', 7),
-(12, 3, 'petak', 1, 17, '2', 11),
-(13, 3, 'utorak', 2, 8, '1', 4),
-(14, 2, 'utorak', 2, 8, '2', 6),
-(15, 2, 'sreda', 2, 17, '1', 7),
-(16, 2, 'ponedeljak', 2, 8, '2', 10),
-(17, 2, 'cetvrtak', 2, 15, '11', 6),
-(18, 2, 'petak', 2, 8, '2', 4),
-(19, 3, 'ponedeljak', 2, 16, '123', 11),
-(20, 3, 'sreda', 2, 24, '12', 11),
-(21, 3, 'cetvrtak', 2, 16, '2', 7),
-(22, 3, 'petak', 2, 17, '2', 11);
+(3, 2, 'utorak', 2, 8, '2', 6),
+(4, 2, 'sreda', 1, 17, '1', 7);
 
 -- --------------------------------------------------------
 
@@ -324,8 +293,7 @@ INSERT INTO `users` (`id`, `name`, `surname`, `email`, `username`, `password`) V
 (17, 'Žika', 'Žikić', 'zika@emai.com', 'zika_zikic_1', '234c992ccb4b1f60c4643ac2be57740f'),
 (18, 'Zoran', 'Zorić', 'zoran@mail.com', 'zoran_zoric_1', '47e4b6fb92b60755791bd7a655d09191'),
 (22, 'Milos', 'Vukovic', 'milos@mail.com', 'milos_milosevic_1', 'b82753180960205a4a62feff9c0f93f5'),
-(23, 'Roki', 'Rokic', 'roki.rokic@mail.com', 'roki_rokic_1', '869b1b66b8cec6af9e434a98b8db30bf'),
-(24, 'Bojan', 'Bojanic', 'bojan@mail.com', 'bojan_bojanic_1', '2a89afb221c007c2723065886371e4c9');
+(23, 'Roki', 'Rokic', 'roki.rokic@mail.com', 'roki_rokic_1', '869b1b66b8cec6af9e434a98b8db30bf');
 
 -- --------------------------------------------------------
 
@@ -474,13 +442,13 @@ ALTER TABLE `odeljenje`
 -- AUTO_INCREMENT for table `predmet`
 --
 ALTER TABLE `predmet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `raspored`
 --
 ALTER TABLE `raspored`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `skola`
@@ -492,7 +460,7 @@ ALTER TABLE `skola`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `vesti`
