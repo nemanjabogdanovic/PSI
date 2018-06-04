@@ -2,7 +2,7 @@
 	autor: Markovic Milos, 0096/2012
 	@version: 1.0
 -->
-<?php echo form_open('koordinator/izmenaPredmeta'); ?>
+<?php echo form_open('koordinator/izmenaNalogaU'); ?>
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
 	<div class="tm-left-inner-container">
 		<ul class="nav nav-stacked css-nav">
@@ -23,24 +23,13 @@
 		<h1 class="text-center"><?php echo $title; ?></h1>
 
 		<br>
-			<div class="form-group">
-					<label>Predmet:</label>
-					<?php
-					echo "<select name='predmet'>";
-					foreach($predmeti->result() as $row) {
-					?>
-						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->ime; ?></option>"; 
-					<?php
-					}
-					echo "</select>";
-					?>
-			</div>
+
 			
 			<div class="form-group">
-					<label>Nastavnik:</label>
+					<label>Učenik:</label>
 					<?php
-						echo "<select name='nastavnik'>";
-						foreach($nastavnici->result() as $row) {
+						echo "<select name='ucenik'>";
+						foreach($ucenici->result() as $row) {
 							foreach($users->result() as $rowU)
 							{
 								if($row->id === $rowU->id){
@@ -54,23 +43,38 @@
 					?>
 				</div>
 				
+				<div class="form-group">
+					<label>Ime</label>
+					<input type="text" class="form-control" name="name" placeholder="Ime">
+				</div>
+			
+				<div class="form-group">
+					<label>Prezime</label>
+					<input type="text" class="form-control" name="surname" placeholder="Prezime">
+				</div>
+				
+				<div class="form-group">
+					<label>Email</label>
+					<input type="email" class="form-control" name="email" placeholder="Email">
+				</div>
+				
 			<div class="form-group">
-				<label>Ime</label>
-				<input type="text" class="form-control" name="ime" placeholder="Ime">
+					<label>Odeljenja:</label>
+					<?php
+					echo "<select name='odeljenje'>";
+					foreach($odeljenja->result() as $row) {
+					?>
+						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->oznaka; ?></option>"; 
+					<?php
+					}
+					echo "</select>";
+					?>
 			</div>
-			
-			<div class="form-group">
-				<label>Školska godina</label>
-				<input type="text" class="form-control" name="skolskaGodina" placeholder="Skolska godina">
-			</div>
-			<div class="form-group">
-				<label>Kabineti</label>
-				<input type="text" class="form-control" name="kabineti" placeholder="Kabinet">
-			</div>				
+				
+				
 			
 			
-			
-		<button type="submit" class="btn btn-primary btn-block">Izmeni predmet</button>
+		<button type="submit" class="btn btn-primary btn-block">Izmeni nalog</button>
 		
 	
 		

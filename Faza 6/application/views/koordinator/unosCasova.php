@@ -34,17 +34,22 @@
 				
 				
 			<div class="form-group">
-					<label>Nastavnici:</label>
+					<label>Nastavnik:</label>
 					<?php
-					echo "<select name='nastavnik'>";
-					foreach($nastavnici->result() as $row) {
+						echo "<select name='nastavnik'>";
+						foreach($nastavnici->result() as $row) {
+							foreach($users->result() as $rowU)
+							{
+								if($row->id === $rowU->id){
+								?>
+								echo "<option value="<?php echo $rowU->id; ?>"><?php echo $rowU->username; ?> </option>"; 
+								<?php
+								}
+							}
+						}
+						echo "</select>";
 					?>
-						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>"; 
-					<?php
-					}
-					echo "</select>";
-					?>
-			</div>
+				</div>
 				
 				<div class="form-group">
 					<label>Kabinet</label>

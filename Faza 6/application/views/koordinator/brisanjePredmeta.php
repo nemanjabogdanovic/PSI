@@ -22,10 +22,19 @@
 	<div class="col-md-6">
 		<h1 class="text-center"><?php echo $title; ?></h1>
 		
-		<div class="form-group">
-			<input type="text" class="form-control" name="ime" placeholder="Ime Predmeta">
-			
-		</div>
+			<div class="form-group">
+					<label>Predmet</label>
+					<?php
+					echo "<select name='ime'>";
+					foreach($predmeti->result() as $row) {
+					?>
+						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->ime; ?></option>"; 
+					<?php
+					}
+					echo "</select>";
+					?>
+			</div>
+				
 			<div class="form-group">
 					<label>Škola:</label>
 					<?php

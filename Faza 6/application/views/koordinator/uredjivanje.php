@@ -48,9 +48,13 @@
 			?>
 		</table>
 		<button type="submit"><a href="<?php echo base_url(); ?>koordinator/noviNalog">Novi nalog</a></button>
+		<button type="submit"><a href="<?php echo base_url(); ?>koordinator/izmenaNaloga">Izmena naloga</a></button>
+		<button type="submit"><a href="<?php echo base_url(); ?>koordinator/brisanjeNaloga">Brisanje naloga</a></button>
 		<br>
-		<h2 class="css-header">Učenici novi nalog:</h2>	
+		<h2 class="css-header">Učenici</h2>	
 		<button type="submit"><a href="<?php echo base_url(); ?>koordinator/noviNalogU">Novi nalog</a></button>
+		<button type="submit"><a href="<?php echo base_url(); ?>koordinator/izmenaNalogaU">Izmena naloga</a></button>
+		<button type="submit"><a href="<?php echo base_url(); ?>koordinator/brisanjeNalogaU">Brisanje naloga</a></button>
 		
 	</div>	
 </div>

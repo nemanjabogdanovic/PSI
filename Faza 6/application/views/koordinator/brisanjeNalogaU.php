@@ -2,7 +2,9 @@
 	autor: Markovic Milos, 0096/2012
 	@version: 1.0
 -->
-<?php echo form_open('koordinator/brisanjeCasova'); ?>
+
+<?php echo form_open('koordinator/brisanjeNalogaU'); ?>
+
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
 	<div class="tm-left-inner-container">
 		<ul class="nav nav-stacked css-nav">
@@ -16,47 +18,28 @@
 </div>
 <div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">	
 	<div class="tm-right-inner-container">
-		
-		
-<div class="row">
-	<div class="col-md-6">
-		<h1 class="text-center"><?php echo $title; ?></h1>
-		
-		
-			<div class="form-group">
-					<label>Odeljenja:</label>
+		<h2>Brisanje naloga</h2>
+				<div class="form-group">
+					<label>Učenik:</label>
 					<?php
-					echo "<select name='odeljenje'>";
-					foreach($odeljenja->result() as $row) {
+						echo "<select name='ucenik'>";
+						foreach($ucenici->result() as $row) {
+							foreach($users->result() as $rowU)
+							{
+								if($row->id === $rowU->id){
+								?>
+								echo "<option value="<?php echo $rowU->id; ?>"><?php echo $rowU->name; ?> <?php echo $rowU->surname; ?></option>"; 
+								<?php
+								}
+							}
+						}
+						echo "</select>";
 					?>
-						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->oznaka; ?></option>"; 
-					<?php
-					}
-					echo "</select>";
-					?>
-			</div>
-		
-			<div class="form-group">
-				<label>Dan</label>
-				<input type="text" class="form-control" name="dan" placeholder="Dan">
-			</div>
 			
-			<div class="form-group">
-				<label>Redni broj časa</label>
-				<input type="text" class="form-control" name="cas" placeholder="Čas">
-			</div>
-		
+				</div>
 		<button type="submit" class="btn btn-primary btn-block">Izbriši</button> <!-- poruka da je godina izbacena -->	
-		
-	
-		
-			
-	</div>		
-	
-	
-		
+
 		
 	</div>	
-</div>
 </div>
 <?php echo form_close(); ?>

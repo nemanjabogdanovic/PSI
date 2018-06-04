@@ -30,6 +30,11 @@
 			return $nastavnik;
 		}
 		
+		public function getUcenike(){
+			$ucenik = $this->db->get("ucenik");
+			return $ucenik;
+		}
+		
 		public function izmenaPredmeta($predmet){
 			$data = array(
 				
@@ -45,6 +50,50 @@
 			$this->db->update('predmet', $data);
 		}
 		
+		public function izmenaNaloga($nastavnik){
+			$data = array(
+				
+				'name' => $this->input->post('name'),
+				'surname' => $this->input->post('surname'),
+				'email' => $this->input->post('email')
+				
+			);
+			$nastavnik = $this->input->post('nastavnik');
+			
+			$this->db->where('id', $nastavnik);
+			$this->db->update('users', $data);
+		}
+		
+		public function izmenaNalogaU($ucenik,$odeljenje){
+			$data = array(
+				
+				'name' => $this->input->post('name'),
+				'surname' => $this->input->post('surname'),
+				'email' => $this->input->post('email')
+				
+			);
+			$ucenik = $this->input->post('ucenik');
+			
+			$this->db->where('id', $ucenik);
+			$this->db->update('users', $data);
+			
+			
+			
+			$data1 = array(
+				
+				'odeljenjeId' => $this->input->post('odeljenje')
+
+				
+			);
+			$odeljenje = $this->input->post('ucenik');
+			
+			$this->db->where('id', $odeljenje);
+			$this->db->update('ucenik', $data1);			
+			
+			
+		}
+
+	
 		//uzmi korisnike iz baze 
 		public function getUsers(){
 			$users = $this->db->get("users");
@@ -71,6 +120,11 @@
 		}
 		
 		public function getNastavnike(){
+			$query = $this->db->get('nastavnik');
+			return $query;
+		}
+		
+		public function getNastavnikeForPredmet(){
 			
 			
 			$result = $this->db->get('nastavnik');
@@ -102,16 +156,82 @@
 		public function brisanjePredmeta($ime,$skolaid){
 			$query = $this->db->get_where('predmet', array('ime' => $ime));
 			$query = $this->db->get_where('predmet', array('skolaid' => $skolaid));
+			
 			if(empty($query->row_array())){
 				return false;
 			}
 			else{
-				$this->db->where('ime', $ime);
+				$this->db->where('id', $ime);
 				$this->db->where('skolaid', $skolaid);
 				$this->db->delete('predmet');
+				
 				return true;
+				
 			} 
 		}
+
+		public function brisanjeCasova($odeljenje,$dan,$cas){
+			$query = $this->db->get_where('raspored', array('odeljenjeId' => $odeljenje));
+			$query = $this->db->get_where('raspored', array('dan' => $dan));
+			$query = $this->db->get_where('raspored', array('brojCasa' => $cas));
+	//		$query = $this->db->get_where('predmet', array('skolaid' => $skolaid));
+			
+			if(empty($query->row_array())){
+				return false;
+			}
+			else{
+				$this->db->where('odeljenjeId', $odeljenje);
+				$this->db->where('dan', $dan);
+				$this->db->where('brojCasa', $cas);
+				$this->db->delete('raspored');
+				
+				return true;
+				
+			} 
+		}		
+		
+		public function brisanjeNaloga($nastavnik){
+				
+			$query = $this->db->get_where('users', array('id' => $nastavnik));			
+	
+			if(empty($query->row_array())){
+				return false;			
+			}
+			else{
+	//			die($nastavnik);
+				$this->db->where('id', $nastavnik);	
+				$this->db->delete('users');
+				
+				$this->db->where('id', $nastavnik);
+				$this->db->delete('nastavnik');
+				
+				return true;				
+			} 
+		}
+
+
+		public function brisanjeNalogaU($ucenik){
+				
+			$query = $this->db->get_where('users', array('id' => $ucenik));
+	
+				
+	
+			if(empty($query->row_array())){
+				return false;
+			
+			}
+			else{
+				$this->db->where('id', $ucenik);	
+				$this->db->delete('users');
+				
+				$this->db->where('id', $ucenik);
+				$this->db->delete('ucenik');
+				
+				return true;
+				
+			} 
+		}
+		
 		
 		//dodaj novog nastavnika
 		public function dodajNastavnika($enc_password){
