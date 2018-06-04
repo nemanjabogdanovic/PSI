@@ -188,8 +188,8 @@ else 	if (!empty($_POST['odeljenje'])) {
 		return $query;
 	}
 
-		
-		
+
+
 		//dohvati sve vesti od administratora
 		public function getVestiAdmin(){
 			$this->db->where('skolaId', 0);
@@ -208,4 +208,76 @@ else 	if (!empty($_POST['odeljenje'])) {
 			$result = $this->db->get('nastavnik');
 			return $result->row(0)->skolaId;
 		}
+
+
+
+
+		public function dohvatiOdeljenje() {
+
+			$query = $this->db->query("SELECT users.id,users.name,users.surname,users.username,users.email,odeljenje.oznaka, odeljenje.id,
+																				skola.ime FROM skola, users, ucenik, odeljenje WHERE ucenik.skolaId = skola.id AND users.id = ucenik.id AND ucenik.odeljenjeId = odeljenje.id" );
+
+			if (isset($_POST['search1'])) {
+
+			if (!empty($_POST['od']) && !empty($_POST['sk'])  ) {
+					$novoOdeljenje = $_POST['od'];
+					$novaSkola = $_POST['sk'];
+					$query = $this->db->query("SELECT users.id,users.name,users.surname,users.username,users.email,ucenik.id,odeljenje.oznaka,skola.ime, odeljenje.id FROM skola,users, ucenik, odeljenje WHERE users.id = ucenik.id AND ucenik.odeljenjeId = odeljenje.id
+																			AND ucenik.skolaId = skola.id AND  odeljenje.id = '{$novoOdeljenje}' AND ucenik.skolaId = '{$novaSkola}'" );
+
+					} else if (!empty($_POST['od'])  ) {
+							$novoOdeljenje = $_POST['od'];
+
+							$query = $this->db->query("SELECT users.id,users.name,users.surname,users.username,users.email,ucenik.id,odeljenje.oznaka,skola.ime, odeljenje.id FROM skola,users, ucenik, odeljenje WHERE users.id = ucenik.id AND ucenik.odeljenjeId = odeljenje.id
+																					AND ucenik.skolaId = skola.id AND  odeljenje.id = '{$novoOdeljenje}'" );
+
+							} else if ( !empty($_POST['sk'])  ) {
+
+									$novaSkola = $_POST['sk'];
+									$query = $this->db->query("SELECT users.id,users.name,users.surname,users.username,users.email,ucenik.id,odeljenje.oznaka,skola.ime, odeljenje.id FROM skola,users, ucenik, odeljenje WHERE users.id = ucenik.id AND ucenik.odeljenjeId = odeljenje.id
+																							AND ucenik.skolaId = skola.id AND ucenik.skolaId = '{$novaSkola}'" );
+
+									}
+				}
+				return $query;
+
+		}
+
+
+		public function dohvatiIdUcenika() {
+
+			$query = $this->db->query("SELECT users.name, users.surname, users.id FROM users, ucenik WHERE users.id = ucenik.id");
+			return $query;
+
+
+		}
+
+
+		public function unosIzostanka(){
+				if (isset($_POST['search_izostanak'])) {
+
+					if (!empty($_POST['iz'])) {$idUcenika = $_POST['iz'];};
+
+					$postojiIzostanak = $this->db->query("SELECT izostanci.id, izostanci.ucenikId, izostanci.brojIzostanaka, ucenik.id FROM izostanci, ucenik WHERE izostanci.ucenikId = '{$idUcenika}' ");
+
+
+
+					if ($postojiIzostanak->num_rows() == 0) {
+
+						$data = array(
+									'id' => 0,
+									'ucenikId' => $idUcenika,
+									'brojIzostanaka' => 1,
+						);
+
+			    return $this->db->insert('izostanci', $data);
+					
+
+
+		}
+		else {
+  		return $this->db->query("UPDATE izostanci SET  brojIzostanaka = brojIzostanaka + 1 WHERE ucenikId = $idUcenika");
+		}
+		}
 	}
+}

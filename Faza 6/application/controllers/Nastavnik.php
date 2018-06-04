@@ -15,8 +15,8 @@
 			$data['title'] = 'Početna - Vesti';
 			$data['vesti'] = $this->Nastavnik_model->getVestiAdmin();
 			$data['vestiSkola'] = $this->Nastavnik_model->getVesti($this->Nastavnik_model->getSkolaId($this->session->userdata('user_id')));
-			
-			
+
+
 			$this->load->view('templates/header');
 			$this->load->view('nastavnik/index', $data);
 			$this->load->view('templates/footer');
@@ -53,5 +53,19 @@
 			$this->load->view('templates/header');
 			$this->load->view('nastavnik/kalendar');
 			$this->load->view('templates/footer');
+		}
+
+
+		public function izostanci() {
+				$data["odeljenja"] = $this->Nastavnik_model->listaOdeljenja();
+				$data["fetch_data"] = $this->Nastavnik_model->dohvatiOdeljenje();
+				$data["ucenici"] = $this->Nastavnik_model->dohvatiIdUcenika(); 
+							$data["skole"] = $this->Nastavnik_model->listaSkola();
+							$data["uneto"] = $this->Nastavnik_model->unosIzostanka();
+
+
+				$this->load->view('templates/header');
+  			$this->load->view('nastavnik/izostanci', $data);
+  			$this->load->view('templates/footer');
 		}
 	}

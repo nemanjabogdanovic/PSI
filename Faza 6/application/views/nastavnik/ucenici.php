@@ -27,8 +27,6 @@
 
 
 
-
-</script>
 <div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">
 	<div style="width: 850px; overflow: hidden;">
 
@@ -46,13 +44,13 @@
 				{
 
 				?>
-				<tr style = "border: 1px solid black;">
+				<tr style = "border: 1px solid black;background-color:#337ab7;">
 					 <td style = "border: 1px solid black;" > <strong> Ime</strong> </td>
 					 <td style = "border: 1px solid black;"><strong> Prezime</strong> </td>
 					 <td style = "border: 1px solid black;"><strong> E-mail</strong> </td>
 					 <td style = "border: 1px solid black;"><strong> Odeljenje</strong> </td>
 					 <td style = "border: 1px solid black;"><strong> Škola</strong> </td>
-			 <tr>
+			 <tr >
 
 				<?php
 					foreach($fetch_data->result() as $row)
@@ -60,11 +58,11 @@
 				?>
 
 
-							<td> <?php echo $row->name; ?> </td>
-							<td> <?php echo $row->surname; ?> </td>
-							<td> <?php echo $row->email; ?> </td>
-							<td> <?php echo $row->oznaka; ?> </td>
-							<td> <?php echo $row->ime; ?> </td>
+							<td style = "background-color:#ebf6f9; border:1px solid black;"> <?php echo $row->name; ?> </td>
+							<td style = "background-color:#ebf6f9; border:1px solid black;"> <?php echo $row->surname; ?> </td>
+							<td style = "background-color:#ebf6f9; border:1px solid black;"> <?php echo $row->email; ?> </td>
+							<td style = "background-color:#ebf6f9; border:1px solid black;"> <?php echo $row->oznaka; ?> </td>
+							<td style = "background-color:#ebf6f9; border:1px solid black;"> <?php echo $row->ime; ?> </td>
 						</tr>
 					<?php
 					}
@@ -90,40 +88,39 @@
 			<br>
 		<p style = " font-size: 20px; font-style: bold">Filteri:</p>
 
-		<label> Skola: </label>
-		<br>
-		<select name = 'skola'>
-				<option value="" disabled selected>Skola</option>
-			<?php
-			if ($skole->num_rows() > 0)
-			{
-				foreach($skole->result() as $row)
-				{
-			?>
 
-
-						<option option value="<?php echo $row->id; ?>"  > <?php echo $row->ime; ?> </option>
-
-				<?php
-				}
-			}
-			else {
-				?>
-			 <option> Nema skola </option>
-			<?php
-
-			}
-			?>
-		</select>
-
-
-
-
-
-		<br>
-		<br>
 
 		<form name = "search_form" method= "POST" action = "ucenici.php">
+
+			<label> Skola: </label>
+			<br>
+			<select name = 'skola'>
+					<option value="" disabled selected>Skola</option>
+				<?php
+				if ($skole->num_rows() > 0)
+				{
+					foreach($skole->result() as $row)
+					{
+				?>
+
+
+							<option option value="<?php echo $row->id; ?>"  > <?php echo $row->ime; ?> </option>
+
+					<?php
+					}
+				}
+				else {
+					?>
+				 <option> Nema skola </option>
+				<?php
+
+				}
+				?>
+			</select>
+
+
+			<br>
+			<br>
     <label> Odeljenje: </label>
 		<br>
 		<select name = 'odeljenje'>
@@ -141,7 +138,7 @@
 			}
 			else {
 				?>
-			 <option> Nema ucenika </option>
+			 <option> Nema odeljenja </option>
 			<?php
 
 			}
