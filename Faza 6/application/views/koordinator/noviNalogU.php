@@ -14,7 +14,6 @@
 			<li><a href="<?php echo base_url(); ?>koordinator/predmeti">Predmeti</a></li>
 			<li><a href="<?php echo base_url(); ?>koordinator/ra	spored">Raspored časova</a></li>
 			<li><a href="<?php echo base_url(); ?>koordinator/uredjivanje">Uređivanje naloga</a></li>
-			<li><a href="<?php echo base_url(); ?>koordinator/statistika">Statistika</a></li>
 		</ul>
 	</div>
 </div>

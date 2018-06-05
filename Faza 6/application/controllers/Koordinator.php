@@ -109,7 +109,7 @@
 	//		else{
 				
 	//			die('test');
-				$this->prikazRasporedaO();
+	//			$this->Koordinator_model->prikazRasporeda();
 				
 				
 	//			redirect('koordinator/index');
@@ -120,9 +120,13 @@
 			$data['title'] = 'Prikaz rasporeda';
 			
 			$this->load->model('Koordinator_model');
-			$data["fetch_data_o"] = $this->Koordinator_model->getOdeljenje();
 			
-			$data['rasporedi'] = $this->Koordinator_model->getRasporede();
+			$data['odeljenja'] = $this->Koordinator_model->getOdeljenja();
+
+
+	//		$data["fetch_data_o"] = $this->Koordinator_model->getOdeljenje();
+			
+	//		$data['rasporedi'] = $this->Koordinator_model->getRasporede();
 		
 			$odeljenje = $this->input->post('odeljenje');
 			
@@ -305,7 +309,7 @@
 				$cas = $this->input->post('cas');
 	//			$skolaid = $this->input->post('skolaid');
 				if($this->Koordinator_model->brisanjeCasova($odeljenje,$dan,$cas)){
-					
+						//flash Uspešno izmenjen predmet
 					redirect('koordinator/index');
 				}
 				else{
@@ -339,7 +343,7 @@
 				
 				$this->Koordinator_model->unosPredmeta();
 				
-				
+				//flash Uspešno unet predmet
 				redirect('koordinator/index');
 			}
 		}
@@ -366,7 +370,7 @@
 				
 				
 				$this->Koordinator_model->unosCasova();
-				
+					//flash Uspešno unet cas
 				
 				redirect('koordinator/index');
 			}
@@ -391,9 +395,9 @@
 			}
 			else{
 				$predmet = $this->input->post('predmet');
-		//		$nastavnik = $this->input->post('nastavnik');
+			
 				$this->Koordinator_model->izmenaPredmeta($predmet);
-					
+				//flash Uspešno izmenjen predmet		
 				redirect('koordinator/index');
 			
 			}	
@@ -451,7 +455,8 @@
 			$ime = $this->input->post('ime');
 			$skolaid = $this->input->post('skolaid');
 
-			if($this->Koordinator_model->brisanjePredmeta($ime,$skolaid)){					
+			if($this->Koordinator_model->brisanjePredmeta($ime,$skolaid)){		
+						//flash Uspešno izbrisan predmet
 				redirect('koordinator/index');
 			}
 		}		
@@ -470,7 +475,7 @@
 			$nastavnik = $this->input->post('nastavnik');
 		//	die($nastavnik);
 			if($this->Koordinator_model->brisanjeNaloga($nastavnik)){
-			
+				//flash Uspešno izbrisan nalog nastavnika
 				redirect('koordinator/index');
 			}
 		}
@@ -489,7 +494,7 @@
 			$ucenik = $this->input->post('ucenik');
 		//	die($nastavnik);
 			if($this->Koordinator_model->brisanjeNalogaU($ucenik)){
-			
+				//flash Uspešno izbrisan nalog ucenika
 				redirect('koordinator/index');
 			}
 					

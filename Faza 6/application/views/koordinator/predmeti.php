@@ -9,7 +9,6 @@
 			<li><a href="<?php echo base_url(); ?>koordinator/predmeti">Predmeti</a></li>
 			<li><a href="<?php echo base_url(); ?>koordinator/raspored">Raspored časova</a></li>
 			<li><a href="<?php echo base_url(); ?>koordinator/uredjivanje">Uređivanje naloga</a></li>
-			<li><a href="<?php echo base_url(); ?>koordinator/statistika">Statistika</a></li>
 		</ul>
 	</div>
 </div>
@@ -18,7 +17,8 @@
 		
 			
 		<div class="col-lg-8 col-md-5 col-sm-4 col-xs-12">
-			<!--<h1 class="text-center"><?php echo $title; ?></h1>-->
+					<h1 class="text-center">Raspored</h1>
+
 						
 <table class = "table table-bordered">
 	<tr colspan = "5">
@@ -29,8 +29,7 @@
 		<td><strong>Škola</strong></td>
      </tr>
 		<?php
-			if ($fetch_data->num_rows() > 0){
-		
+			if ($fetch_data->num_rows() > 0){		
 				foreach($fetch_data->result() as $row){
 			?>
 			

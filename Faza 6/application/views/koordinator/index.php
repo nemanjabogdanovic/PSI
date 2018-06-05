@@ -1,5 +1,5 @@
 <!--
-	autor: Nemanja Bogdanovic, 2012/0533
+	autor: Markovic Milos, 0096/2012
 	@version: 1.0
 -->
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
@@ -9,7 +9,6 @@
 			<li><a href="<?php echo base_url(); ?>koordinator/predmeti">Predmeti</a></li>
 			<li><a href="<?php echo base_url(); ?>koordinator/raspored">Raspored časova</a></li>
 			<li><a href="<?php echo base_url(); ?>koordinator/uredjivanje">Uređivanje naloga</a></li>
-			<li><a href="<?php echo base_url(); ?>koordinator/statistika">Statistika</a></li>
 		</ul>
 	</div>
 </div>
