@@ -32,37 +32,12 @@
 							<div style="width: 850px; float: left;">
 
 								<form name = "search_form" method= "POST" action = "izostanci">
-									<strong style = "font-style:oblique; font-size:18px;"> Izaberite skolu i odeljenje: </strong>
+									<strong style = "font-style:oblique; font-size:18px;"> Izaberite odeljenje: </strong>
 									<br>
 
 
 									<br>
-									<select name = 'sk'>
-											<option value="" disabled selected>Skola</option>
-										<?php
-										if ($skole->num_rows() > 0)
-										{
-											foreach($skole->result() as $row)
-											{
-										?>
 
-
-													<option option value="<?php echo $row->id; ?>"  > <?php echo $row->ime; ?> </option>
-
-											<?php
-											}
-										}
-										else {
-											?>
-										 <option> Nema skola </option>
-										<?php
-
-										}
-										?>
-									</select>
-
-
-								<br>
 								<br>
 
 								<select name = 'od'>
@@ -147,9 +122,9 @@
 												<select name = 'iz' style = "width: 350px">
 												<option value="" disabled selected> Izaberite ucenika koji ne prisustvuje casu: </option>
 											<?php
-											if ($ucenici->num_rows() > 0)
+											if ($fetch_data->num_rows() > 0)
 											{
-												foreach($ucenici->result() as $row)
+												foreach($fetch_data->result() as $row)
 												{
 											?>
 																<option value="<?php echo $row->id; ?>"> <?php echo $row->name." ".$row->surname; ?> </option>

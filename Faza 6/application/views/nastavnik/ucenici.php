@@ -49,7 +49,7 @@
 					 <td style = "border: 1px solid black;"><strong> Prezime</strong> </td>
 					 <td style = "border: 1px solid black;"><strong> E-mail</strong> </td>
 					 <td style = "border: 1px solid black;"><strong> Odeljenje</strong> </td>
-					 <td style = "border: 1px solid black;"><strong> Škola</strong> </td>
+
 			 <tr >
 
 				<?php
@@ -62,14 +62,14 @@
 							<td style = "background-color:#ebf6f9; border:1px solid black;"> <?php echo $row->surname; ?> </td>
 							<td style = "background-color:#ebf6f9; border:1px solid black;"> <?php echo $row->email; ?> </td>
 							<td style = "background-color:#ebf6f9; border:1px solid black;"> <?php echo $row->oznaka; ?> </td>
-							<td style = "background-color:#ebf6f9; border:1px solid black;"> <?php echo $row->ime; ?> </td>
+
 						</tr>
 					<?php
 					}
 				}
 				else {
 					?>
-					<tr colspan = "5">
+					<tr colspan = "4">
 
 					 <strong style = "font-size:20px">	Nema ucenika! </strong>
 
@@ -92,34 +92,7 @@
 
 		<form name = "search_form" method= "POST" action = "ucenici.php">
 
-			<label> Skola: </label>
-			<br>
-			<select name = 'skola'>
-					<option value="" disabled selected>Skola</option>
-				<?php
-				if ($skole->num_rows() > 0)
-				{
-					foreach($skole->result() as $row)
-					{
-				?>
 
-
-							<option option value="<?php echo $row->id; ?>"  > <?php echo $row->ime; ?> </option>
-
-					<?php
-					}
-				}
-				else {
-					?>
-				 <option> Nema skola </option>
-				<?php
-
-				}
-				?>
-			</select>
-
-
-			<br>
 			<br>
     <label> Odeljenje: </label>
 		<br>

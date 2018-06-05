@@ -49,10 +49,10 @@
 		}
 
 		public function kalendar() {
-			
+
 			$this->load->helper('form');
 			$this->load->library('table');
-			
+
 			$raspored = $this->Nastavnik_model->dohvati_raspored();
 			$data['ponedeljak'] = array(
 				1 => '',
@@ -125,9 +125,9 @@
 				if($ras->dan == 'sreda') $data['sreda'][$ras->brojCasa] = 'Cas: ' . $this->Nastavnik_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet .'<br> Odeljenje: ' . $this->Nastavnik_model->dohvati_oznaku_odeljenja($ras->odeljenjeId);
 				if($ras->dan == 'cetvrtak') $data['cetvrtak'][$ras->brojCasa] = 'Cas: ' . $this->Nastavnik_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet .'<br> Odeljenje: ' . $this->Nastavnik_model->dohvati_oznaku_odeljenja($ras->odeljenjeId);
 				if($ras->dan == 'petak') $data['petak'][$ras->brojCasa] = 'Cas: ' . $this->Nastavnik_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet .'<br> Odeljenje: ' . $this->Nastavnik_model->dohvati_oznaku_odeljenja($ras->odeljenjeId);
-				
+
 			}
-						
+
 			$this->load->view('templates/header');
 			$this->load->view('nastavnik/kalendar', $data);
 			$this->load->view('templates/footer');
@@ -137,7 +137,7 @@
 		public function izostanci() {
 				$data["odeljenja"] = $this->Nastavnik_model->listaOdeljenja();
 				$data["fetch_data"] = $this->Nastavnik_model->dohvatiOdeljenje();
-				$data["ucenici"] = $this->Nastavnik_model->dohvatiIdUcenika(); 
+;
 							$data["skole"] = $this->Nastavnik_model->listaSkola();
 							$data["uneto"] = $this->Nastavnik_model->unosIzostanka();
 
