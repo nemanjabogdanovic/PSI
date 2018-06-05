@@ -108,3 +108,7 @@
 <?php if($this->session->flashdata('koordinator_uspesno_izmenjen')): ?>
 	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('koordinator_uspesno_izmenjen').'</p>'; ?>
 <?php endif; ?>
+
+<?php if($this->session->flashdata('poruka_poslata')): ?>
+	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('poruka_poslata').'</p>'; ?>
+<?php endif; ?>

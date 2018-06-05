@@ -47,4 +47,22 @@
 			$this->load->view('ucenik/ocene', $data);
 			$this->load->view('templates/footer');
 		}
+		//kontakt
+		public function kontakt(){
+			$data['title'] = 'Kontaktiraj nastavnika';
+			$data['predmeti'] = $this->Ucenik_model->getPredmete($this->Ucenik_model->getSkolaId($this->session->userdata('user_id')));
+			
+			$this->form_validation->set_rules('naslov', 'Naslov', 'required');
+			$this->form_validation->set_rules('text', 'Tekst', 'required');
+			
+			if($this->form_validation->run() === FALSE){
+				$this->load->view('templates/header');
+				$this->load->view('ucenik/kontakt', $data);
+				$this->load->view('templates/footer');
+			}
+			else{
+				$this->session->set_flashdata('poruka_poslata', 'Uspešno poslata poruka!');
+				redirect('ucenik/kontakt');
+			}
+		}
 	}
