@@ -65,4 +65,89 @@
 				redirect('ucenik/kontakt');
 			}
 		}
+		
+		public function raspored(){
+			$this->load->helper('form');
+			$this->load->library('table');
+			
+			$raspored = $this->Ucenik_model->dohvati_raspored();
+			$data['odeljenje'] = $this->Ucenik_model->dohvati_oznaku_odeljenja($raspored[1]->odeljenjeId);
+			$data['ponedeljak'] = array(
+				1 => '',
+				2 => '',
+				3 => '',
+				4 => '',
+				5 => '',
+				6 => '',
+				7 => '',
+				8 => '',
+				9 => '',
+				10 => '',
+				11 => ''
+			);
+			$data['utorak'] = array(
+				1 => '',
+				2 => '',
+				3 => '',
+				4 => '',
+				5 => '',
+				6 => '',
+				7 => '',
+				8 => '',
+				9 => '',
+				10 => '',
+				11 => ''
+			);
+			$data['sreda'] = array(
+				1 => '',
+				2 => '',
+				3 => '',
+				4 => '',
+				5 => '',
+				6 => '',
+				7 => '',
+				8 => '',
+				9 => '',
+				10 => '',
+				11 => ''
+			);
+			$data['cetvrtak'] = array(
+				1 => '',
+				2 => '',
+				3 => '',
+				4 => '',
+				5 => '',
+				6 => '',
+				7 => '',
+				8 => '',
+				9 => '',
+				10 => '',
+				11 => ''
+			);
+			$data['petak'] = array(
+				1 => '',
+				2 => '',
+				3 => '',
+				4 => '',
+				5 => '',
+				6 => '',
+				7 => '',
+				8 => '',
+				9 => '',
+				10 => '',
+				11 => ''
+			);
+			foreach($raspored as $ras){
+				if($ras->dan == 'ponedeljak') $data['ponedeljak'][$ras->brojCasa] = 'Cas: ' . $this->Ucenik_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet;
+				if($ras->dan == 'utorak') $data['utorak'][$ras->brojCasa] = 'Cas: ' . $this->Ucenik_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet;
+				if($ras->dan == 'sreda') $data['sreda'][$ras->brojCasa] = 'Cas: ' . $this->Ucenik_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet;
+				if($ras->dan == 'cetvrtak') $data['cetvrtak'][$ras->brojCasa] = 'Cas: ' . $this->Ucenik_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet;
+				if($ras->dan == 'petak') $data['petak'][$ras->brojCasa] = 'Cas: ' . $this->Ucenik_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet;
+				
+			}
+						
+			$this->load->view('templates/header');
+			$this->load->view('ucenik/raspored', $data);
+			$this->load->view('templates/footer');
+		}
 	}

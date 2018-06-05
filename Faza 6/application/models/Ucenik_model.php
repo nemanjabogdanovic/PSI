@@ -38,4 +38,32 @@
 			$result = $this->db->get('predmet');
 			return $result;
 		}
+		
+		public function dohvati_raspored(){
+		$user_id = $this->session->userdata('user_id');
+		$this->db->where('id',$user_id);
+		$query = $this->db->get('ucenik');
+		$ucenik = $query->row();
+		$this->db->where('odeljenjeId', $ucenik->odeljenjeId);
+		$query = $this->db->get('raspored');
+		$result = $query->result();
+		return $result;
+	}
+	
+	public function dohvati_ime_predmeta($predmetId){
+		$this->db->where('id', $predmetId);
+		$query = $this->db->get('predmet');
+		$predmet = $query->row();
+		$result = $predmet->ime;
+		return $result;
+		
+	}
+	
+	public function dohvati_oznaku_odeljenja($odeljenjeId){
+		$this->db->where('id', $odeljenjeId);
+		$query = $this->db->get('odeljenje');
+		$odeljenje = $query->row();
+		$result = $odeljenje->oznaka;
+		return $result;
+	}
 	}
