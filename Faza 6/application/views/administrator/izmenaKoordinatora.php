@@ -17,7 +17,6 @@
 	<div class="tm-right-inner-container">		
 		<h1><?php echo $title; ?></h1>
 		<br><br>
-		<?php echo form_open('administrator/noviKoordinator'); ?>
 		<div class="row">
 				<div class="form-group">
 					<label>Ime</label>
@@ -38,7 +37,6 @@
 				
 				<button type="submit" class="btn btn-primary btn-block">Unesi</button>
 		</div>
-	<?php echo form_close(); ?>
 	</div>	
 </div>
 <?php echo form_close(); ?>

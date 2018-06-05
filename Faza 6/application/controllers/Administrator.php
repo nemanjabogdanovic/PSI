@@ -107,6 +107,7 @@
 			$data['koordinatori'] = $this->Administrator_model->getKoordinatorIds();
 			$data['skole'] = $this->Administrator_model->getSkole();
 			$data['users'] = $this->Administrator_model->getUsers();
+			global $koordinator_id;
 			
 			$this->form_validation->set_rules('koord_lista', 'Koord_lista', 'required');
 			
@@ -116,7 +117,8 @@
 				$this->load->view('templates/footer');
 			}
 			else{
-				$this->izmenaKoordinatora($this->input->post('koord_lista'));
+				$koordinator_id = $this->input->post('koord_lista');
+				$this->izmenaKoordinatora();
 			}
 			
 		}
@@ -148,21 +150,20 @@
 			}
 		}
 		//izmena Koordinatora
-		public function izmenaKoordinatora($koordinator = null){
+		public function izmenaKoordinatora(){
 			$data['title'] = 'Izmena koordinatora';
-			if($koordinator !== null){
-				$data['koordinator'] = $this->Administrator_model->getKoordinatoraPrekoId($koordinator);
-			}
+			global $koordinator_id;
+			$data['koordinator'] = $this->Administrator_model->getKoordinatoraPrekoId($koordinator_id);
+			
 			$this->form_validation->set_rules('name', 'Ime', 'required');
 			$this->form_validation->set_rules('surname', 'Prezime', 'required');
-			$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
-			$this->form_validation->set_rules('username', 'KorisnickoIme', 'required|callback_check_username_exists');
+			$this->form_validation->set_rules('email', 'Email', 'required');
+			$this->form_validation->set_rules('username', 'KorisnickoIme', 'required');
 			
 			if($this->form_validation->run() === FALSE){
 				$this->load->view('templates/header');
 				$this->load->view('administrator/izmenaKoordinatora', $data);
 				$this->load->view('templates/footer');
-				
 			}
 			else{
 				$this->Administrator_model->updateKoordinatora();

@@ -135,20 +135,22 @@
 		public function getKoordinatoraPrekoId($id){
 			$this->db->where('id', $id);
 			$query = $this->db->get('users');
-			$result = array (
-				'name' => $query->row(0)->name,
-				'surname' => $query->row(0)->surname,
-				'email' => $query->row(0)->email,
-				'username' => $query->row(0)->username
-			);
-			
-			$data = array(
-				'id' => $id
-			);
-			
-			$this->db->empty_table('help');
-			$this->db->insert('help', $data);
-			
-			return $result;
+			if($query->num_rows() == 1){
+				$result = array (
+					'name' => $query->row(0)->name,
+					'surname' => $query->row(0)->surname,
+					'email' => $query->row(0)->email,
+					'username' => $query->row(0)->username
+				);
+				
+				$data = array(
+					'id' => $id
+				);
+				
+				$this->db->empty_table('help');
+				$this->db->insert('help', $data);
+				
+				return $result;
+			}
 		}
 	}
