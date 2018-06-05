@@ -6,18 +6,28 @@
 	class Administrator extends CI_Controller{
 		//pocetna strana
 		public function index(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'administrator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Početna - Vesti';
-			
 			$data['vesti'] = $this->Administrator_model->getVesti();
-			
+
 			$this->load->view('templates/header');
 			$this->load->view('administrator/index', $data);
 			$this->load->view('templates/footer');
 		}
 		//dodaj novu vest
 		public function novaVest(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'administrator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Nova Vest';
-			
 			
 			$this->form_validation->set_rules('naslov', 'Naslov', 'required');
 			$this->form_validation->set_rules('text', 'Tekst', 'required');
@@ -37,12 +47,24 @@
 		}
 		//izbrisi sve vesti napravljene od strane administratora
 		public function izbrisiVesti(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'administrator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$this->Administrator_model->deleteVesti();
 			$this->session->set_flashdata('vesti_izbrisane', 'Uspešno izbrisane vesti od: '.ucfirst($this->session->userdata('user_level')));
 			redirect('administrator');
 		}
 		//pregled skoli
 		public function skole(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'administrator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Škole';
 			$data['skole'] = $this->Administrator_model->getSkole();
 			
@@ -60,6 +82,12 @@
 		}
 		//unos nove skole
 		public function unosSkole(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'administrator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Unos nove škole';
 			
 			$this->form_validation->set_rules('ime', 'Ime', 'required');
@@ -81,6 +109,12 @@
 		}
 		//izmena skole
 		public function izmenaSkole($skola = null){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'administrator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Izmena škole';
 			if($skola !== null){
 				$data['skola'] = $this->Administrator_model->getSkolaPrekoId($skola);
@@ -103,6 +137,12 @@
 		}
 		//uredjivanje naloga
 		public function uredjivanje(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'administrator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Uređivanje naloga';
 			$data['koordinatori'] = $this->Administrator_model->getKoordinatorIds();
 			$data['skole'] = $this->Administrator_model->getSkole();
@@ -124,6 +164,12 @@
 		}
 		//dodavanje novog koordinatora
 		public function noviKoordinator(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'administrator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Dodaj novog koordinatora';
 			
 			$this->form_validation->set_rules('name', 'Ime', 'required');
@@ -151,6 +197,12 @@
 		}
 		//izmena Koordinatora
 		public function izmenaKoordinatora(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'administrator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Izmena koordinatora';
 			global $koordinator_id;
 			$data['koordinator'] = $this->Administrator_model->getKoordinatoraPrekoId($koordinator_id);

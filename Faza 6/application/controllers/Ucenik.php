@@ -6,6 +6,12 @@
 	class Ucenik extends CI_Controller{
 		//pocetna strana
 		public function index(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Početna - Vesti';
 			$data['vesti'] = $this->Ucenik_model->getVestiAdmin();
 			$data['vestiSkola'] = $this->Ucenik_model->getVesti($this->Ucenik_model->getSkolaId($this->session->userdata('user_id')));
@@ -17,6 +23,12 @@
 		}
 		//ocene
 		public function ocene(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Ocene';
 			$ocene = $this->Ucenik_model->getOcene($this->session->userdata('user_id'));
 			$num_of_ocena = $ocene->num_rows();
@@ -49,6 +61,12 @@
 		}
 		//kontakt
 		public function kontakt(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Kontaktiraj nastavnika';
 			$data['predmeti'] = $this->Ucenik_model->getPredmete($this->Ucenik_model->getSkolaId($this->session->userdata('user_id')));
 			
@@ -67,6 +85,12 @@
 		}
 		
 		public function raspored(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$this->load->helper('form');
 			$this->load->library('table');
 			

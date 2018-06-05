@@ -40,7 +40,6 @@
 						<li><a href="<?php echo base_url(); ?>users/login">Login</a></li>
 					<?php endif; ?>
 						
-					<li><a href="<?php echo base_url(); ?>users/register">Registracija_temp</a></li>
 					
 					<?php if($this->session->userdata('logged_in')) : ?>
 						<li><a href="<?php echo base_url(); ?>users/reset">Promena lozinke</a></li>

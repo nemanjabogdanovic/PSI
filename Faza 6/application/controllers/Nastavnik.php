@@ -12,6 +12,12 @@
 
 		//pocetna strana
 		public function index(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Početna - Vesti';
 			$data['vesti'] = $this->Nastavnik_model->getVestiAdmin();
 			$data['vestiSkola'] = $this->Nastavnik_model->getVesti($this->Nastavnik_model->getSkolaId($this->session->userdata('user_id')));
@@ -22,24 +28,13 @@
 			$this->load->view('templates/footer');
 		}
 
-		public function view($page = 'home'){
-			if(!file_exists(APPPATH.'views/nastavnik/'.$page.'.php')){
-				show_404();
-			}
-
-			if(!$this->session->userdata('user_level') === 'nastavnik'){
-				redirect('users/login');
-			}
-
-			$data['title'] = ucfirst($page);
-
-			$this->load->view('templates/header');
-			$this->load->view('nastavnik/'.$page, $data);
-			$this->load->view('templates/footer');
-
-		}
-
 		public function ucenici() {
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data["fetch_data"] = $this->Nastavnik_model->dohvati();
 			$data["odeljenja"] = $this->Nastavnik_model->listaOdeljenja();
 			$data["skole"] = $this->Nastavnik_model->listaSkola();
@@ -49,6 +44,12 @@
 		}
 
 		public function kalendar() {
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 
 			$this->load->helper('form');
 			$this->load->library('table');
@@ -135,6 +136,12 @@
 
 
 		public function izostanci() {
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 				$data["odeljenja"] = $this->Nastavnik_model->listaOdeljenja();
 				$data["fetch_data"] = $this->Nastavnik_model->dohvatiOdeljenje();
 ;

@@ -9,6 +9,12 @@
 		
 
 		public function predmeti() {
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$this->load->model('Koordinator_model');
 			
 			$data["fetch_data"] = $this->Koordinator_model->listOfStudents();
@@ -28,6 +34,12 @@
 		
 		//pocetna strana
 		public function index(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Početna - Vesti';
 			$data['vesti'] = $this->Koordinator_model->getVestiAdmin();
 			$data['vestiSkola'] = $this->Koordinator_model->getVesti($this->Koordinator_model->getSkolaId($this->session->userdata('user_id')));
@@ -43,6 +55,12 @@
 		
 		//dodaj novu vest
 		public function novaVest(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Nova Vest';
 			
 			
@@ -64,6 +82,12 @@
 		}
 		//izbrisi sve vesti napravljene od strane koordinatora
 		public function izbrisiVesti(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$this->Koordinator_model->deleteVesti($this->Koordinator_model->getSkolaId($this->session->userdata('user_id')));
 			$this->session->set_flashdata('vesti_izbrisane', 'Uspešno izbrisane vesti od: '.ucfirst($this->session->userdata('user_level')));
 			redirect('koordinator');
@@ -72,6 +96,12 @@
 		
 		
 		public function raspored(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			
 			$data['title'] = 'Raspored';
 			
@@ -91,6 +121,12 @@
 		}
 		
 		public function prikazRasporeda(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Prikaz rasporeda';
 			
 			$this->load->model('Koordinator_model');
@@ -117,6 +153,12 @@
 		}
 		
 		public function prikazRasporedaO(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Prikaz rasporeda';
 			
 			$this->load->model('Koordinator_model');
@@ -213,6 +255,12 @@
 		
 		//uredjivanje naloga
 		public function uredjivanje(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Uređivanje naloga';
 			$this->load->model('Koordinator_model');
 			$data['nastavnici'] = $this->Koordinator_model->getNastavnikIds();
@@ -233,6 +281,12 @@
 
 		//dodavanje novog nastavnika
 		public function noviNalog(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			
 			$data['title'] = 'Novi nastavnik';
 			$this->load->model('Koordinator_model');
@@ -262,6 +316,12 @@
 		
 		//Izmena nastavnika
 		public function izmenaNaloga(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			
 			$data['title'] = 'Izmena naloga nastavnika';
 			$this->load->model('Koordinator_model');
@@ -291,6 +351,12 @@
 		}
 		//Izmena nastavnika
 		public function izmenaNalogaU(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			
 			$data['title'] = 'Izmena naloga ucenika ';
 			$this->load->model('Koordinator_model');
@@ -321,6 +387,12 @@
 		
 		//dodavanje novog nastavnika
 		public function noviNalogU(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			
 			$data['title'] = 'Novi ucenik';
 			$this->load->model('Koordinator_model');
@@ -354,6 +426,12 @@
 		
 		
 		public function brisanjeCasova(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$this->load->model('Koordinator_model');
 			$data['title'] = 'Brisanje Casova';
 			
@@ -386,6 +464,12 @@
 		
 		
 		public function unosPredmeta(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$this->load->model('Koordinator_model');
 			
 			$data['title'] = 'Unos predmeta';
@@ -412,6 +496,12 @@
 		}
 	
 		public function unosCasova() {			
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$data['title'] = 'Unos Casova';			
 			$this->load->model('Koordinator_model');
 			
@@ -440,6 +530,12 @@
 		}
 		
 		public function izmenaPredmeta(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$this->load->model('Koordinator_model');
 			$data['title'] = 'Izmena predmeta';
 			$this->form_validation->set_rules('ime', 'Ime predmeta', 'required');
@@ -466,6 +562,12 @@
 		}
 		
 		public function view($page = 'home'){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			if(!file_exists(APPPATH.'views/koordinator/'.$page.'.php')){
 				show_404();
 			}
@@ -504,6 +606,12 @@
 		
 		//brisanje predmeta
 		public function brisanjePredmeta(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$this->load->model('Koordinator_model');
 			$data['title'] = 'Brisanje predmeta';		
 			
@@ -524,6 +632,12 @@
 		}		
 		
 		public function brisanjeNaloga(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$this->load->model('Koordinator_model');			
 			$data['title'] = 'Brisanje Naloga';		
 						
@@ -543,6 +657,12 @@
 		}
 			
 		public function brisanjeNalogaU(){
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'koordinator'){
+				redirect($this->session->userdata['user_level']);
+			}
 			$this->load->model('Koordinator_model');			
 			$data['title'] = 'Brisanje Naloga učenika';		
 						

@@ -1,33 +1,8 @@
 <!--
 	autor: Nemanja Bogdanovic, 2012/0533
-	@version: 1.0
 -->
 <?php 
 	class Users extends CI_Controller{
-		//registracija korisnika
-		public function register(){
-			$data['title'] = 'Registracija';
-			
-			$this->form_validation->set_rules('name', 'Ime', 'required');
-			$this->form_validation->set_rules('surname', 'Prezime', 'required');
-			$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
-			$this->form_validation->set_rules('username', 'KorisnickoIme', 'required|callback_check_username_exists');
-			$this->form_validation->set_rules('password', 'Lozinka', 'required');
-			
-			if($this->form_validation->run() === FALSE){
-				$this->load->view('templates/header');
-				$this->load->view('users/register', $data);
-				$this->load->view('templates/footer');
-			}
-			else{
-				$enc_password = md5($this->input->post('password'));
-				$this->user_model->register($enc_password);
-				
-				$this->session->set_flashdata('user_registered', 'Uspešno unet nalog');
-				
-				redirect('users/login');
-			}
-		}
 		//logovanje korisnika
 		public function login(){
 			$data['title'] = 'Login';
