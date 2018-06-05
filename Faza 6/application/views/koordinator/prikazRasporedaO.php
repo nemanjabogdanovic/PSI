@@ -32,6 +32,7 @@
 					}
 					echo "</select>";
 					?>
+			<button type="submit" class="btn btn-primary">Izmeni</button> 
 			</div>
 		
 
@@ -40,7 +41,7 @@
 
 		
 	
-		<button type="submit" class="btn btn-primary btn-block">Izmeni</button> 
+		
 			
 	</div>	
 

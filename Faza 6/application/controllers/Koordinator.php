@@ -373,8 +373,8 @@
 				$cas = $this->input->post('cas');
 	//			$skolaid = $this->input->post('skolaid');
 				if($this->Koordinator_model->brisanjeCasova($odeljenje,$dan,$cas)){
-						//flash Uspešno izmenjen predmet
-					redirect('koordinator/index');
+					$this->session->set_flashdata('izmenjen_predmet', 'Uspešno obrisan čas');
+					redirect('koordinator/predmeti');
 				}
 				else{
 					
@@ -406,9 +406,8 @@
 			else{
 				
 				$this->Koordinator_model->unosPredmeta();
-				
-				//flash Uspešno unet predmet
-				redirect('koordinator/index');
+				$this->session->set_flashdata('unet_predmet', 'Uspešno unet predmet');
+				redirect('koordinator/predmet');
 			}
 		}
 	
@@ -434,9 +433,8 @@
 				
 				
 				$this->Koordinator_model->unosCasova();
-					//flash Uspešno unet cas
-				
-				redirect('koordinator/index');
+				$this->session->set_flashdata('unet_cas', 'Uspešno unet čas');
+				redirect('koordinator/raspored');
 			}
 			
 		}
@@ -461,7 +459,7 @@
 				$predmet = $this->input->post('predmet');
 			
 				$this->Koordinator_model->izmenaPredmeta($predmet);
-				//flash Uspešno izmenjen predmet		
+				$this->session->set_flashdata('izmenjen_predmet', 'Uspešno izmenjen predmet');
 				redirect('koordinator/index');
 			
 			}	
@@ -520,8 +518,8 @@
 			$skolaid = $this->input->post('skolaid');
 
 			if($this->Koordinator_model->brisanjePredmeta($ime,$skolaid)){		
-						//flash Uspešno izbrisan predmet
-				redirect('koordinator/index');
+				$this->session->set_flashdata('izbrisan_predmet', 'Uspešno izbrisan predmet');
+				redirect('koordinator/predmeti');
 			}
 		}		
 		
@@ -539,8 +537,8 @@
 			$nastavnik = $this->input->post('nastavnik');
 		//	die($nastavnik);
 			if($this->Koordinator_model->brisanjeNaloga($nastavnik)){
-				//flash Uspešno izbrisan nalog nastavnika
-				redirect('koordinator/index');
+				$this->session->set_flashdata('izbrisan_nastavnik', 'Uspešno izbrisan nalog nastavnika!');
+				redirect('koordinator/uredjivanje');
 			}
 		}
 			
@@ -558,15 +556,8 @@
 			$ucenik = $this->input->post('ucenik');
 		//	die($nastavnik);
 			if($this->Koordinator_model->brisanjeNalogaU($ucenik)){
-				//flash Uspešno izbrisan nalog ucenika
-				redirect('koordinator/index');
+				$this->session->set_flashdata('izbrisan_ucenik', 'Uspešno izbrisan nalog učenika!');
+				redirect('koordinator/uredjivanje');
 			}
-					
-			
-				
-
-				
-				
-
 		}		
 	}

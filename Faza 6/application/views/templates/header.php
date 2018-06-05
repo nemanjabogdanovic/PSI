@@ -112,3 +112,23 @@
 <?php if($this->session->flashdata('poruka_poslata')): ?>
 	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('poruka_poslata').'</p>'; ?>
 <?php endif; ?>
+
+<?php if($this->session->flashdata('izmenjen_predmet')): ?>
+	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('izmenjen_predmet').'</p>'; ?>
+<?php endif; ?>
+
+<?php if($this->session->flashdata('unet_cas')): ?>
+	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('unet_cas').'</p>'; ?>
+<?php endif; ?>
+
+<?php if($this->session->flashdata('izbrisan_predmet')): ?>
+	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('izbrisan_predmet').'</p>'; ?>
+<?php endif; ?>
+
+<?php if($this->session->flashdata('izbrisan_nastavnik')): ?>
+	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('izbrisan_nastavnik').'</p>'; ?>
+<?php endif; ?>
+
+<?php if($this->session->flashdata('izbrisan_ucenik')): ?>
+	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('izbrisan_ucenik').'</p>'; ?>
+<?php endif; ?>

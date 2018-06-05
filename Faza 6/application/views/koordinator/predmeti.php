@@ -79,18 +79,17 @@
   </table>
   
 
+			<form action="<?php echo base_url(); ?>koordinator/unosPredmeta">
+				<button type="submit" class="btn btn-primary" />Unesi Predmet</button>
+			</form>
 			
-			
-			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/unosPredmeta">Unesi Predmet</a></button>
-			
-			
-			
-			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/brisanjePredmeta">Izbriši Predmet</a></button>
-			
+			<form action="<?php echo base_url(); ?>koordinator/brisanjePredmeta">
+				<button type="submit" class="btn btn-primary" />Izbriši Predmet</button>
+			</form>
 
-			
-			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/izmenaPredmeta">Izmeni Predmet</a></button>
-		
+			<form action="<?php echo base_url(); ?>koordinator/izmenaPredmeta">
+				<button type="submit" class="btn btn-primary" />Izmeni Predmet</button>
+			</form>
 			
 		</div>
 		

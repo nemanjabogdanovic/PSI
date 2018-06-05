@@ -19,14 +19,14 @@
 			<h1> Rad sa rasporedima</h1>
 
 			
-			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/prikazRasporedaO">Raspored</a></button>
-
+			<button type="submit" class="btn btn-primary"><a style="color: #FFFFFF;" href="<?php echo base_url(); ?>koordinator/prikazRasporedaO">Raspored</a></button>
+			<br><br>
 	
-			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/unosCasova">Unesi čas</a></button>
-
-			<button type="submit"><a href="<?php echo base_url(); ?>koordinator/brisanjeCasova">Brisanje časova</a></button>
+			<button type="submit" class="btn btn-primary"><a style="color: #FFFFFF;" href="<?php echo base_url(); ?>koordinator/unosCasova">Unesi čas</a></button>
+<br><br>
+			<button type="submit" class="btn btn-primary"><a style="color: #FFFFFF;" href="<?php echo base_url(); ?>koordinator/brisanjeCasova">Brisanje časova</a></button>
 			
-		
+		<br><br>
 			
 			
 			
