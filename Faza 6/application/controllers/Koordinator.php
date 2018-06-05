@@ -121,28 +121,92 @@
 			
 			$this->load->model('Koordinator_model');
 			
-			$data['odeljenja'] = $this->Koordinator_model->getOdeljenja();
-
-
-	//		$data["fetch_data_o"] = $this->Koordinator_model->getOdeljenje();
+			$this->load->helper('form');
+			$this->load->library('table');
 			
-	//		$data['rasporedi'] = $this->Koordinator_model->getRasporede();
+			$data['odeljenja'] = $this->Koordinator_model->getOdeljenja();
 		
 			$odeljenje = $this->input->post('odeljenje');
 			
-			if($this->form_validation->run() === FALSE){
-				$this->load->view('templates/header');
-				$this->load->view('koordinator/prikazRasporedaO', $data);
-				$this->load->view('templates/footer');
-			}
-			else{
+			$raspored = $this->Koordinator_model->dohvati_raspored($odeljenje);
+			$data['odeljenje'] = $this->Koordinator_model->dohvati_oznaku_odeljenja($odeljenje);
+			$data['ponedeljak'] = array(
+				1 => '',
+				2 => '',
+				3 => '',
+				4 => '',
+				5 => '',
+				6 => '',
+				7 => '',
+				8 => '',
+				9 => '',
+				10 => '',
+				11 => ''
+			);
+			$data['utorak'] = array(
+				1 => '',
+				2 => '',
+				3 => '',
+				4 => '',
+				5 => '',
+				6 => '',
+				7 => '',
+				8 => '',
+				9 => '',
+				10 => '',
+				11 => ''
+			);
+			$data['sreda'] = array(
+				1 => '',
+				2 => '',
+				3 => '',
+				4 => '',
+				5 => '',
+				6 => '',
+				7 => '',
+				8 => '',
+				9 => '',
+				10 => '',
+				11 => ''
+			);
+			$data['cetvrtak'] = array(
+				1 => '',
+				2 => '',
+				3 => '',
+				4 => '',
+				5 => '',
+				6 => '',
+				7 => '',
+				8 => '',
+				9 => '',
+				10 => '',
+				11 => ''
+			);
+			$data['petak'] = array(
+				1 => '',
+				2 => '',
+				3 => '',
+				4 => '',
+				5 => '',
+				6 => '',
+				7 => '',
+				8 => '',
+				9 => '',
+				10 => '',
+				11 => ''
+			);
+			foreach($raspored as $ras){
+				if($ras->dan == 'ponedeljak') $data['ponedeljak'][$ras->brojCasa] = 'Cas: ' . $this->Koordinator_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet;
+				if($ras->dan == 'utorak') $data['utorak'][$ras->brojCasa] = 'Cas: ' . $this->Koordinator_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet;
+				if($ras->dan == 'sreda') $data['sreda'][$ras->brojCasa] = 'Cas: ' . $this->Koordinator_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet;
+				if($ras->dan == 'cetvrtak') $data['cetvrtak'][$ras->brojCasa] = 'Cas: ' . $this->Koordinator_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet;
+				if($ras->dan == 'petak') $data['petak'][$ras->brojCasa] = 'Cas: ' . $this->Koordinator_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet;
 				
 				
-				$this->Koordinator_model->raspored();
-				
-				
-				redirect('koordinator/index');
-			}
+			}		
+			$this->load->view('templates/header');
+			$this->load->view('koordinator/prikazRasporedaO', $data);
+			$this->load->view('templates/footer');
 		}
 		
 

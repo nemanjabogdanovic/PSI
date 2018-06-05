@@ -336,5 +336,30 @@
 			$result = $this->db->get('koordinator');
 			return $result->row(0)->skolaId;
 		}
+		
+		public function dohvati_raspored($odeljenje){
+			$this->db->where('odeljenjeId', $odeljenje);
+			$query = $this->db->get('raspored');
+			$result = $query->result();
+			return $result;
+		}
+	
+		public function dohvati_ime_predmeta($predmetId){
+			$this->db->where('id', $predmetId);
+			$query = $this->db->get('predmet');
+			$predmet = $query->row();
+			$result = $predmet->ime;
+			return $result;
+		}
+	
+		public function dohvati_oznaku_odeljenja($odeljenjeId){
+			if ($odeljenjeId != null){
+				$this->db->where('id', $odeljenjeId);
+				$query = $this->db->get('odeljenje');
+				$odeljenje = $query->row();
+				$result = $odeljenje->oznaka;
+				return $result;
+			}
+		}
 
 	}
