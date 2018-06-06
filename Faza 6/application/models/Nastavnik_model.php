@@ -275,6 +275,50 @@ $query = $this->db->query("SELECT users.id,users.name,users.surname,users.userna
 		return $query->row();
 	}
 
+	public function getPredmete(){
+		$query = $this->db->get('predmet');
+		return $query;
+	}
+	public function getOcene($predmet,$ucenik){
+		
+		//		$predmet = $this->input->post('ime');
+		//		$ucenik = $this->input->post('iz');
 
+
+		$this->db->where('predmetId', $predmet);	
+		$this->db->where('ucenikId', $ucenik);	
+		$query = $this->db->get('ocena');
+		return $query;
+	}	
+	
+	
+	
+	public function unosOcene(){
+		$data = array(
+			'predmetId' => $this->input->post('ime'),
+			'ucenikId' => $this->input->post('iz'),
+			'ocena' => $this->input->post('ocena')
+			
+			
+		);
+		
+		return $this->db->insert('ocena', $data);
+	}	
+	
+	
+	public function brisanje($ocena){
+				
+		
+				$this->db->where('id', $ocena);	
+				$this->db->delete('ocena');
+	}
+
+		public function dohvatiIdUcenika() {
+
+			$query = $this->db->query("SELECT users.name, users.surname, users.id FROM users, ucenik WHERE users.id = ucenik.id");
+			return $query;
+
+
+		}
 
 }

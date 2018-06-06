@@ -3,7 +3,7 @@
 	@version: 1.0
 -->
 
-<?php echo form_open('nastavnik/ocene'); ?>
+<?php echo form_open('nastavnik/brisanje'); ?>
 
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
 	<div class="tm-left-inner-container">
@@ -29,8 +29,11 @@
 
 <div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">
 	<div class="tm-right-inner-container">
+												
+											
+										
 				<div style="width: 850px; overflow: hidden;">
-						<h1 class="css-header">Ocene</h1>
+						<h1 class="css-header">Brisanje ocene</h1>
 
 							<div style="width: 850px; float: left;">
 
@@ -64,8 +67,7 @@
 									}
 									?>
 								</select>
-								<br>
-								<br>
+								
 							<strong style = "font-style:oblique; font-size:18px;"> Izaberite Predmet: </strong>	
 							<br>
 							<br>
@@ -106,7 +108,7 @@
 											<tr style = "border: 2px solid black;background-color:#337ab7;">
 												 <td style = "border: 1px solid black; " > <strong> Ime</strong> </td>
 												 <td style = "border: 1px solid black; "><strong> Prezime</strong> </td>
-												<td style = "border: 1px solid black; "><strong> Ocene</strong> </td>
+
 										 <tr>
 
 											<?php
@@ -116,7 +118,6 @@
 
 
 														<td style = "background-color:#lightblue; border:1px solid black;"> <?php echo $row->name; ?> </td>
-														<td style = "background-color:#lightblue; border:1px solid black;"> <?php echo $row->surname; ?> </td>
 														<td style = "background-color:#lightblue; border:1px solid black;"> <?php echo $row->surname; ?> </td>
 
 													</tr>
@@ -136,11 +137,10 @@
 											}
 											?>
 										</table>
-
-										<div style = "border: 1px solid black; width:850px; padding: 15px; background-color:#88b5dd;">
+							<div style = "border: 1px solid black; width:850px; padding: 15px; background-color:#88b5dd;">
 					
 											<label>Učenik:</label>
-											<form name = "search_form" method= "POST" action = "ocene">
+											<br>
 												<select name = 'iz' style = "width: 350px">
 												<option value="" disabled selected> Izaberite učenika </option>
 											<?php
@@ -176,23 +176,18 @@
 												}
 												echo "</select>";
 												?>
-										</div>
+										</div>	
 										
-										<div class="form-group">
-											<label>Ocena:</label>
-											<input type="number" name="ocena" min="1" max="5">
-										</div>
-										
-										
-										<br>
-										<br>
-									<button type="submit" class="btn btn-primary btn-block">Unesi</button>
-												<button type="submit"><a href="<?php echo base_url(); ?>nastavnik/brisanjeOcene">Brisanje ocena</a></button>
 
-									</form>
+										
+										<br>
+										<br>
+									<button type="submit" class="btn btn-primary btn-block">Izaberi</button>
+									
 								</div>
+
+										
 								<br>
-																				
 
 
 
