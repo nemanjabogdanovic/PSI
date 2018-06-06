@@ -15,7 +15,7 @@
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
 			}
-			else if($this->session->userdata['user_level'] != 'koordinator'){
+			else if($this->session->userdata['user_level'] != 'nastavnik'){
 				redirect($this->session->userdata['user_level']);
 			}
 			$data['title'] = 'Početna - Vesti';
@@ -32,7 +32,7 @@
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
 			}
-			else if($this->session->userdata['user_level'] != 'koordinator'){
+			else if($this->session->userdata['user_level'] != 'nastavnik'){
 				redirect($this->session->userdata['user_level']);
 			}
 			$data["fetch_data"] = $this->Nastavnik_model->dohvati();
@@ -47,7 +47,7 @@
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
 			}
-			else if($this->session->userdata['user_level'] != 'koordinator'){
+			else if($this->session->userdata['user_level'] != 'nastavnik'){
 				redirect($this->session->userdata['user_level']);
 			}
 
@@ -139,7 +139,7 @@
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
 			}
-			else if($this->session->userdata['user_level'] != 'koordinator'){
+			else if($this->session->userdata['user_level'] != 'nastavnik'){
 				redirect($this->session->userdata['user_level']);
 			}
 				$data["odeljenja"] = $this->Nastavnik_model->listaOdeljenja();
@@ -152,5 +152,19 @@
 				$this->load->view('templates/header');
   			$this->load->view('nastavnik/izostanci', $data);
   			$this->load->view('templates/footer');
+		}
+		
+		public function upis() {
+			if(session_status() == PHP_SESSION_NONE){
+				redirect('login');
+			}
+			else if($this->session->userdata['user_level'] != 'nastavnik'){
+				redirect($this->session->userdata['user_level']);
+			}
+			$data["predmeti"] = $this->Nastavnik_model->upisCasa();
+
+			$this->load->view('templates/header');
+			$this->load->view('nastavnik/upis', $data);
+			$this->load->view('templates/footer');
 		}
 	}

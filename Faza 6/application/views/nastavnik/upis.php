@@ -17,6 +17,60 @@
 <div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">
 	<div class="tm-right-inner-container">
 		<h1 class="css-header">Upis časa</h1>
-		<p>Nastavnik</p>
+
+
+			<div style="width: 850px; overflow: hidden;">
+
+
+ 			<form name = "search_form" method= "POST" action = "upis">
+
+				<label> Izaberite za koji predmet zelite da upisete cas: <font color = "red"> *** </font></label>
+				<br>
+				<select name = 'predmet'>
+
+						<option value="" disabled selected> Predmet </option>
+					<?php
+					if ($predmeti->num_rows() > 0)
+					{
+						foreach($predmeti->result() as $row)
+						{
+					?>
+										<option option value="<?php echo $row->id; ?>"  > <?php echo $row->ime; ?> </option>
+
+						<?php
+						}
+					}
+					else {
+						?>
+					 <option> Nema odeljenja </option>
+					<?php
+
+					}
+					?>
+				</select>
+
+				<br>
+				<br>
+				<label> Tema casa: </label>
+				<input type="text" class="form-control" name="temaCasa" placeholder="Unesite temu casa">
+				<br>
+				<label> Redni broj casa: </label>  <input type="text" class="form-control" name="redniBroj" placeholder = "Unesite redni broj casa">
+				<br>
+
+				<label> Komentari: </label>
+				<br>
+
+				<textarea rows="10" cols="115" name = "komentar">
+				</textarea>
+				<br>
+
+					<input type="submit" name = "upisiCas" value = "Upisi cas">
+			</form>
+				<p> <font color = "red"> *** obavezno  </font></p>
+		  </div>
+
+
+
+
 	</div>
 </div>

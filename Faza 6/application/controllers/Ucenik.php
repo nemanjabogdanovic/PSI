@@ -9,7 +9,7 @@
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
 			}
-			else if($this->session->userdata['user_level'] != 'koordinator'){
+			else if($this->session->userdata['user_level'] != 'ucenik'){
 				redirect($this->session->userdata['user_level']);
 			}
 			$data['title'] = 'Početna - Vesti';
@@ -26,7 +26,7 @@
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
 			}
-			else if($this->session->userdata['user_level'] != 'koordinator'){
+			else if($this->session->userdata['user_level'] != 'ucenik'){
 				redirect($this->session->userdata['user_level']);
 			}
 			$data['title'] = 'Ocene';
@@ -64,7 +64,7 @@
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
 			}
-			else if($this->session->userdata['user_level'] != 'koordinator'){
+			else if($this->session->userdata['user_level'] != 'ucenik'){
 				redirect($this->session->userdata['user_level']);
 			}
 			$data['title'] = 'Kontaktiraj nastavnika';
@@ -88,7 +88,7 @@
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
 			}
-			else if($this->session->userdata['user_level'] != 'koordinator'){
+			else if($this->session->userdata['user_level'] != 'ucenik'){
 				redirect($this->session->userdata['user_level']);
 			}
 			$this->load->helper('form');

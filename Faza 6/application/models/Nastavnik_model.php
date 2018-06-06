@@ -244,4 +244,31 @@ $query = $this->db->query("SELECT users.id,users.name,users.surname,users.userna
 		$result = $odeljenje->oznaka;
 		return $result;
 	}
+
+
+
+	public function upisCasa() {
+			$user_id = $this->session->userdata('user_id');
+      $query = $this->db->query("SELECT predmet.ime, predmet.id FROM predmet, nastavnik WHERE nastavnik. id = '{$user_id}' AND predmet.nastavnik = '{$user_id}' AND predmet.skolaId = nastavnik.skolaId ");
+			if(isset($_POST['upisiCas'])) {
+
+
+				$data = array(
+					'predmetId' => $_POST['predmet'],
+					'tema' => $_POST['temaCasa'],
+					'redniBroj' => $_POST['redniBroj'],
+					'komentari' => $_POST['komentar'],
+				 );
+
+       $query = $this->db->insert('cas', $data);
+			 $query = $this->db->query("SELECT predmet.ime, predmet.id FROM predmet, nastavnik WHERE nastavnik. id = '{$user_id}' AND predmet.nastavnik = '{$user_id}' AND predmet.skolaId = nastavnik.skolaId ");
+
+			}
+
+			return $query;
+
+	}
+
+
+
 }
