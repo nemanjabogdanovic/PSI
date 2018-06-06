@@ -171,6 +171,10 @@
 			$odeljenje = $this->input->post('odeljenje');
 			
 			$raspored = $this->Koordinator_model->dohvati_raspored($odeljenje);
+			$user_id = $this->session->userdata('user_id');
+			$koordinator = $this->Koordinator_model->dohvati_ime_i_prezime($user_id);
+			$data['ime'] = $koordinator->name;
+			$data['prezime'] = $koordinator->surname;
 			$data['odeljenje'] = $this->Koordinator_model->dohvati_oznaku_odeljenja($odeljenje);
 			$data['ponedeljak'] = array(
 				1 => '',

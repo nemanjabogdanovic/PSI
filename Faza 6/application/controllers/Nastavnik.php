@@ -55,6 +55,10 @@
 			$this->load->library('table');
 
 			$raspored = $this->Nastavnik_model->dohvati_raspored();
+			$user_id = $this->session->userdata('user_id');
+			$nastavnik = $this->Nastavnik_model->dohvati_ime_i_prezime($user_id);
+			$data['ime'] = $nastavnik->name;
+			$data['prezime'] = $nastavnik->surname;
 			$data['ponedeljak'] = array(
 				1 => '',
 				2 => '',

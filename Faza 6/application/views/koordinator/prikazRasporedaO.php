@@ -95,7 +95,7 @@ $table_property = array('table_open' => '<table cellpadding="10" cellspacing="10
 $this->table->set_template($table_property);
 
 // Create a row with colspan
-$row1_col1 = array('data' => $this->session->userdata('username'),  'colspan' => 6, 'class' => 'row1_col1');
+$row1_col1 = array('data' => $ime. ' '. $prezime,  'colspan' => 6, 'class' => 'row1_col1');
 $this->table->add_row($row1_col1);
 
 // Create a row with rowspan and colspan

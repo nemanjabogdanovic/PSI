@@ -95,6 +95,10 @@
 			$this->load->library('table');
 			
 			$raspored = $this->Ucenik_model->dohvati_raspored();
+			$user_id = $this->session->userdata('user_id');
+			$ucenik = $this->Ucenik_model->dohvati_ime_i_prezime($user_id);
+			$data['ime'] = $ucenik->name;
+			$data['prezime'] = $ucenik->surname;
 			$data['odeljenje'] = $this->Ucenik_model->dohvati_oznaku_odeljenja($raspored[1]->odeljenjeId);
 			$data['ponedeljak'] = array(
 				1 => '',

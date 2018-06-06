@@ -66,4 +66,10 @@
 		$result = $odeljenje->oznaka;
 		return $result;
 	}
+	
+	public function dohvati_ime_i_prezime($user_id){
+		$this->db->where('id',$user_id);
+		$query = $this->db->get('users');
+		return $query->row();
+	}
 	}
