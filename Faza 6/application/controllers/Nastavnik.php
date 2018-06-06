@@ -173,10 +173,14 @@
 		}
 		public function ocene() {
 				$data["odeljenja"] = $this->Nastavnik_model->listaOdeljenja();
-				$data['predmeti'] = $this->Nastavnik_model->getPredmete();
-				$data['predmetiSelect'] = $this->Nastavnik_model->getPredmete();
+				
+				$data['predmeti'] = $this->Nastavnik_model->getPredmete($this->session->userdata('user_id'));
+				$data['predmetiSelect'] = $this->Nastavnik_model->getPredmete($this->session->userdata('user_id'));
+				
+	//			$odeljenje = $this->input->post('iz');
+				
 				$data["fetch_data"] = $this->Nastavnik_model->dohvatiOdeljenje();
-				$data["ucenici"] = $this->Nastavnik_model->dohvatiIdUcenika(); 
+				$data["ucenici"] = $this->Nastavnik_model->dohvatiOdeljenje(); 
 				$data["skole"] = $this->Nastavnik_model->listaSkola();
 				
 				$this->form_validation->set_rules('ocena', 'Ocena', 'required');				
@@ -202,11 +206,11 @@
 		
 		public function brisanjeOcene() {
 				$data["odeljenja"] = $this->Nastavnik_model->listaOdeljenja();
-				$data['predmeti'] = $this->Nastavnik_model->getPredmete();
+				$data['predmeti'] = $this->Nastavnik_model->getPredmete($this->session->userdata('user_id'));
 				$data["fetch_data"] = $this->Nastavnik_model->dohvatiOdeljenje();
 				$data["ucenici"] = $this->Nastavnik_model->dohvatiIdUcenika(); 
 				$data["skole"] = $this->Nastavnik_model->listaSkola();
-				$data['predmetiSelect'] = $this->Nastavnik_model->getPredmete();
+				$data['predmetiSelect'] = $this->Nastavnik_model->getPredmete($this->session->userdata('user_id'));
 				
 
 				
@@ -266,5 +270,5 @@
 						
 				}
 		}	
-
+		
 	}

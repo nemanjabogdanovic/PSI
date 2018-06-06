@@ -67,7 +67,8 @@
 									}
 									?>
 								</select>
-								
+								<br>
+									<br>
 							<strong style = "font-style:oblique; font-size:18px;"> Izaberite Predmet: </strong>	
 							<br>
 							<br>

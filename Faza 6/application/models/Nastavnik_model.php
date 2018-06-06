@@ -275,10 +275,13 @@ $query = $this->db->query("SELECT users.id,users.name,users.surname,users.userna
 		return $query->row();
 	}
 
-	public function getPredmete(){
+	public function getPredmete($id){
+		
+		$this->db->where('nastavnik', $id);
 		$query = $this->db->get('predmet');
 		return $query;
 	}
+	
 	public function getOcene($predmet,$ucenik){
 		
 		//		$predmet = $this->input->post('ime');
@@ -320,5 +323,4 @@ $query = $this->db->query("SELECT users.id,users.name,users.surname,users.userna
 
 
 		}
-
 }
