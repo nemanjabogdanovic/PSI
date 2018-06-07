@@ -35,12 +35,8 @@
 							<div style="width: 850px; float: left;">
 
 								<form name = "search_form" method= "POST" action = "izostanci">
-									<strong style = "font-style:oblique; font-size:18px;"> Izaberite odeljenje: </strong>
+									<strong style = "font-style:oblique; font-size:17px;"> Izaberite odeljenje: <font color = "red"> * </font> </strong>
 									<br>
-
-
-									<br>
-
 								<br>
 
 								<select name = 'od'>
@@ -66,26 +62,35 @@
 								</select>
 								<br>
 								<br>
-							<strong style = "font-style:oblique; font-size:18px;"> Izaberite Predmet: </strong>	
+							<strong style = "font-style:oblique; font-size:17px;"> Izaberite predmet: <font color = "red"> * </font> </strong>
 							<br>
 							<br>
 									<div class="form-group">
-										
+
 											<?php
 											echo "<select name='predmet'>";
+											?>
+											<option value="" disabled selected> Predmet </option>
+											<?php
 											foreach($predmetiSelect->result() as $row) {
 											?>
-												echo "<option value="<?php echo $row->id; ?>"><?php echo $row->ime; ?></option>"; 
+												echo "<option value="<?php echo $row->id; ?>"><?php echo $row->ime; ?></option>";
 											<?php
 											}
 											echo "</select>";
 											?>
+											<br>
+											<br>
+											<font color = "red"> * obavezno popuniti </font>
+											<br>
 									</div>
 								<br>
-								<br>
-									<input type="submit" name = "search1" value = "Generisi ">
 
-											</form>
+									<input type="submit" name = "search1" value = "Generisi ">
+									<br>
+									<br>
+									<br>
+
 
 
 
@@ -117,7 +122,16 @@
 
 														<td style = "background-color:#lightblue; border:1px solid black;"> <?php echo $row->name; ?> </td>
 														<td style = "background-color:#lightblue; border:1px solid black;"> <?php echo $row->surname; ?> </td>
-														<td style = "background-color:#lightblue; border:1px solid black;"> <?php echo $row->surname; ?> </td>
+														<td style = "background-color:#lightblue; border:1px solid black;">
+															<?php
+
+															 foreach($ocene as $row1) {
+																if (($row1->ucenikId == $row->id) && ($row1->ucenikId != 0)) {
+																	echo $row1->ocena;
+																}
+															}
+															?>
+														  </td>
 
 													</tr>
 												<?php
@@ -138,7 +152,7 @@
 										</table>
 
 										<div style = "border: 1px solid black; width:850px; padding: 15px; background-color:#88b5dd;">
-					
+												</form>
 											<label>Učenik:</label>
 											<form name = "search_form" method= "POST" action = "ocene">
 												<select name = 'iz' style = "width: 350px">
@@ -171,19 +185,19 @@
 												echo "<select name='ime'>";
 												foreach($predmeti->result() as $row) {
 												?>
-													echo "<option value="<?php echo $row->id; ?>"><?php echo $row->ime; ?></option>"; 
+													echo "<option value="<?php echo $row->id; ?>"><?php echo $row->ime; ?></option>";
 												<?php
 												}
 												echo "</select>";
 												?>
 										</div>
-										
+
 										<div class="form-group">
 											<label>Ocena:</label>
 											<input type="number" name="ocena" min="1" max="5">
 										</div>
-										
-										
+
+
 										<br>
 										<br>
 									<button type="submit" class="btn btn-primary btn-block">Unesi</button>
@@ -192,7 +206,7 @@
 									</form>
 								</div>
 								<br>
-																				
+
 
 
 

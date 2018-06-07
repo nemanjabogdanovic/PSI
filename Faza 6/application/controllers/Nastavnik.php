@@ -157,7 +157,7 @@
   			$this->load->view('nastavnik/izostanci', $data);
   			$this->load->view('templates/footer');
 		}
-		
+
 		public function upis() {
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
@@ -173,17 +173,41 @@
 		}
 		public function ocene() {
 				$data["odeljenja"] = $this->Nastavnik_model->listaOdeljenja();
-				
+
 				$data['predmeti'] = $this->Nastavnik_model->getPredmete($this->session->userdata('user_id'));
 				$data['predmetiSelect'] = $this->Nastavnik_model->getPredmete($this->session->userdata('user_id'));
-				
-	//			$odeljenje = $this->input->post('iz');
-				
+
+						$ocene = $this->Nastavnik_model->dohvatiOcene();
+
+				$broj_ocena = $ocene->num_rows();
+
+				for($i = 0; $i < 	$broj_ocena; $i++){
+					for($j = $i+1; $j < 	$broj_ocena; $j++){
+						if($ocene->row($j)->ucenikId === $ocene->row($i)->ucenikId){
+							$ocene->row($i)->ocena = $ocene->row($i)->ocena.', '.$ocene->row($j)->ocena;
+							$ocene->row($j)->ucenikId = $ocene->row($broj_ocena-1)->ucenikId;
+							$ocene->row($j)->ocena = $ocene->row($broj_ocena-1)->ocena;
+
+							$ocene->row($broj_ocena-1)->ucenikId = 0;
+							$broj_ocena--;
+							$j--;
+						}
+					}
+				}
+
+									$data['ocene'] = $ocene->result();
+
+
+
+
+
+
+
 				$data["fetch_data"] = $this->Nastavnik_model->dohvatiOdeljenje();
-				$data["ucenici"] = $this->Nastavnik_model->dohvatiOdeljenje(); 
+				$data["ucenici"] = $this->Nastavnik_model->dohvatiOdeljenje();
 				$data["skole"] = $this->Nastavnik_model->listaSkola();
-				
-				$this->form_validation->set_rules('ocena', 'Ocena', 'required');				
+
+				$this->form_validation->set_rules('ocena', 'Ocena', 'required');
 				$ocena = $this->input->post('ocena');
 				$predmet = $this->input->post('predmet');
 
@@ -191,84 +215,84 @@
 						$this->load->view('templates/header');
 						$this->load->view('nastavnik/ocene', $data);
 						$this->load->view('templates/footer');
-						
+
 					}
-				else{							
-						
+				else{
+
 						$this->Nastavnik_model->unosOcene();
-						
+
 						redirect('nastavnik/ocene');
 						$this->load->view('templates/header');
 						$this->load->view('nastavnik/ocene', $data);
 						$this->load->view('templates/footer');
 				}
 		}
-		
+
 		public function brisanjeOcene() {
 				$data["odeljenja"] = $this->Nastavnik_model->listaOdeljenja();
 				$data['predmeti'] = $this->Nastavnik_model->getPredmete($this->session->userdata('user_id'));
 				$data["fetch_data"] = $this->Nastavnik_model->dohvatiOdeljenje();
-				$data["ucenici"] = $this->Nastavnik_model->dohvatiIdUcenika(); 
+				$data["ucenici"] = $this->Nastavnik_model->dohvatiIdUcenika();
 				$data["skole"] = $this->Nastavnik_model->listaSkola();
 				$data['predmetiSelect'] = $this->Nastavnik_model->getPredmete($this->session->userdata('user_id'));
-				
 
-				
 
-				
-				
+
+
+
+
 		//		$data['ocene'] = $this->Nastavnik_model->getOcene($predmet,$ucenik);
-				
-				$this->form_validation->set_rules('ime', 'Ime', 'required');				
+
+				$this->form_validation->set_rules('ime', 'Ime', 'required');
 		//		$ocena = $this->input->post('ocena');
 					if($this->form_validation->run() === FALSE){
-						
+
 						$this->load->view('templates/header');
 						$this->load->view('nastavnik/brisanjeOcene', $data);
 						$this->load->view('templates/footer');
-						
-						
+
+
 					}
-				else{				
-			
+				else{
+
 						$this->brisanje();
-						
-					
+
+
 						$this->load->view('templates/header');
 						$this->load->view('nastavnik/brisanje', $data);
 						$this->load->view('templates/footer');
 				}
 		}
-		
+
 		public function brisanje() {
 				global $predmet;
-				global $ucenik;		
-				
+				global $ucenik;
+
 						$predmet = $this->input->post('ime');
-						$ucenik = $this->input->post('iz');	
-						
+						$ucenik = $this->input->post('iz');
+
 				$data['ocene'] = $this->Nastavnik_model->getOcene($predmet,$ucenik);
 				$data['test1'] = $predmet;
 				$data['test2'] = $ucenik;
-				
-				
-				$this->form_validation->set_rules('ocena', 'Ocena', 'required');				
-				
-				
+
+
+				$this->form_validation->set_rules('ocena', 'Ocena', 'required');
+
+
 					if($this->form_validation->run() === FALSE){
 						$this->load->view('templates/header');
 						$this->load->view('nastavnik/brisanje', $data);
 						$this->load->view('templates/footer');
-						
+
 					}
-				else{							
+				else{
 						$ocena = $this->input->post('ocena');
 						//die(opa);
 						$this->Nastavnik_model->brisanje($ocena);
-						
+
 						redirect('nastavnik/ocene');
-						
+
 				}
-		}	
-		
+		}
+
 	}

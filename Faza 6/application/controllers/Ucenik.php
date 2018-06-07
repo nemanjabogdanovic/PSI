@@ -15,8 +15,8 @@
 			$data['title'] = 'Početna - Vesti';
 			$data['vesti'] = $this->Ucenik_model->getVestiAdmin();
 			$data['vestiSkola'] = $this->Ucenik_model->getVesti($this->Ucenik_model->getSkolaId($this->session->userdata('user_id')));
-			
-			
+
+
 			$this->load->view('templates/header');
 			$this->load->view('ucenik/index', $data);
 			$this->load->view('templates/footer');
@@ -34,7 +34,7 @@
 			$num_of_ocena = $ocene->num_rows();
 			$predmeti = $this->Ucenik_model->getPredmete($this->Ucenik_model->getSkolaId($this->session->userdata('user_id')));
 			$num_of_predmeta = $predmeti->num_rows();
-			
+
 			for($i = 0; $i < $num_of_ocena; $i++){
 				for($j = $i+1; $j < $num_of_ocena; $j++){
 					if($ocene->row($j)->predmetId === $ocene->row($i)->predmetId){
@@ -69,10 +69,10 @@
 			}
 			$data['title'] = 'Kontaktiraj nastavnika';
 			$data['predmeti'] = $this->Ucenik_model->getPredmete($this->Ucenik_model->getSkolaId($this->session->userdata('user_id')));
-			
+
 			$this->form_validation->set_rules('naslov', 'Naslov', 'required');
 			$this->form_validation->set_rules('text', 'Tekst', 'required');
-			
+
 			if($this->form_validation->run() === FALSE){
 				$this->load->view('templates/header');
 				$this->load->view('ucenik/kontakt', $data);
@@ -83,7 +83,7 @@
 				redirect('ucenik/kontakt');
 			}
 		}
-		
+
 		public function raspored(){
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
@@ -93,7 +93,7 @@
 			}
 			$this->load->helper('form');
 			$this->load->library('table');
-			
+
 			$raspored = $this->Ucenik_model->dohvati_raspored();
 			$user_id = $this->session->userdata('user_id');
 			$ucenik = $this->Ucenik_model->dohvati_ime_i_prezime($user_id);
@@ -171,9 +171,9 @@
 				if($ras->dan == 'sreda') $data['sreda'][$ras->brojCasa] = 'Cas: ' . $this->Ucenik_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet;
 				if($ras->dan == 'cetvrtak') $data['cetvrtak'][$ras->brojCasa] = 'Cas: ' . $this->Ucenik_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet;
 				if($ras->dan == 'petak') $data['petak'][$ras->brojCasa] = 'Cas: ' . $this->Ucenik_model->dohvati_ime_predmeta($ras->predmetId) . '<br> Kabinet: ' . $ras->kabinet;
-				
+
 			}
-						
+
 			$this->load->view('templates/header');
 			$this->load->view('ucenik/raspored', $data);
 			$this->load->view('templates/footer');
