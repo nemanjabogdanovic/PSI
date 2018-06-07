@@ -1,7 +1,11 @@
 <!--
 	autor: Markovic Milos, 0097/2012
 		   Nemanja Bogdanovic, 2012/0533
-	@version: 1.0
+	
+	Koordinator_model – model u kome se nalaze sve funkcije koje koristi koordinator kontroler za komunikaciju sa bazom
+	
+		   
+	@version: 1.16
 -->
 <?php
 	class Koordinator_model extends CI_Model{
@@ -9,34 +13,33 @@
 		public function __construct(){
 			$this->load->database();
 		}
-		//Unos predmeta
+		//Unos predmeta za skolu kojoj je dodeljen koordinator
 		public function unosPredmeta($skola){
 			$data = array(
 				'ime' => $this->input->post('ime'),
 				'nastavnik' => $this->input->post('nastavnik'),
 				'skolskaGodina' => $this->input->post('skolskaGodina'),
 				'kabineti' => $this->input->post('kabineti'),
-				'skolaId' => $skola
-				
-				
-			);
-			
+				'skolaId' => $skola				
+			);			
 			return $this->db->insert('predmet', $data);
 		}
 		
-		//uzmi skole iz baze
+		//Dohvati id nastavnika iz baze za skolu kojoj je dodeljen koordinator
 		public function getNastavnikIds($skola){
 			$this->db->where('skolaId',$skola);
 			$nastavnik = $this->db->get("nastavnik");
 			return $nastavnik;
 		}
 		
+		//Dohvati ucenike za skolu kojoj je dodeljen koordinator
 		public function getUcenike($skola){
 			$this->db->where('skolaId',$skola);
 			$ucenik = $this->db->get("ucenik");
 			return $ucenik;
 		}
 		
+		//Izmena izabranog predmeta
 		public function izmenaPredmeta($predmet){
 			$data = array(
 				
@@ -52,6 +55,7 @@
 			$this->db->update('predmet', $data);
 		}
 		
+		//Izmena izabranog naloga nastavnika
 		public function izmenaNaloga($nastavnik){
 			$data = array(
 				
@@ -66,6 +70,7 @@
 			$this->db->update('users', $data);
 		}
 		
+		//Izmena izabranog naloga ucenika za izabrano odeljenje
 		public function izmenaNalogaU($ucenik,$odeljenje){
 			$data = array(
 				
@@ -96,13 +101,13 @@
 		}
 
 	
-		//uzmi korisnike iz baze 
+		//Dohvati sve korisnike iz baze 
 		public function getUsers(){
 			$users = $this->db->get("users");
 			return $users;
 		}
 		
-		//unosPredmeta
+		//Unos casova
 		public function unosCasova(){
 			$data = array(
 				'odeljenjeId' => $this->input->post('odeljenje'),
@@ -115,13 +120,15 @@
 			
 			return $this->db->insert('raspored', $data);
 		}
-    
+		
+		//Dohvati predmete za skolu kojoj je dodeljen koordinator
 		public function listOfStudents($skola) {
 			$this->db->where('skolaId',$skola);
 			  $query = $this->db->get("predmet");
 		   return $query;
 		}
 		
+		//Dohvati nastavnike za skolu kojoj je dodeljen koordinator
 		public function getNastavnike($skola){
 			
 		$this->db->where('skolaId',$skola);
@@ -130,30 +137,33 @@
 			return $query;
 		}
 		
+		//Dohvati sve korisnike
 		public function getNastavnikeForPredmet(){
 			$query = $this->db->get('users');
 			return $query;
 		}
 		
 		
-	
+		//Dohvati sve skole
 		public function getSkole(){
 			$query = $this->db->get('skola');
 			return $query;
 		}
 		
+		//Dohvati sva odeljenja
 		public function getOdeljenja(){
 			$query = $this->db->get('odeljenje');
 			return $query;
 		}
 		
+		//Visak?
 		public function getRasporede(){
 			$query = $this->db->get_where('raspored',array('brojCasa' => 1 ));
 			return $query;
 		}
 		
 
-		
+		//Visak?
 		public function getOdeljenje(){
 			$this->db->where('odeljenjeId', '2');
 			$this->db->where('dan', 'ponedeljak');
@@ -161,6 +171,7 @@
 			return $query;
 		}
 		
+		//Dohvati predmete za skolu kojoj je dodeljen koordinator
 		public function getPredmete($skola){
 			
 			$this->db->where('skolaId', $skola);
@@ -168,6 +179,7 @@
 			return $query;
 		}
 		
+		//Brisanje izabranog predmeta za skolu kojoj je dodeljen koordinator
 		public function brisanjePredmeta($ime,$skola){
 			$query = $this->db->get_where('predmet', array('ime' => $ime));
 			$query = $this->db->get_where('predmet', array('skolaid' => $skola));
@@ -185,6 +197,7 @@
 			} 
 		}
 
+		//Brisanje izabranog casa
 		public function brisanjeCasova($odeljenje,$dan,$cas){
 			$query = $this->db->get_where('raspored', array('odeljenjeId' => $odeljenje));
 			$query = $this->db->get_where('raspored', array('dan' => $dan));
@@ -205,6 +218,7 @@
 			} 
 		}		
 		
+		//Brisanje izabranog naloga nastavnika
 		public function brisanjeNaloga($nastavnik){
 				
 			$query = $this->db->get_where('users', array('id' => $nastavnik));			
@@ -213,7 +227,6 @@
 				return false;			
 			}
 			else{
-	//			die($nastavnik);
 				$this->db->where('id', $nastavnik);	
 				$this->db->delete('users');
 				
@@ -224,7 +237,7 @@
 			} 
 		}
 
-
+		//Brisanje izabranog naloga ucenika
 		public function brisanjeNalogaU($ucenik){
 				
 			$query = $this->db->get_where('users', array('id' => $ucenik));
@@ -248,7 +261,7 @@
 		}
 		
 		
-		//dodaj novog nastavnika
+		//Dodaj novog nastavnika za skolu kojoj je dodeljen koordinator
 		public function dodajNastavnika($enc_password,$skola){
 			$data = array(
 				'name' => $this->input->post('name'),
@@ -268,15 +281,15 @@
 			return $id;
 		}
 		
-		//dodaj novog nastavnika
+		//Dodaj novog ucenika za skolu kojoj je dodeljen koordinator
 		public function dodajUcenika($enc_password,$skola){
 			$data = array(
 				'name' => $this->input->post('name'),
 				'surname' => $this->input->post('surname'),
 				'email' => $this->input->post('email'),
 				'username' => $this->input->post('username'),
-				'password' => $enc_password,
-//				'odeljenjeId' => $this->input->post('odeljenje')
+				'password' => $enc_password
+
 			);
 			$this->db->insert('users', $data);
 			
@@ -344,14 +357,14 @@
 			$result = $this->db->get('koordinator');
 			return $result->row(0)->skolaId;
 		}
-		
+		//dohvati raspored za zadato odeljenje
 		public function dohvati_raspored($odeljenje){
 			$this->db->where('odeljenjeId', $odeljenje);
 			$query = $this->db->get('raspored');
 			$result = $query->result();
 			return $result;
 		}
-	
+		//dohvati ime predmeta
 		public function dohvati_ime_predmeta($predmetId){
 			$this->db->where('id', $predmetId);
 			$query = $this->db->get('predmet');
@@ -359,7 +372,7 @@
 			$result = $predmet->ime;
 			return $result;
 		}
-	
+		//dohvati oznaku odeljenja
 		public function dohvati_oznaku_odeljenja($odeljenjeId){
 			if ($odeljenjeId != null){
 				$this->db->where('id', $odeljenjeId);
@@ -369,13 +382,13 @@
 				return $result;
 			}
 		}
-		
+		//dohvati ime i prezime
 		public function dohvati_ime_i_prezime($user_id){
 		$this->db->where('id',$user_id);
 		$query = $this->db->get('users');
 		return $query->row();
 	}
-	
+		//dohvati skolu koordinatora
 		public function getSkolaKoord($user_id){
 		$this->db->where('id',$user_id);
 		$query = $this->db->get('koordinator');

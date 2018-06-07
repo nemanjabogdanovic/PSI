@@ -58,7 +58,7 @@
 				</div>
 				
 			<div class="form-group">
-					<label>Odeljenja:</label>
+					<label>Odeljenje:</label>
 					<?php
 					echo "<select name='odeljenje'>";
 					foreach($odeljenja->result() as $row) {

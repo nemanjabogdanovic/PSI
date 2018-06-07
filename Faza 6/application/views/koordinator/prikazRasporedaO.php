@@ -32,7 +32,7 @@
 					}
 					echo "</select>";
 					?>
-			<button type="submit" class="btn btn-primary">Izmeni</button> 
+			<button type="submit" class="btn btn-primary">Prikaži</button> 
 			</div>
 		
 

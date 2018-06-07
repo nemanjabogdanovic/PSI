@@ -34,7 +34,7 @@
 					}
 					echo "</select>";
 					?>
-			<button type="submit" class="btn btn-primary ">Izbriši</button> <!-- poruka da je godina izbacena -->	
+			<button type="submit" class="btn btn-primary ">Izbriši</button> 
 		
 				</div>
 

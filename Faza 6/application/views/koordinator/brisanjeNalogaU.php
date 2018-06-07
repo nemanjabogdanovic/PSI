@@ -39,7 +39,7 @@
 					?>
 			
 				</div>
-		<button type="submit" class="btn btn-primary btn-block">Izbriši</button> <!-- poruka da je godina izbacena -->	
+		<button type="submit" class="btn btn-primary btn-block">Izbriši</button>
 
 		</div>
 	</div>	
