@@ -51,24 +51,16 @@
 				
 			<div class="form-group">
 				<label>Školska godina</label>
-				<input type="text" class="form-control" name="skolskaGodina" placeholder="Skolska godina">
+				<input type="number" name="skolskaGodina" min="1" max="4">
+				
 			</div>
 			<div class="form-group">
 				<label>Kabineti</label>
 				<input type="text" class="form-control" name="kabineti" placeholder="Kabinet">
 			</div>
-			<div class="form-group">
-					<label>Škola</label>
-					<?php
-					echo "<select name='skola'>";
-					foreach($skole->result() as $row) {
-					?>
-						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->ime; ?></option>"; 
-					<?php
-					}
-					echo "</select>";
-					?>
-				</div>
+			
+			
+
 			
 			<button type="submit" class="btn btn-primary btn-block">Unesi</button>
 			

@@ -60,7 +60,7 @@
 			
 			<div class="form-group">
 				<label>Školska godina</label>
-				<input type="text" class="form-control" name="skolskaGodina" placeholder="Skolska godina">
+				<input type="number" name="skolskaGodina" min="1" max="4">
 			</div>
 			<div class="form-group">
 				<label>Kabineti</label>

@@ -34,20 +34,9 @@
 					?>
 			</div>
 				
-			<div class="form-group">
-					<label>Škola:</label>
-					<?php
-					echo "<select name='skolaid'>";
-					foreach($skole->result() as $row) {
-					?>
-						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->ime; ?></option>"; 
-					<?php
-					}
-					echo "</select>";
-					?>
-				</div>
+
 		
-		<button type="submit" class="btn btn-primary btn-block">Izbriši</button> <!-- poruka da je godina izbacena -->	
+		<button type="submit" class="btn btn-primary btn-block">Izbriši</button> 
 		
 	
 		

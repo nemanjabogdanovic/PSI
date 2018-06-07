@@ -10,13 +10,13 @@
 			$this->load->database();
 		}
 		//Unos predmeta
-		public function unosPredmeta(){
+		public function unosPredmeta($skola){
 			$data = array(
 				'ime' => $this->input->post('ime'),
 				'nastavnik' => $this->input->post('nastavnik'),
 				'skolskaGodina' => $this->input->post('skolskaGodina'),
 				'kabineti' => $this->input->post('kabineti'),
-				'skolaId' => $this->input->post('skola')
+				'skolaId' => $skola
 				
 				
 			);
@@ -25,12 +25,14 @@
 		}
 		
 		//uzmi skole iz baze
-		public function getNastavnikIds(){
+		public function getNastavnikIds($skola){
+			$this->db->where('skolaId',$skola);
 			$nastavnik = $this->db->get("nastavnik");
 			return $nastavnik;
 		}
 		
-		public function getUcenike(){
+		public function getUcenike($skola){
+			$this->db->where('skolaId',$skola);
 			$ucenik = $this->db->get("ucenik");
 			return $ucenik;
 		}
@@ -114,13 +116,17 @@
 			return $this->db->insert('raspored', $data);
 		}
     
-		public function listOfStudents() {
+		public function listOfStudents($skola) {
+			$this->db->where('skolaId',$skola);
 			  $query = $this->db->get("predmet");
 		   return $query;
 		}
 		
-		public function getNastavnike(){
-			$query = $this->db->get('nastavnik');
+		public function getNastavnike($skola){
+			
+		$this->db->where('skolaId',$skola);
+		$query = $this->db->get('nastavnik');
+
 			return $query;
 		}
 		
@@ -155,21 +161,23 @@
 			return $query;
 		}
 		
-		public function getPredmete(){
+		public function getPredmete($skola){
+			
+			$this->db->where('skolaId', $skola);
 			$query = $this->db->get('predmet');
 			return $query;
 		}
 		
-		public function brisanjePredmeta($ime,$skolaid){
+		public function brisanjePredmeta($ime,$skola){
 			$query = $this->db->get_where('predmet', array('ime' => $ime));
-			$query = $this->db->get_where('predmet', array('skolaid' => $skolaid));
+			$query = $this->db->get_where('predmet', array('skolaid' => $skola));
 			
 			if(empty($query->row_array())){
 				return false;
 			}
 			else{
 				$this->db->where('id', $ime);
-				$this->db->where('skolaid', $skolaid);
+				$this->db->where('skolaid', $skola);
 				$this->db->delete('predmet');
 				
 				return true;
@@ -241,7 +249,7 @@
 		
 		
 		//dodaj novog nastavnika
-		public function dodajNastavnika($enc_password){
+		public function dodajNastavnika($enc_password,$skola){
 			$data = array(
 				'name' => $this->input->post('name'),
 				'surname' => $this->input->post('surname'),
@@ -255,13 +263,13 @@
 			$this->db->where('password', $enc_password);
 			$result = $this->db->get('users');
 			$id = $result->row(0)->id;
-			$this->dodajNastavnikaId($id);
+			$this->dodajNastavnikaId($id,$skola);
 			
 			return $id;
 		}
 		
 		//dodaj novog nastavnika
-		public function dodajUcenika($enc_password){
+		public function dodajUcenika($enc_password,$skola){
 			$data = array(
 				'name' => $this->input->post('name'),
 				'surname' => $this->input->post('surname'),
@@ -276,26 +284,26 @@
 			$this->db->where('password', $enc_password);
 			$result = $this->db->get('users');
 			$id = $result->row(0)->id;
-			$this->dodajUcenikaId($id);
+			$this->dodajUcenikaId($id,$skola);
 			
 			return $id;
 		}
 
 		//dodaj nastavnika i identifikator skole
-		public function dodajNastavnikaId($userid){
+		public function dodajNastavnikaId($userid,$skola){
 			$dataNastavnik = array(
 				'id' => $userid,
-				'skolaId' => $this->input->post('skola')
+				'skolaId' => $skola
 				
 			);
 			
 			$this->db->insert('nastavnik', $dataNastavnik);
 		}	
 		//dodaj nastavnika i identifikator skole
-		public function dodajUcenikaId($userid){
+		public function dodajUcenikaId($userid,$skola){
 			$dataUcenik = array(
 				'id' => $userid,
-				'skolaId' => $this->input->post('skola'),
+				'skolaId' => $skola,
 				'odeljenjeId' => $this->input->post('odeljenje')
 			);
 			
@@ -367,5 +375,13 @@
 		$query = $this->db->get('users');
 		return $query->row();
 	}
+	
+		public function getSkolaKoord($user_id){
+		$this->db->where('id',$user_id);
+		$query = $this->db->get('koordinator');
+				$koordinator = $query->row();
+				$result = $koordinator->skolaId;
+				return $result;
+	}	
 
 	}

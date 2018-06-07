@@ -43,18 +43,7 @@
 					<label>Lozinka</label>
 					<input type="text" class="form-control" name="password" placeholder="Lozinka">
 				</div>
-				<div class="form-group">
-					<label>Škola</label>
-					<?php
-					echo "<select name='skola'>";
-					foreach($skole->result() as $row) {
-					?>
-						echo "<option value="<?php echo $row->id; ?>"><?php echo $row->ime; ?></option>"; 
-					<?php
-					}
-					echo "</select>";
-					?>
-				</div>
+
 				
 				<button type="submit" class="btn btn-primary btn-block">Unesi</button>
 			</div>
