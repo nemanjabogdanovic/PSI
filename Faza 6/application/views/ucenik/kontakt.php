@@ -1,8 +1,8 @@
 <!--
 	autor: Nemanja Bogdanovic, 2012/0533
-	@version: 1.0
 -->
 <?php echo form_open('ucenik/kontakt'); ?>
+
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
 	<div class="tm-left-inner-container">
 		<ul class="nav nav-stacked css-nav">
@@ -38,4 +38,5 @@
 		<br>
 	</div>	
 </div>
+
 <?php echo form_close(); ?>

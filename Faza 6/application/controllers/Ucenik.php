@@ -1,10 +1,16 @@
 <!--
 	autor: Nemanja Bogdanovic, 2012/0533
-	@version: 1.0
 -->
 <?php
+	/**
+	*	Ucenik - klasa za funkcionalnosti korisnika Ucenik
+	*
+	*	@version 1.0
+	*/
 	class Ucenik extends CI_Controller{
-		//pocetna strana
+		/**
+		*	Pocetna strana sa najnovijim vestima
+		*/
 		public function index(){
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
@@ -12,16 +18,26 @@
 			else if($this->session->userdata['user_level'] != 'ucenik'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
 			$data['title'] = 'Početna - Vesti';
+			/**
+			*	@var array $data['vesti'] - prosledjivanje vesti
+			*/
 			$data['vesti'] = $this->Ucenik_model->getVestiAdmin();
+			/**
+			* @var array $data['vestiSkola'] - prosledjivanje vesti za skolu trenutnog ucenika
+			*/		
 			$data['vestiSkola'] = $this->Ucenik_model->getVesti($this->Ucenik_model->getSkolaId($this->session->userdata('user_id')));
-
 
 			$this->load->view('templates/header');
 			$this->load->view('ucenik/index', $data);
 			$this->load->view('templates/footer');
 		}
-		//ocene
+		/**
+		*	Funkcija za prikaz liste predmeta i ocena iz tih predmeta
+		*/
 		public function ocene(){
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
@@ -29,10 +45,25 @@
 			else if($this->session->userdata['user_level'] != 'ucenik'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
 			$data['title'] = 'Ocene';
+			/**
+			*	@var array $ocene - lista svih ocena trenutno ulogovanog ucenika
+			*/
 			$ocene = $this->Ucenik_model->getOcene($this->session->userdata('user_id'));
+			/**
+			*	@var int $num_of_ocena - broj redova u promenjivoj $ocene
+			*/
 			$num_of_ocena = $ocene->num_rows();
+			/**
+			*	@var array $predmeti - lista svih predmeta trenutno ulogovanog ucenika
+			*/
 			$predmeti = $this->Ucenik_model->getPredmete($this->Ucenik_model->getSkolaId($this->session->userdata('user_id')));
+			/**
+			*	@var int $num_of_predmeta - broj redova u promenjivoj $predmeti
+			*/
 			$num_of_predmeta = $predmeti->num_rows();
 
 			for($i = 0; $i < $num_of_ocena; $i++){
@@ -53,13 +84,18 @@
 					}
 				}
 			}
+			/**
+			*	@var array $data['ocene'] - prosledjivanje niza ocena
+			*/
 			$data['ocene'] = $ocene->result();
 			
 			$this->load->view('templates/header');
 			$this->load->view('ucenik/ocene', $data);
 			$this->load->view('templates/footer');
 		}
-		//kontakt
+		/**
+		*	Kontakt nastavnika preko e-mail forme
+		*/
 		public function kontakt(){
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
@@ -67,7 +103,13 @@
 			else if($this->session->userdata['user_level'] != 'ucenik'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
 			$data['title'] = 'Kontaktiraj nastavnika';
+			/**
+			*	@var string $data['predmeti'] - prosledjivanje predmeta koje slusa trenutno ulogovan ucenik
+			*/
 			$data['predmeti'] = $this->Ucenik_model->getPredmete($this->Ucenik_model->getSkolaId($this->session->userdata('user_id')));
 
 			$this->form_validation->set_rules('naslov', 'Naslov', 'required');

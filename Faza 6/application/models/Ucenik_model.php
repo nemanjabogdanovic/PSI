@@ -1,40 +1,87 @@
 <!--
 	autor: Nemanja Bogdanovic, 2012/0533
-	@version: 1.0
 -->
 <?php
+	/**
+	*	Ucenik_model - klasa modela svih funkcija Ucenika
+	*
+	*	@version 1.0
+	*/
 	class Ucenik_model extends CI_Model{
-		//konstruktor
+		/**
+		*	Konstruktor klase, ucitava bazu podataka
+		*/
 		public function __construct(){
 			$this->load->database();
 		}
-		//dohvati sve vesti od administratora
+		/**
+		*	Dohvati sve vesti postavljene od strane Administratora
+		*
+		*	@return array
+		*/
 		public function getVestiAdmin(){
 			$this->db->where('skolaId', 0);
-			$query = $this->db->get('vesti');
-			return $query->result_array();
+			/**
+			*	@var array $result - rezultat pretrage tabele vesti za dat skolaId
+			*/
+			$result = $this->db->get('vesti');
+			return $result->result_array();
 		}
-		//dohvati sve vesti za trenutnu skolu
+		/**
+		*	Dohvati sve vesti za trenutnu skolu
+		*
+		*	@return array
+		*/
 		public function getVesti($id){
 			$this->db->where('skolaId', $id);
-			$query = $this->db->get('vesti');
-			return $query->result_array();
+			/**
+			*	@var array $result - rezultat pretrage tabele vesti za dat skolaId
+			*/
+			$result = $this->db->get('vesti');
+			return $result->result_array();
 		}
-		//dohvati id skole trenutnog ucenika
+		/**
+		*	Dohvati id skole ucenika na koji pokazuje ulazni parametar id
+		*
+		*	@param int $id - id ucenika 
+		*
+		*	@return array
+		*/
 		public function getSkolaId($id){
 			$this->db->where('id', $id);
+			/**
+			*	@var array $result - rezultat pretrage tabele ucenik za dat id
+			*/
 			$result = $this->db->get('ucenik');
 			return $result->row(0)->skolaId;
 		}
-		//dohvati ocene trenutnog ucenika
+		/**
+		*	Dohvati ocene ucenika na koji pokazuje ulazni parametar id
+		*
+		*	@param int $id - id ucenika 
+		*
+		*	@return array
+		*/
 		public function getOcene($id){
 			$this->db->where('ucenikId', $id);
+			/**
+			*	@var array $result - rezultat pretrage tabele ocena za dat id
+			*/
 			$result = $this->db->get('ocena');
 			return $result;
 		}
-		//dohvati predmete skole trenutnog ucenika
+		/**
+		*	Dohvati predmete skole ucenika na koji pokazuje ulazni parametar id
+		*
+		*	@param int $id - id ucenika 
+		*
+		*	@return array
+		*/
 		public function getPredmete($id){
 			$this->db->where('skolaId', $id);
+			/**
+			*	@var array $result - rezultat pretrage tabele predmet za dat id
+			*/
 			$result = $this->db->get('predmet');
 			return $result;
 		}

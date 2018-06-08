@@ -127,7 +127,13 @@
 				return true;
 			} 
 		}
-		//provera da li je email u upotrebi pri registraciji korisnika
+		/**
+		*	Provera da li je email u upotrebi pri registraciji korisnika
+		*
+		*	@param string $email - email adresa koju treba proveriti
+		*
+		*	@return boolean
+		*/
 		public function check_email_exists($email){
 			$query = $this->db->get_where('users', array('email' => $email));
 			if(empty($query->row_array())){
@@ -137,8 +143,13 @@
 				return false;
 			} 
 		}
-
-		//provera da li je korisnicko ime u upotrebi pri registraciji korisnika
+		/**
+		*	Provera da li je korisnicko ime u upotrebi pri registraciji korisnika
+		*
+		*	@param string $username - korisnicko ime koje treba proveriti
+		*
+		*	@return boolean
+		*/
 		public function check_username_exists($username){
 			$query = $this->db->get_where('users', array('username' => $username));
 			if(empty($query->row_array())){
@@ -148,5 +159,4 @@
 				return false;
 			} 
 		}		
-		
 	}
