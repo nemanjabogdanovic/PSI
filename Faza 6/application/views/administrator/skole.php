@@ -1,8 +1,6 @@
 <!--
 	autor: Nemanja Bogdanovic, 2012/0533
-	@version: 1.0
 -->
-
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
 	<div class="tm-left-inner-container">
 		<ul class="nav nav-stacked css-nav">
@@ -17,7 +15,7 @@
 		<h1><?php echo $title; ?></h1>
 		<br><br>
 		<table class = "table table-bordered">
-			<tr colspan = "5">
+			<tr colspan = "5" style = "border: 1px solid black;background-color:#337ab7;">
 				<td><strong>Ime</strong></td>
 				<td><strong>Adresa</strong></td>
 				<td><strong>Grad</strong></td>
@@ -27,9 +25,9 @@
 			{
 				?>
 				<tr>
-					<td> <?php echo $row->ime; ?> </td>
-					<td> <?php echo $row->adresa; ?> </td>
-					<td> <?php echo $row->grad; ?> </td>
+					<td style = "background-color:lightblue;"> <?php echo $row->ime; ?> </td>
+					<td style = "background-color:lightblue;"> <?php echo $row->adresa; ?> </td>
+					<td style = "background-color:lightblue;"> <?php echo $row->grad; ?> </td>
 				</tr>
 				<?php
 			}

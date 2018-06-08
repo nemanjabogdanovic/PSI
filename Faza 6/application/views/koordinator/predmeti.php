@@ -21,7 +21,7 @@
 
 						
 <table class = "table table-bordered">
-	<tr colspan = "5">
+	<tr colspan = "5" style = "border: 1px solid black;background-color:#337ab7;">
 		<td><strong>Ime predmeta</strong></td>
 		<td><strong>Nastavnik</strong></td>
 		<td><strong>Školska godina</strong></td>
@@ -34,13 +34,13 @@
 			?>
 			
 			<tr>
-			<td> <?php echo $row->ime; ?> </td>   
+			<td style = "background-color:lightblue;"> <?php echo $row->ime; ?> </td>   
 		   
 			<?php
 			foreach($nastavnici->result() as $rowN){
 				if($row->nastavnik === $rowN->id){
 					?>
-					 <td>  <?php echo $rowN->name; ?> <?php echo $rowN->surname; ?>  </td>
+					 <td style = "background-color:lightblue;">  <?php echo $rowN->name; ?> <?php echo $rowN->surname; ?>  </td>
 					<?php
 				}
 				
@@ -48,15 +48,15 @@
 			?>
 		
 		   
-		   <td> <?php echo $row->skolskaGodina; ?> </td>
+		   <td style = "background-color:lightblue;"> <?php echo $row->skolskaGodina; ?> </td>
 		   
-		   <td> <?php echo $row->kabineti; ?> </td>
+		   <td style = "background-color:lightblue;"> <?php echo $row->kabineti; ?> </td>
 		   
 			<?php
 			foreach($skole->result() as $rowS){
 				if($row->skolaId === $rowS->id){
 					?>
-					 <td> <?php echo $rowS->ime; ?>  </td>
+					 <td style = "background-color:lightblue;"> <?php echo $rowS->ime; ?>  </td>
 					<?php
 				}
 				

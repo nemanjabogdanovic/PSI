@@ -1,6 +1,5 @@
 <!--
 	autor: Nemanja Bogdanovic, 2012/0533
-	@version: 1.0
 -->
 <?php echo form_open('administrator/novaVest'); ?>
 
@@ -27,6 +26,4 @@
 	</div>	
 </div>
 
-
-	
 <?php echo form_close(); ?>

@@ -1,8 +1,6 @@
 <!--
 	autor: Nemanja Bogdanovic, 2012/0533
-	@version: 1.0
 -->
-
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
 	<div class="tm-left-inner-container">
 		<ul class="nav nav-stacked css-nav">
@@ -55,6 +53,5 @@
 				<button type="submit" class="btn btn-primary btn-block">Unesi</button>
 		</div>
 	<?php echo form_close(); ?>
-
 	</div>	
 </div>

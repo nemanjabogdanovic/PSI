@@ -2,11 +2,20 @@
 	autor: Nemanja Bogdanovic, 2012/0533
 -->
 <?php 
+	/**
+	*	Users - klasa za logovanje registrovanog korisnika, slanja nove lozinke na e-mail i promene lozinke
+	*
+	*	@version 1.0
+	*/
 	class Users extends CI_Controller{
-		//logovanje korisnika
+		/**
+		*	Logovanje korisnika, postavljanje session userdata i preusmeravanje na specificnu pocetnu stranicu
+		*/
 		public function login(){
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
 			$data['title'] = 'Login';
-			
 			
 			$this->form_validation->set_rules('username', 'KorisnickoIme', 'required');
 			$this->form_validation->set_rules('password', 'Lozinka', 'required');
@@ -17,13 +26,27 @@
 				$this->load->view('templates/footer');
 			}
 			else{
+				/**
+				*	@var string $username - korisnicko ime pravilno uneseno u formu
+				*/
 				$username = $this->input->post('username');
+				/**
+				*	@var string $password - lozinka pravilno unesena u formu
+				*/
 				$password = md5($this->input->post('password'));
+				/**
+				*	@var string $user_id - id korisnika iz tabele users 
+				*/
 				$user_id = $this->user_model->login($username, $password);
 				
 				if($user_id){
+					/**
+					*	@var string $user_level - nivo korisnika
+					*/
 					$user_level = $this->user_model->userLevel($user_id);
-					
+					/**
+					*	@var array $user_data(string, string, boolean, string) - postavka userdata
+					*/
 					$user_data = array(
 						'user_id' => $user_id,
 						'username' => $username,
@@ -32,7 +55,6 @@
 					);
 					
 					$this->session->set_userdata($user_data);
-					
 					$this->session->set_flashdata('user_loggedin', 'Uspešan login');
 					redirect($user_level);
 				}
@@ -40,11 +62,15 @@
 					$this->session->set_flashdata('login_failed', 'Pogrešan login');
 					redirect('users/login');
 				}
-				
 			}
 		}
-		//resetovanje sifre
+		/**
+		*	Funkcija promene lozinke
+		*/
 		public function reset(){
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
 			$data['title'] = 'Promena lozinke';
 			
 			$this->form_validation->set_rules('old_password', 'Stara Lozinka', 'required');
@@ -56,7 +82,13 @@
 				$this->load->view('templates/footer');
 			}
 			else{
+				/**
+				*	@var string $enc_password_old - md5 enkriptovana trenutna lozinka korisnika
+				*/
 				$enc_password_old = md5($this->input->post('old_password'));
+				/**
+				*	@var string $enc_password_new - md5 enkriptovana nova zeljena lozinka korisnika
+				*/
 				$enc_password_new = md5($this->input->post('new_password'));
 				
 				if(!$this->user_model->reset($enc_password_old, $enc_password_new)){
@@ -69,8 +101,13 @@
 				}
 			}
 		}
-		//zaboravljena sifra
+		/**
+		*	Funkcija sistema zaboravljene sifre - salje novu lozinku na unetu e-mail adresu
+		*/
 		public function forgotten(){
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
 			$data['title'] = 'Zaboravljena lozinka';
 			
 			$this->form_validation->set_rules('email', 'Email', 'required');
@@ -81,6 +118,9 @@
 				$this->load->view('templates/footer');
 			}
 			else{
+				/**
+				*	@var string $email - e-mail adresa na koju treba poslati novu lozinku (ukoliko je u sistemu)
+				*/
 				$email = $this->input->post('email');
 				if($this->user_model->checkEmail($email)){
 					$this->session->set_flashdata('forgotten_success', 'Nova lozinka poslata na e-mail!');
@@ -92,35 +132,16 @@
 				}
 			}
 		}
-		//logout korisnika
+		/**
+		*	Funkcija za logout korisnika, vraca korisnika na pocetnu stranicu i brise userdata podatke
+		*/
 		public function logout(){
 			$this->session->unset_userdata('logged_in');
 			$this->session->unset_userdata('user_id');
 			$this->session->unset_userdata('username');
 			$this->session->unset_userdata('user_level');
 			
-			$this->session->set_flashdata('user_loggedout', 'Uspesan logout');
+			$this->session->set_flashdata('user_loggedout', 'Uspešan logout');
 			redirect('users/login');
-			
-		}
-		//provera da li je korisnicko ime u upotrebi pri registraciji korisnika
-		public function check_username_exists($username){
-			$this->form_validation->set_message('check_username_exists', 'Korisničko ime je zauzeto');
-			if($this->user_model->check_username_exists($username)){
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		//provera da li je email u upotrebi pri registraciji korisnika
-		public function check_email_exists($email){
-			$this->form_validation->set_message('check_email_exists', 'Email je u upotrebi');
-			if($this->user_model->check_email_exists($email)){
-				return true;
-			}
-			else {
-				return false;
-			}
 		}
 	}

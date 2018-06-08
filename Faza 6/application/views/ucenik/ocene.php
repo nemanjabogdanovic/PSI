@@ -17,7 +17,7 @@
 		<h1><?php echo $title; ?></h1>
 		<br><br>
 		<table class = "table table-bordered">
-			<tr colspan = "5">
+			<tr colspan = "5" style = "border: 1px solid black;background-color:#337ab7;">
 				<td><strong>Predmet</strong></td>
 				<td><strong>Ocene</strong></td>
 			</tr>
@@ -26,8 +26,8 @@
 				if($row->predmetId != '0'){
 					?>
 					<tr>
-						<td> <?php echo $row->predmetId; ?> </td>
-						<td> <?php echo $row->ocena; ?> </td>
+						<td style = "background-color:lightblue;"> <?php echo $row->predmetId; ?> </td>
+						<td style = "background-color:lightblue;"> <?php echo $row->ocena; ?> </td>
 					</tr>
 					<?php
 				}

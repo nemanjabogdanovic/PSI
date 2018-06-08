@@ -1,6 +1,5 @@
 <!--
 	autor: Nemanja Bogdanovic, 2012/0533
-	@version: 1.0
 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
@@ -15,7 +14,6 @@
 <div class="col col-lg-8 col-md-7 col-sm-7 col-xs-12 right-container">	
 	<div class="tm-right-inner-container">
 		<h1><?php echo $title; ?></h1>
-		
 		<br>
 		<form action="<?php echo base_url(); ?>administrator/novaVest">
 			<button type="submit" class="btn btn-primary" />Dodaj vest</button>
@@ -32,8 +30,5 @@
 		<form action="<?php echo base_url(); ?>administrator/izbrisiVesti">
 			<button type="submit" class="btn btn-primary" />Izbriši vesti</button>
 		</form>
-		
-		
-		
 	</div>	
 </div>

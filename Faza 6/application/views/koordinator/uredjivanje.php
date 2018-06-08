@@ -18,7 +18,7 @@
 		<br>
 		<h2 class="css-header">Nastavnici:</h2>	
 		<table class = "table table-bordered">
-			<tr colspan = "5">
+			<tr colspan = "5" style = "border: 1px solid black;background-color:#337ab7;">
 				<td><strong>Ime</strong></td>
 				<td><strong>Prezime</strong></td>
 				<td><strong>Škola</strong></td>
@@ -34,10 +34,10 @@
 						if($row->id === $rowU->id && $row->skolaId === $rowS->id){
 							?>
 							<tr>
-								<td> <?php echo $rowU->name; ?> </td>
-								<td> <?php echo $rowU->surname; ?> </td>
-								<td> <?php echo $rowS->ime; ?> </td>
-								<td> <?php echo $rowU->email; ?> </td>
+								<td style = "background-color:lightblue;"> <?php echo $rowU->name; ?> </td>
+								<td style = "background-color:lightblue;"> <?php echo $rowU->surname; ?> </td>
+								<td style = "background-color:lightblue;"> <?php echo $rowS->ime; ?> </td>
+								<td style = "background-color:lightblue;"> <?php echo $rowU->email; ?> </td>
 							</tr>
 							<?php
 						}
