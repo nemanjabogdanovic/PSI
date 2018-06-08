@@ -1,6 +1,8 @@
 <!--
 	autor: Nemanja Bogdanovic, 2012/0533
-		   Dragana Svrkota
+		   Dragana Svrkota, 2015/0485
+			 Aleksandar Milic,
+			 Milos Markovic,
 	@version: 1.0
 -->
 <?php
@@ -28,6 +30,7 @@
 			$this->load->view('templates/footer');
 		}
 
+		//spisak ucenika kojima nastavnik koji se ulogovao predaje, prikazuju se ime, prezime i odeljenje
 		public function ucenici() {
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
@@ -43,6 +46,7 @@
 			$this->load->view('templates/footer');
 		}
 
+		//prikazuje se raspored casova nastavnika koji se ulogovao
 		public function kalendar() {
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
@@ -138,7 +142,7 @@
 			$this->load->view('templates/footer');
 		}
 
-
+		//unos izostanka od strane nastavnika
 		public function izostanci() {
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
@@ -158,6 +162,7 @@
   			$this->load->view('templates/footer');
 		}
 
+		//upis casa od strane nastavnika
 		public function upis() {
 			if(session_status() == PHP_SESSION_NONE){
 				redirect('login');
@@ -171,6 +176,8 @@
 			$this->load->view('nastavnik/upis', $data);
 			$this->load->view('templates/footer');
 		}
+
+		//prikaz i unos ocena za odredjenog ucenika od strane nastavnika
 		public function ocene() {
 				$data["odeljenja"] = $this->Nastavnik_model->listaOdeljenja();
 
@@ -227,6 +234,7 @@
 						$this->load->view('templates/footer');
 				}
 		}
+
 
 		public function brisanjeOcene() {
 				$data["odeljenja"] = $this->Nastavnik_model->listaOdeljenja();

@@ -1,5 +1,5 @@
 <!--
-	autor: Nemanja Bogdanovic, 2012/0533
+	autor: Aleksandar Milic
 	@version: 1.0
 -->
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">
@@ -32,7 +32,7 @@ padding:10px;
 text-align: center;
 border: 1px solid #999;
 vertical-aling: top;
-background-color: #DEF; 
+background-color: #DEF;
 }
 caption{
 font-size: 24px;
@@ -171,4 +171,3 @@ echo $this->table->generate();
 </div>
 </center>
 </body>
-	

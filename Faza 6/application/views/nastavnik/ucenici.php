@@ -1,5 +1,5 @@
 <!--
-	autor: Nemanja Bogdanovic, 2012/0533
+	autor:  Dragana Svrkota, 2015/0485
 	@version: 1.0
 -->
 

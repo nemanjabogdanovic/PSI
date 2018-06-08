@@ -1,5 +1,6 @@
 <!--
 	autor: Markovic Milos, 0096/2012
+				Dragana Svrkota, 2015/0485
 	@version: 1.0
 -->
 

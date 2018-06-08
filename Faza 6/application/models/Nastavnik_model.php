@@ -1,3 +1,11 @@
+<!--
+	autor: Nemanja Bogdanovic, 2012/0533
+		   Dragana Svrkota, 2015/0485
+			 Aleksandar Milic,
+			 Milos Markovic,
+	@version: 1.0
+-->
+
 <?php
 	class Nastavnik_model extends CI_Model{
 		//konstruktor
@@ -19,6 +27,7 @@
 			return $query;
 		}
 
+		//ov funkcija se koristi kako bi se prikazali studenti i kasnije nakon filtera isti pretrazili
 		public function dohvati() {
 		$user_id = $this->session->userdata('user_id');
 		$query = $this->db->query("SELECT users.id,users.name,users.surname,users.username,users.email,ucenik.id,odeljenje.oznaka, odeljenje.id,
@@ -32,7 +41,7 @@
 
 					if (isset($_POST['search'])) {
 
-						//ako su popunjene sve 3
+						//ako su popunjena sva tri filtera
 							if (!empty($_POST['name']) && !empty($_POST['surname']) && !empty($_POST['odeljenje'])) {
 						$novoIme = $_POST['name'];
 						$novoPrezime = $_POST['surname'];
@@ -98,7 +107,7 @@
 }
 
 
-
+//ime
 else if (!empty($_POST['name'])) {
 $novoIme = $_POST['name'];
 
@@ -107,7 +116,7 @@ $query = $this->db->query("SELECT users.id,users.name,users.surname,users.userna
 												AND ucenik.skolaId = skola.id   AND  users.name = '{$novoIme}' AND nastavnik.id = '{$user_id}'
 												AND ucenik.skolaId = nastavnik.skolaId" );
 }
-
+//prezime
 else if (!empty($_POST['surname'])) {
 $novoPrezime = $_POST['surname'];
 $query = $this->db->query("SELECT users.id,users.name,users.surname,users.username,users.email,ucenik.id,odeljenje.oznaka,skola.ime, odeljenje.id FROM nastavnik, skola,users, ucenik, odeljenje WHERE users.id = ucenik.id AND ucenik.odeljenjeId = odeljenje.id
@@ -115,6 +124,7 @@ $query = $this->db->query("SELECT users.id,users.name,users.surname,users.userna
 														AND ucenik.skolaId = nastavnik.skolaId" );
 
 }
+//odeljenje
 else if (!empty($_POST['odeljenje'])) {
 $novoOdeljenje = $_POST['odeljenje'];
 $query = $this->db->query("SELECT users.id,users.name,users.surname,users.username,users.email,ucenik.id,odeljenje.oznaka,skola.ime, odeljenje.id FROM nastavnik, skola,users, ucenik, odeljenje WHERE users.id = ucenik.id AND ucenik.odeljenjeId = odeljenje.id
@@ -152,7 +162,8 @@ $query = $this->db->query("SELECT users.id,users.name,users.surname,users.userna
 
 
 
-
+		//koristi se u izostanci.php, da bi se dohvatilo ime prezime ucenika priliko njihovog prikaza, a onda zatim prilikom odabira odeljenja generise
+		//studente samo iz tog odeljenja
 		public function dohvatiOdeljenje() {
 			$user_id = $this->session->userdata('user_id');
 			$query = $this->db->query("SELECT users.id,users.name,users.surname,users.username,users.email,odeljenje.oznaka,
@@ -191,7 +202,7 @@ $query = $this->db->query("SELECT users.id,users.name,users.surname,users.userna
 
 
 
-
+	//funckija koja sluzi za ubacivanje izostanka u bazu nakon sto se izabere za kog studenta zelimo da ubacimo izostanak
 		public function unosIzostanka(){
 				if (isset($_POST['search_izostanak'])) {
 
@@ -246,7 +257,7 @@ $query = $this->db->query("SELECT users.id,users.name,users.surname,users.userna
 	}
 
 
-
+//funkcija koja sluzi za ubacivanje casa u bazu nakon sto se ubace sve potrebne informacije u formi
 	public function upisCasa() {
 			$user_id = $this->session->userdata('user_id');
       $query = $this->db->query("SELECT predmet.ime, predmet.id FROM predmet, nastavnik WHERE nastavnik. id = '{$user_id}' AND predmet.nastavnik = '{$user_id}' AND predmet.skolaId = nastavnik.skolaId ");
@@ -314,7 +325,8 @@ $query = $this->db->query("SELECT users.id,users.name,users.surname,users.userna
 
 
 		}
-
+		// funckija koja sluzi da se nastavnik nakon sto generise odeljenje i predmet za koji zeli da unese ocenu, vidi i ocene za svakog ucenika
+		//iz tog odeljenja i za taj predmet
 	public function dohvatiOcene() {
     $idNastavnika = $this->session->userdata('user_id');
 
