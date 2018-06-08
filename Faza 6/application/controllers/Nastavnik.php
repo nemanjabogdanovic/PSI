@@ -179,13 +179,25 @@
 
 		//prikaz i unos ocena za odredjenog ucenika od strane nastavnika
 		public function ocene() {
+			/**
+			*	@var array $data[''odeljenja''] - dohvatanje odeljenja
+			*/
 				$data["odeljenja"] = $this->Nastavnik_model->listaOdeljenja();
-
+			/**
+			*	@var array $data[''predmeti''] - dohvatanje predmeta za zadatog nastavnika
+			*/
 				$data['predmeti'] = $this->Nastavnik_model->getPredmete($this->session->userdata('user_id'));
+			/**
+			*	@var array $data[''predmeti''] - dohvatanje predmeta za zadatog nastavnika
+			*/
 				$data['predmetiSelect'] = $this->Nastavnik_model->getPredmete($this->session->userdata('user_id'));
-
-						$ocene = $this->Nastavnik_model->dohvatiOcene();
-
+			/**
+			*	@var array $ocene - dohvatanje ocena
+			*/
+				$ocene = $this->Nastavnik_model->dohvatiOcene();
+			/**
+			*	@var string $broj_ocena - broj ocena
+			*/
 				$broj_ocena = $ocene->num_rows();
 
 				for($i = 0; $i < 	$broj_ocena; $i++){
@@ -201,21 +213,31 @@
 						}
 					}
 				}
-
-									$data['ocene'] = $ocene->result();
-
-
-
-
-
-
-
+				/**
+				*	@var array $data['ocene'] - selektovane ocene
+				*/
+				$data['ocene'] = $ocene->result();
+				/**
+				*	@var array $data["fetch_data"] - odeljenja
+				*/
 				$data["fetch_data"] = $this->Nastavnik_model->dohvatiOdeljenje();
+				/**
+				*	@var array $data["ucenici"]  - ucenici
+				*/
 				$data["ucenici"] = $this->Nastavnik_model->dohvatiOdeljenje();
+				/**
+				*	@var array $data["skole"]  - skole
+				*/
 				$data["skole"] = $this->Nastavnik_model->listaSkola();
 
 				$this->form_validation->set_rules('ocena', 'Ocena', 'required');
+				/**
+				*	@var int $ocena  - unesena ocena
+				*/
 				$ocena = $this->input->post('ocena');
+				/**
+				*	@var int $predmet  - unesen predmet
+				*/
 				$predmet = $this->input->post('predmet');
 
 					if($this->form_validation->run() === FALSE){
@@ -225,7 +247,7 @@
 
 					}
 				else{
-
+						//unosenje ocene
 						$this->Nastavnik_model->unosOcene();
 
 						redirect('nastavnik/ocene');
@@ -237,22 +259,64 @@
 
 
 		public function brisanjeOcene() {
+				/**
+				*	@var array $odeljenja - odeljenja
+				*/
 				$data["odeljenja"] = $this->Nastavnik_model->listaOdeljenja();
+				/**
+				*	@var array $predmeti - predmeti
+				*/
 				$data['predmeti'] = $this->Nastavnik_model->getPredmete($this->session->userdata('user_id'));
+				/**
+				*	@var array $fetch_data - odeljenja
+				*/
 				$data["fetch_data"] = $this->Nastavnik_model->dohvatiOdeljenje();
-				$data["ucenici"] = $this->Nastavnik_model->dohvatiIdUcenika();
+				/**
+				*	@var array $ucenici - ucenici
+				*/
+				$data["ucenici"] = $this->Nastavnik_model->dohvatiOdeljenje();
+				/**
+				*	@var array $skole - skole
+				*/
 				$data["skole"] = $this->Nastavnik_model->listaSkola();
+				/**
+				*	@var array $predmetiSelect - predmetiSelect
+				*/
 				$data['predmetiSelect'] = $this->Nastavnik_model->getPredmete($this->session->userdata('user_id'));
+				/**
+				*	@var array $ocene - ocene
+				*/				
+				$ocene = $this->Nastavnik_model->dohvatiOcene();
+				/**
+				*	@var int $broj_ocena - broj ocena
+				*/
+				$broj_ocena = $ocene->num_rows();
 
+				for($i = 0; $i < 	$broj_ocena; $i++){
+					for($j = $i+1; $j < 	$broj_ocena; $j++){
+						if($ocene->row($j)->ucenikId === $ocene->row($i)->ucenikId){
+							$ocene->row($i)->ocena = $ocene->row($i)->ocena.', '.$ocene->row($j)->ocena;
+							$ocene->row($j)->ucenikId = $ocene->row($broj_ocena-1)->ucenikId;
+							$ocene->row($j)->ocena = $ocene->row($broj_ocena-1)->ocena;
 
-
-
-
-
-		//		$data['ocene'] = $this->Nastavnik_model->getOcene($predmet,$ucenik);
+							$ocene->row($broj_ocena-1)->ucenikId = 0;
+							$broj_ocena--;
+							$j--;
+						}
+					}
+				}
+				/**
+				*	@var int $ocena - unesena ocene
+				*/	
+				$ocena = $this->input->post('ocena');
+				/**
+				*	@var int $predmet - unesen predmet
+				*/				
+				$predmet = $this->input->post('predmet');
+									$data['ocene'] = $ocene->result();
 
 				$this->form_validation->set_rules('ime', 'Ime', 'required');
-		//		$ocena = $this->input->post('ocena');
+
 					if($this->form_validation->run() === FALSE){
 
 						$this->load->view('templates/header');
@@ -262,26 +326,38 @@
 
 					}
 				else{
-
+						//koordinator kontroler funkcija za brisanje ocene za izabrani predmet i ucenika
 						$this->brisanje();
 
 
 						$this->load->view('templates/header');
-						$this->load->view('nastavnik/brisanje', $data);
+						$this->load->view('nastavnik/brisanjeOcene', $data);
 						$this->load->view('templates/footer');
 				}
 		}
 
 		public function brisanje() {
+				/**
+				*	@var  $predmet - globalna promenljiva
+				*/			
 				global $predmet;
+				/**
+				*	@var  $ucenik - globalna promenljiva
+				*/
 				global $ucenik;
-
+						/**
+						*	@var int $predmet - ID unesenog predmeta
+						*/			
 						$predmet = $this->input->post('ime');
+						/**
+						*	@var int $ucenik - ID unesenog ucenika
+						*/	
 						$ucenik = $this->input->post('iz');
-
+				/**
+				*	@var  $data['ocene'] - dohvata ocene za zadati predmet zadatog ucenika
+				*/
 				$data['ocene'] = $this->Nastavnik_model->getOcene($predmet,$ucenik);
-				$data['test1'] = $predmet;
-				$data['test2'] = $ucenik;
+
 
 
 				$this->form_validation->set_rules('ocena', 'Ocena', 'required');
@@ -294,8 +370,12 @@
 
 					}
 				else{
+						/**
+						*	@var int $ocena - unesena ocena
+						*/				
 						$ocena = $this->input->post('ocena');
-						//die(opa);
+						
+						//brisanje izabrane ocene
 						$this->Nastavnik_model->brisanje($ocena);
 
 						redirect('nastavnik/ocene');

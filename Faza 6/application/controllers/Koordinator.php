@@ -17,8 +17,18 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
 			$data['title'] = 'Početna - Vesti';
+			/**
+			* @var array $data['vesti'] - prosledjivanje vesti
+			*/
 			$data['vesti'] = $this->Koordinator_model->getVestiAdmin();
+			/**
+			* @var array $data['vestiSkola'] - prosledjivanje vesti za skolu trenutnog koordinatora
+			*/			
 			$data['vestiSkola'] = $this->Koordinator_model->getVesti($this->Koordinator_model->getSkolaId($this->session->userdata('user_id')));
 			
 			
@@ -36,16 +46,32 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			
+			/**
+			*	@var int $skola - dohvatanje ID-a skole ulogovanog koordinatora
+			*/
 			$skola = $this->Koordinator_model->getSkolaKoord($this->session->userdata('user_id'));
-
+			/**
+			*	Ucitavanje modela
+			*/
 			$this->load->model('Koordinator_model');
-			
+			/**
+			*	@var array $data["fetch_data"] - Dohvata predmete za skolu kojoj je dodeljen koordinator
+			*/
 			$data["fetch_data"] = $this->Koordinator_model->listOfStudents($skola);
-			
+			/**
+			*	@var array $data['nastavnici'] - Dohvata sve korisnike
+			*/			
 			$data['nastavnici'] = $this->Koordinator_model->getNastavnikeForPredmet();
-			
+			/**
+			*	@var array $data['users']- Dohvata sve korisnike
+			*/			
 			$data['users'] = $this->Koordinator_model->getUsers();
+			/**
+			*	@var array $data['skole'] - Dohvata sve skole
+			*/			
 			$data['skole'] = $this->Koordinator_model->getSkole();
+			
 			$this->load->view('templates/header');
 			$this->load->view('koordinator/predmeti', $data);
 			$this->load->view('templates/footer');
@@ -60,18 +86,37 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	Ucitavanje modela
+			*/
 			$this->load->model('Koordinator_model');
+			/**
+			*	@var int $skola - dohvatanje ID-a skole ulogovanog koordinatora
+			*/
 			$skola = $this->Koordinator_model->getSkolaKoord($this->session->userdata('user_id'));
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
 			$data['title'] = 'Unos predmeta';
 			
 			$this->form_validation->set_rules('ime', 'Ime predmeta', 'required');
 			$this->form_validation->set_rules('skolskaGodina', 'Skolska godina', 'required');
 			$this->form_validation->set_rules('kabineti', 'Kabinet', 'required');
-			
+			/**
+			*	@var array $data['nastavnici'] - Dohvata sve nastavnike za zadatu skolu
+			*/						
 			$data['nastavnici'] = $this->Koordinator_model->getNastavnike($skola);
+			/**
+			*	@var array $data['skole'] - Dohvata sve skole
+			*/			
 			$data['skole'] = $this->Koordinator_model->getSkole();
+			/**
+			*	@var array $data['users']- Dohvata sve korisnike
+			*/			
 			$data['users'] = $this->Koordinator_model->getUsers();
-			
+			/**
+			*	@var int $skola - dohvatanje ID-a skole ulogovanog koordinatora
+			*/			
 			$skola = $this->Koordinator_model->getSkolaKoord($this->session->userdata('user_id'));
 			
 			if($this->form_validation->run() === FALSE){
@@ -80,7 +125,7 @@
 				$this->load->view('templates/footer');
 			}
 			else{
-				
+				//Unos predmeta za skolu kojoj je dodeljen koordinator
 				$this->Koordinator_model->unosPredmeta($skola);
 				$this->session->set_flashdata('unet_predmet', 'Uspešno unet predmet');
 				redirect('koordinator/predmeti');
@@ -96,17 +141,35 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var int $skola - dohvatanje ID-a skole ulogovanog koordinatora
+			*/
 			$skola = $this->Koordinator_model->getSkolaKoord($this->session->userdata('user_id'));
+			/**
+			*	Ucitavanje modela
+			*/			
 			$this->load->model('Koordinator_model');
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
 			$data['title'] = 'Brisanje predmeta';		
-			
+			/**
+			*	@var string $data['predmeti'] - dohvata predmete za zadatu skolu
+			*/			
 			$data['predmeti'] = $this->Koordinator_model->getPredmete($skola);
+			/**
+			*	@var array $data['skole'] - Dohvata sve skole
+			*/	
 			$data['skole'] = $this->Koordinator_model->getSkole();
 
 
-
+			/**
+			*	@var string $ime - dohvata uneseno
+			*/
 			$ime = $this->input->post('ime');
-
+			/**
+			*	@var int $skola - dohvatanje ID-a skole ulogovanog koordinatora
+			*/
 			$skola = $this->Koordinator_model->getSkolaKoord($this->session->userdata('user_id'));
 			$this->form_validation->set_rules('ime', 'Ime predmeta', 'required');
 			
@@ -116,6 +179,7 @@
 				$this->load->view('templates/footer');
 			}
 			else{
+			//Brisanje izabranog predmeta za skolu kojoj je dodeljen koordinator	
 			$this->Koordinator_model->brisanjePredmeta($ime,$skola);		
 				$this->session->set_flashdata('izbrisan_predmet', 'Uspešno izbrisan predmet');
 				redirect('koordinator/predmeti');
@@ -131,15 +195,32 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var int $skola - dohvatanje ID-a skole ulogovanog koordinatora
+			*/
 			$skola = $this->Koordinator_model->getSkolaKoord($this->session->userdata('user_id'));
+			/**
+			*	Ucitavanje modela
+			*/
 			$this->load->model('Koordinator_model');
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
 			$data['title'] = 'Izmena predmeta';
 			$this->form_validation->set_rules('ime', 'Ime predmeta', 'required');
 			$this->form_validation->set_rules('skolskaGodina', 'Skolska godina', 'required');
 			$this->form_validation->set_rules('kabineti', 'Kabinet', 'required');
-			
+			/**
+			*	@var string $data['predmeti'] - dohvata predmete za zadatu skolu
+			*/				
 			$data['predmeti'] = $this->Koordinator_model->getPredmete($skola);
+			/**
+			*	@var array $data['nastavnici'] - Dohvata sve nastavnike za zadatu skolu
+			*/
 			$data['nastavnici'] = $this->Koordinator_model->getNastavnike($skola);
+			/**
+			*	@var array $data['users']- Dohvata sve korisnike
+			*/
 			$data['users'] = $this->Koordinator_model->getUsers();
 			
 			if($this->form_validation->run() === FALSE){
@@ -148,8 +229,11 @@
 				$this->load->view('templates/footer');
 			}
 			else{
+				/**
+				*	@var array $predmet- Dohvata sve izabrani predmet
+				*/
 				$predmet = $this->input->post('predmet');
-			
+				//Izmena izabranog predmeta
 				$this->Koordinator_model->izmenaPredmeta($predmet);
 				$this->session->set_flashdata('izmenjen_predmet', 'Uspešno izmenjen predmet');
 				redirect('koordinator/predmeti');
@@ -165,9 +249,13 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
-			
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/			
 			$data['title'] = 'Raspored';
-			
+			/**
+			*	Ucitavanje modela
+			*/			
 			$this->load->model('Koordinator_model');			
 			
 			if($this->form_validation->run() === FALSE){
@@ -191,15 +279,24 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
 			$data['title'] = 'Prikaz rasporeda';
-			
+			/**
+			*	Ucitavanje modela
+			*/			
 			$this->load->model('Koordinator_model');
 			
 			$this->load->helper('form');
 			$this->load->library('table');
-			
+			/**
+			*	@var array $data['odeljenja'] - Dohvata sva odeljenja
+			*/				
 			$data['odeljenja'] = $this->Koordinator_model->getOdeljenja();
-		
+			/**
+			*	@var array $odeljenje- Izabrano odeljenje
+			*/			
 			$odeljenje = $this->input->post('odeljenje');
 			
 			$raspored = $this->Koordinator_model->dohvati_raspored($odeljenje);
@@ -296,17 +393,37 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var int $skola - dohvatanje ID-a skole ulogovanog koordinatora
+			*/
 			$skola = $this->Koordinator_model->getSkolaKoord($this->session->userdata('user_id'));
-			$data['title'] = 'Unos Casova';			
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
+			$data['title'] = 'Unos Casova';		
+			/**
+			*	Ucitavanje modela
+			*/			
 			$this->load->model('Koordinator_model');
 			
 			$this->form_validation->set_rules('dan', 'Dan', 'required');
 			$this->form_validation->set_rules('brojCasa', 'Broj Casa', 'required');
 			$this->form_validation->set_rules('kabinet', 'Kabinet', 'required');
-			
-			$data['odeljenja'] = $this->Koordinator_model->getOdeljenja();				
-			$data['nastavnici'] = $this->Koordinator_model->getNastavnike($skola);		
+			/**
+			*	@var array $data['odeljenja'] - Dohvata sva odeljenja
+			*/				
+			$data['odeljenja'] = $this->Koordinator_model->getOdeljenja();	
+			/**
+			*	@var array $data['nastavnici'] - Dohvata sve nastavnike za zadatu skolu
+			*/			
+			$data['nastavnici'] = $this->Koordinator_model->getNastavnike($skola);	
+			/**
+			*	@var string $data['predmeti'] - dohvata predmete za zadatu skolu
+			*/				
 			$data['predmeti'] = $this->Koordinator_model->getPredmete($skola);
+			/**
+			*	@var array $data['users']- Dohvata sve korisnike
+			*/
 			$data['users'] = $this->Koordinator_model->getUsers();
 			
 			if($this->form_validation->run() === FALSE){
@@ -316,7 +433,7 @@
 			}
 			else{
 				
-				
+				//Unos casova
 				$this->Koordinator_model->unosCasova();
 				$this->session->set_flashdata('unet_cas', 'Uspešno unet čas');
 				redirect('koordinator/raspored');
@@ -332,12 +449,20 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	Ucitavanje modela
+			*/
 			$this->load->model('Koordinator_model');
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
 			$data['title'] = 'Brisanje Casova';
 			
 			$this->form_validation->set_rules('dan', 'Dan', 'required');
 			$this->form_validation->set_rules('cas', 'Cas', 'required');
-			
+			/**
+			*	@var array $data['odeljenja'] - Dohvata sva odeljenja
+			*/				
 			$data['odeljenja'] = $this->Koordinator_model->getOdeljenja();
 			
 			if($this->form_validation->run() === FALSE){
@@ -346,9 +471,19 @@
 				$this->load->view('templates/footer');
 			}
 			else{
+				/**
+				*	@var array $odeljenje- Izabrano odeljenje
+				*/	
 				$odeljenje = $this->input->post('odeljenje');
+				/**
+				*	@var string $dan- Unet dan
+				*/	
 				$dan = $this->input->post('dan');
+				/**
+				*	@var int $cas- Unet cas
+				*/	
 				$cas = $this->input->post('cas');
+				//Brisanje casova
 				if($this->Koordinator_model->brisanjeCasova($odeljenje,$dan,$cas)){
 					$this->session->set_flashdata('izmenjen_predmet', 'Uspešno obrisan čas');
 					redirect('koordinator/raspored');
@@ -369,11 +504,29 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var int $skola - dohvatanje ID-a skole ulogovanog koordinatora
+			*/
 			$skola = $this->Koordinator_model->getSkolaKoord($this->session->userdata('user_id'));
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
 			$data['title'] = 'Uređivanje naloga';
+			/**
+			*	Ucitavanje modela
+			*/
 			$this->load->model('Koordinator_model');
+			/**
+			*	@var array $data['nastavnici'] - Dohvata sve nastavnike za zadatu skolu
+			*/
 			$data['nastavnici'] = $this->Koordinator_model->getNastavnikIds($skola);
+			/**
+			*	@var array $data['skole'] - Dohvata sve skole
+			*/	
 			$data['skole'] = $this->Koordinator_model->getSkole();
+			/**
+			*	@var array $data['users']- Dohvata sve korisnike
+			*/
 			$data['users'] = $this->Koordinator_model->getUsers();
 			
 			
@@ -394,16 +547,26 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var int $skola - dohvatanje ID-a skole ulogovanog koordinatora
+			*/
 			$skola = $this->Koordinator_model->getSkolaKoord($this->session->userdata('user_id'));
-			
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/			
 			$data['title'] = 'Novi nastavnik';
+			/**
+			*	Ucitavanje modela
+			*/
 			$this->load->model('Koordinator_model');
 			$this->form_validation->set_rules('name', 'Ime', 'required');
 			$this->form_validation->set_rules('surname', 'Prezime', 'required');
 			$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
 			$this->form_validation->set_rules('username', 'KorisnickoIme', 'required|callback_check_username_exists');
 			$this->form_validation->set_rules('password', 'Lozinka', 'required');
-			
+			/**
+			*	@var array $data['skole'] - Dohvata sve skole
+			*/				
 			$data['skole'] = $this->Koordinator_model->getSkole();
 			
 			
@@ -413,7 +576,11 @@
 				$this->load->view('templates/footer');
 			}
 			else{
+				/**
+				*	@var string $enc_password - md5 enkripcija unete lozinke
+				*/
 				$enc_password = md5($this->input->post('password'));
+				//Dodavanje nastavnika
 				$this->Koordinator_model->dodajNastavnika($enc_password,$skola);
 				
 				$this->session->set_flashdata('user_registered', 'Uspešno unet nalog');
@@ -431,16 +598,29 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var int $skola - dohvatanje ID-a skole ulogovanog koordinatora
+			*/
 			$skola = $this->Koordinator_model->getSkolaKoord($this->session->userdata('user_id'));
-		
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/		
 			$data['title'] = 'Izmena naloga nastavnika';
+			/**
+			*	Ucitavanje modela
+			*/
 			$this->load->model('Koordinator_model');
 			
 			$this->form_validation->set_rules('name', 'Ime', 'required');
 			$this->form_validation->set_rules('surname', 'Prezime', 'required');
 			$this->form_validation->set_rules('email', 'Email', 'required');
-			
+			/**
+			*	@var array $data['nastavnici'] - Dohvata sve nastavnike za zadatu skolu
+			*/			
 			$data['nastavnici'] = $this->Koordinator_model->getNastavnike($skola);
+			/**
+			*	@var array $data['users']- Dohvata sve korisnike
+			*/
 			$data['users'] = $this->Koordinator_model->getUsers();
 			
 			
@@ -450,8 +630,11 @@
 				$this->load->view('templates/footer');
 			}
 			else{
+				/**
+				*	@var array $nastavnik- Izabran nastavnik
+				*/
 				$nastavnik = $this->input->post('nastavnik');
-				
+				//Izmena naloga nastavnika
 				$this->Koordinator_model->izmenaNaloga($nastavnik);
 				
 				$this->session->set_flashdata('user_registered', 'Uspešno izmenjen nalog');
@@ -469,19 +652,35 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var int $skola - dohvatanje ID-a skole ulogovanog koordinatora
+			*/
 			$skola = $this->Koordinator_model->getSkolaKoord($this->session->userdata('user_id'));
-
-			$this->load->model('Koordinator_model');			
+			/**
+			*	Ucitavanje modela
+			*/
+			$this->load->model('Koordinator_model');	
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/			
 			$data['title'] = 'Brisanje Naloga';		
-						
+			/**
+			*	@var array $data['nastavnici'] - Dohvata sve nastavnike za zadatu skolu
+			*/						
 			$data['nastavnici'] = $this->Koordinator_model->getNastavnike($skola);
+			/**
+			*	@var array $data['users']- Dohvata sve korisnike
+			*/
 			$data['users'] = $this->Koordinator_model->getUsers();
 	
 			$this->load->view('templates/header');
 			$this->load->view('koordinator/brisanjeNaloga', $data);
 			$this->load->view('templates/footer');				
-				
+			/**
+			*	@var array $nastavnik- Izabran nastavnik
+			*/				
 			$nastavnik = $this->input->post('nastavnik');
+			//Brisanje naloga nastavnika
 			if($this->Koordinator_model->brisanjeNaloga($nastavnik)){
 				$this->session->set_flashdata('izbrisan_nastavnik', 'Uspešno izbrisan nalog nastavnika!');
 				redirect('koordinator/uredjivanje');
@@ -497,16 +696,30 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var int $skola - dohvatanje ID-a skole ulogovanog koordinatora
+			*/
 			$skola = $this->Koordinator_model->getSkolaKoord($this->session->userdata('user_id'));
-			
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/			
 			$data['title'] = 'Novi ucenik';
+			/**
+			*	Ucitavanje modela
+			*/
 			$this->load->model('Koordinator_model');
 			$this->form_validation->set_rules('name', 'Ime', 'required');
 			$this->form_validation->set_rules('surname', 'Prezime', 'required');
 			$this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
 			$this->form_validation->set_rules('username', 'KorisnickoIme', 'required|callback_check_username_exists');
 			$this->form_validation->set_rules('password', 'Lozinka', 'required');
-			$data['odeljenja'] = $this->Koordinator_model->getOdeljenja();				
+			/**
+			*	@var array $data['odeljenja'] - Dohvata sva odeljenja
+			*/	
+			$data['odeljenja'] = $this->Koordinator_model->getOdeljenja();
+			/**
+			*	@var array $data['skole'] - Dohvata sve skole
+			*/				
 			$data['skole'] = $this->Koordinator_model->getSkole();
 			
 			
@@ -516,7 +729,11 @@
 				$this->load->view('templates/footer');
 			}
 			else{
+				/**
+				*	@var string $enc_password - md5 enkripcija unete lozinke
+				*/
 				$enc_password = md5($this->input->post('password'));
+				//Dodavanje naloga ucenika
 				$this->Koordinator_model->dodajUcenika($enc_password,$skola);
 				
 				$this->session->set_flashdata('user_registered', 'Uspešno unet nalog');
@@ -534,17 +751,33 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var int $skola - dohvatanje ID-a skole ulogovanog koordinatora
+			*/
 			$skola = $this->Koordinator_model->getSkolaKoord($this->session->userdata('user_id'));
-			
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/			
 			$data['title'] = 'Izmena naloga ucenika ';
+			/**
+			*	Ucitavanje modela
+			*/
 			$this->load->model('Koordinator_model');
 			
 			$this->form_validation->set_rules('name', 'Ime');
 			$this->form_validation->set_rules('surname', 'Prezime', 'required');
 			$this->form_validation->set_rules('email', 'Email', 'required');
-			
+			/**
+			*	@var string $data['ucenici'] - dohvata ucenike za zadatu skolu
+			*/				
 			$data['ucenici'] = $this->Koordinator_model->getUcenike($skola);
+			/**
+			*	@var array $data['users']- Dohvata sve korisnike
+			*/
 			$data['users'] = $this->Koordinator_model->getUsers();
+			/**
+			*	@var array $data['odeljenja'] - Dohvata sva odeljenja
+			*/	
 			$data['odeljenja'] = $this->Koordinator_model->getOdeljenja();
 			
 			if($this->form_validation->run() === FALSE){
@@ -553,8 +786,15 @@
 				$this->load->view('templates/footer');
 			}
 			else{
+				/**
+				*	@var array $ucenik- Izabran ucenik
+				*/
 				$ucenik = $this->input->post('ucenik');
+				/**
+				*	@var array $odeljenje- Izabrano odeljenje
+				*/				
 				$odeljenje = $this->input->post('odeljenje');
+				//Izmena naloga ucenika
 				$this->Koordinator_model->izmenaNalogaU($ucenik,$odeljenje);
 				
 				$this->session->set_flashdata('user_registered', 'Uspešno izmenjen nalog');
@@ -572,20 +812,35 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var int $skola - dohvatanje ID-a skole ulogovanog koordinatora
+			*/
 			$skola = $this->Koordinator_model->getSkolaKoord($this->session->userdata('user_id'));
-			
-			$this->load->model('Koordinator_model');			
-			$data['title'] = 'Brisanje Naloga učenika';		
-						
+			/**
+			*	Ucitavanje modela
+			*/			
+			$this->load->model('Koordinator_model');
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/			
+			$data['title'] = 'Brisanje Naloga učenika';	
+			/**
+			*	@var string $data['ucenici'] - dohvata ucenike za zadatu skolu
+			*/						
 			$data['ucenici'] = $this->Koordinator_model->getUcenike($skola);
+			/**
+			*	@var array $data['users']- Dohvata sve korisnike
+			*/
 			$data['users'] = $this->Koordinator_model->getUsers();
 	
 			$this->load->view('templates/header');
 			$this->load->view('koordinator/brisanjeNalogaU', $data);
 			$this->load->view('templates/footer');				
-				
+			/**
+			*	@var array $ucenik- Izabran ucenik
+			*/				
 			$ucenik = $this->input->post('ucenik');
-		
+			//Brisanje naloga ucenika
 			if($this->Koordinator_model->brisanjeNalogaU($ucenik)){
 				$this->session->set_flashdata('izbrisan_ucenik', 'Uspešno izbrisan nalog učenika!');
 				redirect('koordinator/uredjivanje');
@@ -601,6 +856,9 @@
 			else if($this->session->userdata['user_level'] != 'koordinator'){
 				redirect($this->session->userdata['user_level']);
 			}
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/
 			$data['title'] = 'Nova Vest';
 			
 			
@@ -651,7 +909,9 @@
 			if(!$this->session->userdata('user_level') === 'koordinator'){
 				redirect('koordinator/home');
 			}
-			
+			/**
+			*	@var string $data['title'] - prosledjivanje naziva stranice
+			*/			
 			$data['title'] = ucfirst($page);
 			
 			$this->load->view('templates/header');

@@ -21,7 +21,11 @@
 			$query = $this->db->query("SELECT odeljenje.oznaka, odeljenje.id FROM odeljenje");
 			return $query;
 		}
-
+		/**
+		*	Dohvata listu skola
+		*
+		*	@return array $query - skole
+		*/	
 		public function listaSkola() {
 			$query = $this->db->query("SELECT skola.ime, skola.id FROM skola");
 			return $query;
@@ -285,7 +289,12 @@ $query = $this->db->query("SELECT users.id,users.name,users.surname,users.userna
 		$query = $this->db->get('users');
 		return $query->row();
 	}
-
+		/**
+		*	Dohvata predmete za prosledjenog nastavnika
+		*
+		*	@param int $id - id nastavnika
+		*	@return array $query - selektovani predmeti
+		*/	
 	public function getPredmete($id){
 
 		$this->db->where('nastavnik', $id);
@@ -310,7 +319,11 @@ $query = $this->db->query("SELECT users.id,users.name,users.surname,users.userna
 		return $this->db->insert('ocena', $data);
 	}
 
-
+		/**
+		*	Funkcija za brisanje izabrane ocene
+		*
+		*	@param int $ocena - izabrana ocena
+		*/	
 	public function brisanje($ocena){
 
 
@@ -327,27 +340,40 @@ $query = $this->db->query("SELECT users.id,users.name,users.surname,users.userna
 		}
 		// funckija koja sluzi da se nastavnik nakon sto generise odeljenje i predmet za koji zeli da unese ocenu, vidi i ocene za svakog ucenika
 		//iz tog odeljenja i za taj predmet
-	public function dohvatiOcene() {
+ public function dohvatiOcene() {
     $idNastavnika = $this->session->userdata('user_id');
 
-						$query = $this->db->query ("SELECT help2.id FROM help2");
+      $query = $this->db->query ("SELECT help2.id FROM help2");
 
-											if (isset($_POST['search1'])) {
-													$predmetID = $_POST['predmet'];
-												$query = $this->db->query("SELECT DISTINCT ocena.ocena, ocena.ucenikId
-																									FROM  ocena, predmet, nastavnik, ucenik
-																									 WHERE ocena.predmetId = '{$predmetID}'
-																									AND predmet.nastavnik = '{$idNastavnika}'
-																									AND nastavnik.id = '{$idNastavnika}' ");
+           if (isset($_POST['search1'])) {
+             $predmetID = $_POST['predmet'];
+            // $odeljenjeID = $_POST['od'];
 
-											}
+             $query = $this->db->where('predmetId', $predmetID);
+             
+             $query = $this->db->get('ocena');
 
-					return $query;
+        //    $query = $this->db->query("SELECT  ocena.ocena, ocena.ucenikId
+         //                FROM  ocena, predmet, nastavnik, ucenik,skola, odeljenje
+         //                 WHERE ocena.predmetId = '{$predmetID}'
+         //                AND predmet.nastavnik = '{$idNastavnika}'
+         //                AND nastavnik.id = '{$idNastavnika}'
+         //                AND odeljenje.id = '{$odeljenjeID}'  ");
+
+           }
+
+     return $query;
 
 
-	}
+ }
 
-
+		/**
+		*	Dohvatanje ocena iz baze za izabrani predmet i ucenika
+		*
+		*	@param int $predmet - id  predmeta
+		*	@param int $ucenik - id  ucenika
+		*	@return array $query - selektovane ocene
+		*/	
 	public function getOcene($predmet,$ucenik){
 
 		//		$predmet = $this->input->post('ime');
