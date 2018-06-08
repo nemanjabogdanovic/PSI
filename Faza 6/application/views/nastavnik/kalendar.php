@@ -6,7 +6,7 @@
 	<div class="tm-left-inner-container">
 		<ul class="nav nav-stacked css-nav">
 			<li><a href="<?php echo base_url(); ?>nastavnik/index">Početna</a></li>
-			<li><a href="<?php echo base_url(); ?>nastavnik/kalendar">Raspored</a></li>
+			<li><a href="<?php echo base_url(); ?>nastavnik/kalendar">Kalendar</a></li>
 			<li><a href="<?php echo base_url(); ?>nastavnik/ucenici">Učenici</a></li>
 			<li><a href="<?php echo base_url(); ?>nastavnik/upis">Upis časa</a></li>
 			<li><a href="<?php echo base_url(); ?>nastavnik/izostanci">Izostanci</a></li>
@@ -59,7 +59,7 @@ font-weight:bold;
 <div id="show_table">
 <?php
 // Create cation for table
-$this->table->set_caption('Raspored Casova');
+$this->table->set_caption('Raspored Časova');
 
 // Set a table template to specify the design of table layout
 $table_property = array('table_open' => '<table cellpadding="10" cellspacing="10" class="table_show">');

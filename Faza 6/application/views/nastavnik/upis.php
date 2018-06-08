@@ -24,7 +24,7 @@
 
  			<form name = "search_form" method= "POST" action = "upis">
 
-				<label> Izaberite za koji predmet zelite da upisete cas: <font color = "red"> *** </font></label>
+				<label>Izaberite za koji predmet želite da upišete čas: <font color = "red"> *** </font></label>
 				<br>
 				<select name = 'predmet'>
 
@@ -51,10 +51,10 @@
 
 				<br>
 				<br>
-				<label> Tema casa: </label>
+				<label> Tema časa: </label>
 				<input type="text" class="form-control" name="temaCasa" placeholder="Unesite temu casa">
 				<br>
-				<label> Redni broj casa: </label>  <input type="text" class="form-control" name="redniBroj" placeholder = "Unesite redni broj casa">
+				<label> Redni broj časa: </label>  <input type="text" class="form-control" name="redniBroj" placeholder = "Unesite redni broj casa">
 				<br>
 
 				<label> Komentari: </label>
@@ -64,7 +64,7 @@
 				</textarea>
 				<br>
 
-					<input type="submit" name = "upisiCas" value = "Upisi cas">
+					<input type="submit" name = "upisiCas" value = "Upiši cas">
 			</form>
 				<p> <font color = "red"> *** obavezno  </font></p>
 		  </div>

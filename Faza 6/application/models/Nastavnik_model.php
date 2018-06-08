@@ -1,8 +1,7 @@
 <!--
-	autor: Nemanja Bogdanovic, 2012/0533
-		   Dragana Svrkota, 2015/0485
-			 Aleksandar Milic,
-			 Milos Markovic,
+	autor: Dragana Svrkota, 2015/0485
+		   Aleksandar Milic,
+		   Milos Markovic
 	@version: 1.0
 -->
 

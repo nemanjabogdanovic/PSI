@@ -1,6 +1,5 @@
 <!--
 	autor: Nemanja Bogdanovic, 2012/0533
-	@version: 1.0
 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <div class="col col-lg-2 col-md-3 col-sm-3 col-xs-12 left-container">

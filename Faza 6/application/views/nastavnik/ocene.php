@@ -201,8 +201,8 @@
 
 										<br>
 										<br>
-									<button type="submit" class="btn btn-primary btn-block">Unesi</button>
-												<button type="submit"><a href="<?php echo base_url(); ?>nastavnik/brisanjeOcene">Brisanje ocena</a></button>
+									<button type="submit" class="btn btn-primary">Unesi</button><br><br>
+												<button type="submit" class="btn btn-primary"><a style="color: #FFFFFF;" href="<?php echo base_url(); ?>nastavnik/brisanjeOcene">Brisanje ocena</a></button>
 
 									</form>
 								</div>

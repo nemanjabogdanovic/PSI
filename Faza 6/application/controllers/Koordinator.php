@@ -1,6 +1,5 @@
 <!--
-	autor: Nemanja Bogdanovic, 2012/0533
-		   Markovic Milos, 0096/2012
+	autor: Markovic Milos, 0096/2012
 		   
 	Koordinator kontroler – kontroler klasa u kojoj se nalaze sve funkcije koje koristi koordinator
 	

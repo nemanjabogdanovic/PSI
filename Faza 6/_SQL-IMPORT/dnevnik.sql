@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2018 at 12:48 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- Generation Time: Jun 08, 2018 at 09:30 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -68,7 +68,7 @@ CREATE TABLE `help` (
 --
 
 INSERT INTO `help` (`id`) VALUES
-(11);
+(31);
 
 -- --------------------------------------------------------
 
@@ -110,7 +110,10 @@ CREATE TABLE `koordinator` (
 
 INSERT INTO `koordinator` (`id`, `skolaId`) VALUES
 (11, 2),
-(14, 3);
+(14, 3),
+(31, 4),
+(32, 5),
+(33, 6);
 
 -- --------------------------------------------------------
 
@@ -132,7 +135,11 @@ INSERT INTO `nastavnik` (`id`, `skolaId`) VALUES
 (15, 4),
 (16, 4),
 (17, 3),
-(24, 2);
+(24, 2),
+(34, 2),
+(35, 2),
+(36, 2),
+(37, 2);
 
 -- --------------------------------------------------------
 
@@ -179,7 +186,11 @@ CREATE TABLE `odeljenje` (
 
 INSERT INTO `odeljenje` (`id`, `oznaka`, `skolaId`, `nastavnikId`) VALUES
 (2, 'I/1', 2, 8),
-(3, 'I/2', 3, 15);
+(3, 'MI/1', 6, 15),
+(4, 'I/2', 2, 37),
+(5, 'I/3', 2, 36),
+(6, 'II/1', 2, 35),
+(7, 'II/2', 2, 34);
 
 -- --------------------------------------------------------
 
@@ -204,9 +215,15 @@ INSERT INTO `predmet` (`id`, `ime`, `nastavnik`, `skolskaGodina`, `kabineti`, `s
 (4, 'Matematika', 8, '1', '1', 2),
 (6, 'Francuski', 8, '4', '12', 3),
 (7, 'Nemački', 24, '3', '12', 4),
-(10, 'Srpski', 17, '3', '3', 2),
+(10, 'Srpski', 8, '3', '3', 2),
 (11, 'Bugarski', 15, '2', '21', 3),
-(12, 'Hemija', 24, '2', '4', 3);
+(12, 'Hemija', 24, '2', '4', 3),
+(13, 'Engleski', 36, '2', '309', 2),
+(14, 'Istorija', 37, '1', '2', 2),
+(15, 'Fizika', 34, '2', '5', 2),
+(16, 'Elektronika', 35, '1', '4', 2),
+(17, 'Informatika', 35, '3', '6', 2),
+(18, 'Fizicko', 34, '3', '131', 2);
 
 -- --------------------------------------------------------
 
@@ -248,7 +265,50 @@ INSERT INTO `raspored` (`id`, `odeljenjeId`, `dan`, `brojCasa`, `nastavnikId`, `
 (19, 3, 'ponedeljak', 2, 16, '123', 11),
 (20, 3, 'sreda', 2, 24, '12', 11),
 (21, 3, 'cetvrtak', 2, 16, '2', 7),
-(22, 3, 'petak', 2, 17, '2', 11);
+(22, 3, 'petak', 2, 17, '2', 11),
+(23, 4, 'ponedeljak', 1, 35, '4', 16),
+(24, 4, 'ponedeljak', 2, 35, '4', 16),
+(25, 4, 'ponedeljak', 3, 35, '6', 17),
+(26, 4, 'ponedeljak', 4, 35, '6', 17),
+(27, 4, 'utorak', 1, 36, '309', 13),
+(28, 4, 'utorak', 2, 36, '309', 13),
+(29, 4, 'utorak', 3, 37, '2', 14),
+(30, 4, 'utorak', 4, 37, '2', 14),
+(31, 4, 'sreda', 1, 8, '1', 4),
+(32, 4, 'sreda', 2, 8, '1', 4),
+(33, 4, 'sreda', 3, 34, '131', 18),
+(34, 4, 'sreda', 4, 34, '131', 18),
+(35, 4, 'petak', 1, 8, '3', 10),
+(36, 4, 'petak', 2, 8, '3', 10),
+(37, 2, 'ponedeljak', 3, 8, '131', 18),
+(38, 2, 'ponedeljak', 4, 8, '131', 18),
+(39, 2, 'cetvrtak', 3, 35, '6', 17),
+(40, 2, 'cetvrtak', 4, 35, '6', 17),
+(41, 5, 'utorak', 1, 35, '6', 17),
+(42, 5, 'utorak', 2, 35, '6', 17),
+(43, 5, 'cetvrtak', 3, 34, '5', 15),
+(44, 5, 'cetvrtak', 4, 35, '5', 15),
+(45, 5, 'cetvrtak', 5, 34, '131', 18),
+(46, 5, 'cetvrtak', 6, 34, '131', 18),
+(47, 6, 'ponedeljak', 3, 36, '309', 13),
+(48, 6, 'ponedeljak', 4, 36, '309', 13),
+(49, 6, 'sreda', 1, 37, '2', 14),
+(50, 6, 'sreda', 2, 37, '2', 14),
+(51, 6, 'sreda', 3, 8, '3', 10),
+(52, 6, 'sreda', 4, 8, '3', 10),
+(53, 6, 'petak', 1, 35, '4', 16),
+(55, 6, 'petak', 2, 35, '4', 16),
+(56, 6, 'petak', 3, 35, '6', 17),
+(57, 6, 'petak', 4, 35, '6', 17),
+(58, 7, 'utorak', 1, 34, '131', 18),
+(59, 7, 'utorak', 2, 34, '131', 18),
+(60, 7, 'utorak', 3, 8, '1', 4),
+(61, 7, 'utorak', 4, 8, '1', 4),
+(62, 7, 'sreda', 1, 8, '3', 10),
+(63, 7, 'sreda', 2, 8, '3', 10),
+(64, 2, 'petak', 3, 35, '6', 17),
+(65, 7, 'petak', 4, 35, '6', 17),
+(66, 7, 'petak', 3, 35, '6', 17);
 
 -- --------------------------------------------------------
 
@@ -270,7 +330,9 @@ CREATE TABLE `skola` (
 INSERT INTO `skola` (`id`, `ime`, `adresa`, `grad`) VALUES
 (2, 'Prva beogradska gimnazija', 'Cara Dušana 61', 'Beograd'),
 (3, 'Treća beogradska gimnazija', 'Njegoševa 61', 'Beograd'),
-(4, 'Peta beogradska gimnazija', 'Ilije Garašanina 24', 'Belgrade');
+(4, 'Peta beogradska gimnazija', 'Ilije Garašanina 24', 'Belgrade'),
+(5, 'Gimnazija Lazarevac', 'Miloja Bogdanovica 1', 'Lazarevac'),
+(6, 'Matematicka gimnazija', 'Zeleni venac', 'Beograd');
 
 -- --------------------------------------------------------
 
@@ -292,7 +354,21 @@ INSERT INTO `ucenik` (`id`, `skolaId`, `odeljenjeId`) VALUES
 (12, 2, 2),
 (18, 3, 3),
 (22, 3, 3),
-(23, 2, 3);
+(23, 2, 3),
+(38, 2, 2),
+(39, 2, 4),
+(40, 2, 4),
+(41, 2, 4),
+(42, 2, 5),
+(43, 2, 2),
+(44, 2, 6),
+(45, 2, 5),
+(46, 2, 5),
+(47, 2, 6),
+(48, 2, 6),
+(49, 2, 7),
+(50, 2, 7),
+(51, 2, 7);
 
 -- --------------------------------------------------------
 
@@ -315,17 +391,38 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `surname`, `email`, `username`, `password`) VALUES
 (1, 'Aleksa', 'Aleksic', 'aleksa@gmail.com', 'aleksa_aleksic_1', 'f3071ec919ba79ea9d6fbe49c2c53a3d'),
-(8, 'Vuk', 'Vukovicccc', 'vuk@mail.com', 'vuk_vukovic_1', '5a1001075d3205d010ef24413e6a1afd'),
+(8, 'Vuk', 'Vukovic', 'vuk@mail.com', 'vuk_vukovic_1', '5a1001075d3205d010ef24413e6a1afd'),
 (11, 'Branko', 'Brankovic', 'branko@live.com', 'branko_brankovic_1', 'fbee3d5b1def587f835e85a8a4c78195'),
 (12, 'Goran', 'Goranovic', 'goran@gmail.com', 'goran_goranovic_1', '52ddd9ff1e957a1e6b15d329d8cefee7'),
 (14, 'Elena', 'Elenic', 'elena@gmail.com', 'elena_elenic_1', 'f5c90d326bc375e17efee4325dc04b59'),
-(15, 'Mica', 'mic', 'mica@mail.com', 'mica_micovic_1', '2ac8fad6f031fbd733007ff97b9ffcc7'),
+(15, 'Mica', 'Micovic', 'mica@mail.com', 'mica_micovic_1', '2ac8fad6f031fbd733007ff97b9ffcc7'),
 (16, 'Mira', 'Miric', 'mira@mail.com', 'mira_miric_1', '83469ed2521f07cb27804061cf244132'),
 (17, 'Žika', 'Žikić', 'zika@emai.com', 'zika_zikic_1', '234c992ccb4b1f60c4643ac2be57740f'),
 (18, 'Zoran', 'Zorić', 'zoran@mail.com', 'zoran_zoric_1', '47e4b6fb92b60755791bd7a655d09191'),
 (22, 'Milos', 'Vukovic', 'milos@mail.com', 'milos_milosevic_1', 'b82753180960205a4a62feff9c0f93f5'),
 (23, 'Roki', 'Rokic', 'roki.rokic@mail.com', 'roki_rokic_1', '869b1b66b8cec6af9e434a98b8db30bf'),
-(24, 'Bojan', 'Bojanic', 'bojan@mail.com', 'bojan_bojanic_1', '2a89afb221c007c2723065886371e4c9');
+(24, 'Bojan', 'Bojanic', 'bojan@mail.com', 'bojan_bojanic_1', '2a89afb221c007c2723065886371e4c9'),
+(31, 'Aleksandar', 'Milic', 'aleksandar.milic24@gmail.com', 'aleksandar_milic_1', '78a9fb9298e6b7a50b8f99dd0d46feda'),
+(32, 'Marko', 'Stojanovic', 'marko@student.etf.bg.ac.rs', 'marko_stojanovic_1', '26c7c9089e23c14396410bbc6675dbdf'),
+(33, 'Milos', 'Teodosic', 'milosTeodosic@gmail.com', 'milos_teodosic_1', 'b82753180960205a4a62feff9c0f93f5'),
+(34, 'Aleksa', 'Djekanovic', 'djeka@gmail.com', 'aleksa_djekanovic_1', 'f3071ec919ba79ea9d6fbe49c2c53a3d'),
+(35, 'Stefan', 'Markovic', 'stefke@gmail.com', 'stefan_markovic_1', 'e42337a246c9864183d92125eb51d86c'),
+(36, 'Jelena', 'Dobric', 'jeca@gmail.com', 'jelena_dobric_1', 'c62439ea56c71bf8b4760d507e0e646a'),
+(37, 'Jovana', 'Dobrijevic', 'jovana@gmail.com', 'jovana_dobrijevic_1', 'd7c9aa725b1bdbf94b08502780f0341a'),
+(38, 'Marko', 'Kraljevic', 'marko@gmail.com', 'marko_kraljevic_1', '26c7c9089e23c14396410bbc6675dbdf'),
+(39, 'Veljko', 'Petrovic', 'veljko@gmail.com', 'veljko_petrovic_1', 'ece873523bc616811ee14bea46e654dd'),
+(40, 'Janko', 'Stajcic', 'janko@gmail.com', 'janko_stajcic_1', '044879399025a6ac6f2c20fb8f86577d'),
+(41, 'Jasmina', 'Simic', 'jasmina@gmail.com', 'jasmina_simic_1', '2a9bacea5a9a759c6337b40a17ace2f0'),
+(42, 'Dusan', 'Aranitovic', 'dusan@gmail.com', 'dusan_aranitovic_1', 'f311cc41b56bb51f9d0bce464549da42'),
+(43, 'Vesna', 'Markov', 'Vesna@gmail.com', 'vesna_markov_1', '14566edc95feb0b5207dfb078118028b'),
+(44, 'Vera', 'Prodanov', 'vera@gmail.com', 'vera_prodanov_1', '79b013932a9a7efa4f9e7ee201b96aa7'),
+(45, 'Aleksandar', 'Milicevic', 'aleksandar@gmail.com', 'aleksandar_milicevic_1', '78a9fb9298e6b7a50b8f99dd0d46feda'),
+(46, 'Slobodan', 'Milosevic', 'sloba@gmail.com', 'slobodan_milosevic_1', '231bfe2424eb22ee64ff3e61c02406e4'),
+(47, 'Desanka', 'Maksimovic', 'desa@gmail.com', 'desanka_maksimovic_1', '8d8e4cd6e6e8db4cc5c31c54c190cf98'),
+(48, 'Milos', 'Obilic', 'milos@gmail.com', 'milos_obilic_1', 'b82753180960205a4a62feff9c0f93f5'),
+(49, 'Goca', 'Trzan', 'goca@gmail.com', 'goca_trzan_1', 'b8567c70029d019374304fa3a63b0980'),
+(50, 'Haris', 'Dzinovic', 'haris@gmail.com', 'haris_dzinovic_1', 'a724fe728a2b49d3f41a0c2120eb7780'),
+(51, 'Jelena', 'Karleusa', 'jelena@gmail.com', 'jelena_karleusa_1', 'c62439ea56c71bf8b4760d507e0e646a');
 
 -- --------------------------------------------------------
 
@@ -468,31 +565,31 @@ ALTER TABLE `ocena`
 -- AUTO_INCREMENT for table `odeljenje`
 --
 ALTER TABLE `odeljenje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `predmet`
 --
 ALTER TABLE `predmet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `raspored`
 --
 ALTER TABLE `raspored`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `skola`
 --
 ALTER TABLE `skola`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `vesti`
